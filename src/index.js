@@ -11,6 +11,9 @@ const initialState = require('../state')
 const App = require('./containers/app')
 const Home = require('./containers/home')
 const Users = require('./components/users')
+const Profile = require('./containers/profile')
+const Group = require('./containers/group')
+const Plan = require('./components/plan')
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

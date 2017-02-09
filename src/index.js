@@ -15,6 +15,9 @@ const Home = require('./containers/home')
 
 // teir 2 components
 const Users = require('./components/users')
+const Profile = require('./containers/profile')
+const Group = require('./containers/group')
+const Plan = require('./components/plan')
 const Login = require('./components/login')
 const Register = require('./components/register')
 
@@ -26,18 +29,30 @@ store.subscribe(() => {
 })
 
 const Root = ({store}) => {
-  return (
-      <Provider store={store}>
-        <Router history={hashHistory}>
-          <Route path='/' component={App}>
-            <IndexRoute component={Home} />
-            <Route path='/users' component={Users} />
-            <Route path='/login' component={Login} /> //festering
-            <Route path='/register' component={Register} />
-          </Route>
-        </Router>
-      </Provider>
-  )
+
+	return (
+		<Provider store = {store}>
+			<Router history = {hashHistory}>
+				<Route path = '/' component={App}>
+					<IndexRoute component={Home} />
+						<Route path='/login' component={Login} /> //festering
+						<Route path='/register' component={Register} />
+
+						<Route path = '/users' component={Users} />
+						<Route path = '/users/:id' component={Profile} />
+						<Route path = '/users/:id/edit' component={Profile} />
+
+						<Route path = '/groups/:id' component={Group} />
+						<Route path = '/groups/:id/new' component={Group} />
+						<Route path = '/groups/:id/edit' component={Group} />
+
+						<Route path = '/plans/:id' component={Plan} />
+						<Route path = '/plans/:id/new' component={Plan} />
+						<Route path = '/plans/:id/edit' component={Plan} />
+				</Route>
+			</Router>
+		</Provider>
+	)
 }
 // <MuiThemeProvider>
 // </MuiThemeProvider>

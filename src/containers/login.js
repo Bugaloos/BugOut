@@ -5,7 +5,6 @@ const _ = require('lodash')
 const { RaisedButton } = require('material-ui')
 const request = require('superagent')
 const PouchDB = require('pouchdb')
-var syncDom = document.getElementById('sync-wrapper')
 
 class Login extends React.Component {
 
@@ -16,7 +15,7 @@ class Login extends React.Component {
     const password = this.refs.password.value
 
     var db = new PouchDB('users')
-    var remoteCouch = 'https://localhost:5984/testingdb'
+    var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
 
     var user = {
       _id: new Date().toISOString(),
@@ -28,7 +27,6 @@ class Login extends React.Component {
         console.log('Successfully posted a todo!', result);
       }
     })
-    syncDom.setAttribute('data-sync-state', 'syncing');
     var opts = {live: true};
     db.sync(remoteCouch, opts, syncError)
 

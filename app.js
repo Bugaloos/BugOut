@@ -8,8 +8,8 @@ const api = require('./api')
 const PouchDB = require('pouchdb')
 
 //Database
-const db = PouchDB('db')
-
+// const db = PouchDB('db')
+// const remoteCouch = false
 
 module.exports = function (db) {
   const app = express()

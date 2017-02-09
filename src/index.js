@@ -6,11 +6,13 @@ const createHistory = require('history').createHashHistory
 const { Router, Route, IndexRoute, hashHistory } = require('react-router')
 const reducer = require('./reducers')
 const initialState = require('../state')
+const MuiThemeProvider = require('material-ui/styles')
 
 // Top Level Components
-const App = require('./components/app')
-const Home = require('./components/home')
-const Users = require('./components/users')
+const App = require('./containers/app')
+const Home = require('./containers/home')
+const Users = require('./containers/users')
+const Login = require('./containers/login')
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
@@ -20,16 +22,19 @@ store.subscribe(() => {
 
 const Root = ({store}) => {
   return (
-    <Provider store={store}>
-      <Router history={hashHistory}>
-        <Route path='/' component={App}>
-          <IndexRoute component={Home} />
-          <Route path='/users' component={Users} />
-        </Route>
-      </Router>
-    </Provider>
+      <Provider store={store}>
+        <Router history={hashHistory}>
+          <Route path='/' component={App}>
+            <IndexRoute component={Home} />
+            <Route path='/users' component={Users} />
+            <Route path='/login' component={Login} />
+          </Route>
+        </Router>
+      </Provider>
   )
 }
+// <MuiThemeProvider>
+// </MuiThemeProvider>
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded')

@@ -22,15 +22,15 @@ store.subscribe(() => {
 
 const Root = ({store}) => {
   return (
-      <Provider store={store}>
-        <Router history={hashHistory}>
-          <Route path='/' component={App}>
-            <IndexRoute component={Home} />
-            <Route path='/users' component={Users} />
-            <Route path='/login' component={Login} />
-          </Route>
-        </Router>
-      </Provider>
+    <Provider store={store}>
+      <Router history={hashHistory}>
+        <Route path='/' component={App}>
+          <IndexRoute component={Home} />
+          <Route path='/users' component={Users} />
+          <Route path='/login' component={Login} />
+        </Route>
+      </Router>
+    </Provider>
   )
 }
 // <MuiThemeProvider>
@@ -42,6 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ReactDOM.render(
     <Root store={store} />,
-		root
-	)
+    root
+  )
 })

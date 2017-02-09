@@ -7,7 +7,7 @@ const session = require('express-session')
 const api = require('./api')
 const PouchDB = require('pouchdb')
 
-//Database
+// Database
 // const db = PouchDB('db')
 // const remoteCouch = false
 

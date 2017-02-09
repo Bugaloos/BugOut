@@ -22,18 +22,18 @@ class Login extends React.Component {
       _id: new Date().toISOString(),
       title: 'Sir Reginald Von Hammersmelt',
       completed: false
-    };
+    }
     db.put(user, (err, result) => {
       if (!err) {
-        console.log('Successfully posted a todo!', result);
+        console.log('Successfully posted a todo!', result)
       }
     })
-    syncDom.setAttribute('data-sync-state', 'syncing');
-    var opts = {live: true};
+    syncDom.setAttribute('data-sync-state', 'syncing')
+    var opts = {live: true}
     db.sync(remoteCouch, opts, syncError)
 
-    function syncError() {
-      syncDom.setAttribute('data-sync-state', 'error');
+    function syncError () {
+      syncDom.setAttribute('data-sync-state', 'error')
     }
   }
 

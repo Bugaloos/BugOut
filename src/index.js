@@ -8,8 +8,8 @@ const reducer = require('./reducers')
 const initialState = require('../state')
 
 //Top Level Components
-const App = require('./components/app')
-const Home = require('./components/home')
+const App = require('./containers/app')
+const Home = require('./containers/home')
 const Users = require('./components/users')
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())

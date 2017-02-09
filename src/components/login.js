@@ -5,6 +5,7 @@ const _ = require('lodash')
 const { RaisedButton } = require('material-ui')
 const request = require('superagent')
 const PouchDB = require('pouchdb')
+const db = require('../../pouchDB')
 
 class Login extends React.Component {
 
@@ -14,22 +15,13 @@ class Login extends React.Component {
     const email = this.refs.email.value
     const password = this.refs.password.value
 
-    var db = new PouchDB('users')
-    var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
-
-    db.get( email, {include_docs: true}, (err, result) => {
-      if (!err) {
-        console.log('Snagged one!', result);
-      }else{
-        console.log('missed it', err);
-      }
-    })
-    var opts = {live: true};
-    db.sync(remoteCouch, opts, syncError)
-
-    function syncError() {
-      syncDom.setAttribute('data-sync-state', 'error');
-    }
+    db.login({ email, password })
+    // var opts = {live: true};
+    // db.sync(remoteCouch, opts, syncError)
+    //
+    // function syncError() {
+    //   syncDom.setAttribute('data-sync-state', 'error');
+    // }
   }
 
   render () {

@@ -3,7 +3,6 @@ const freeze = require('deep-freeze')
 const reducer = require('../../src/reducer')
 
 test('MY_ACTION_TYPE | toggle actionType to true or false', t => {
-
   const state = {
     actionType: false
   }

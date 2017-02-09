@@ -1,7 +1,7 @@
 const React = require('react')
 const { connect } = require('react-redux')
 
-function Home(props) {
+function Home (props) {
   return (
     <div>
       <h1>Home</h1>

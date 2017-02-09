@@ -6,27 +6,38 @@ const createHistory = require('history').createHashHistory
 const { Router, Route, IndexRoute, hashHistory } = require('react-router')
 const reducer = require('./reducers')
 const initialState = require('../state')
+const MuiThemeProvider = require('material-ui/styles')
 
-//Top Level Components
+
+// Top Level Components
 const App = require('./containers/app')
 const Home = require('./containers/home')
+
+// teir 2 components
 const Users = require('./components/users')
 const Profile = require('./containers/profile')
 const Group = require('./containers/group')
 const Plan = require('./components/plan')
+const Login = require('./components/login')
+const Register = require('./components/register')
+
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
-store.subscribe(()=> {
-	console.log('Index.js state log', store.getState());
+store.subscribe(() => {
+  console.log('Index.js state log', store.getState())
 })
 
 const Root = ({store}) => {
+
 	return (
 		<Provider store = {store}>
 			<Router history = {hashHistory}>
 				<Route path = '/' component={App}>
 					<IndexRoute component={Home} />
+						<Route path='/login' component={Login} /> //festering
+						<Route path='/register' component={Register} />
+
 						<Route path = '/users' component={Users} />
 						<Route path = '/users/:id' component={Profile} />
 						<Route path = '/users/:id/edit' component={Profile} />
@@ -43,13 +54,15 @@ const Root = ({store}) => {
 		</Provider>
 	)
 }
+// <MuiThemeProvider>
+// </MuiThemeProvider>
 
 document.addEventListener('DOMContentLoaded', () => {
-	console.log('DOMContentLoaded');
-	const root = document.querySelector('#app')
+  console.log('DOMContentLoaded')
+  const root = document.querySelector('#app')
 
-	ReactDOM.render(
-		<Root store={store}/>,
+  ReactDOM.render(
+    <Root store={store} />,
 		root
 	)
 })

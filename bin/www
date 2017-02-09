@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // main
-const knex = require('../db/knex') // knex instance
-const db = require('../db')(knex) // db methods
+const PouchDB = require('pouchdb')
+const db = new PouchDB('my_database') // db methods
 const app = require('../app')(db) // app
 const debug = require('debug')('server')
 const http = require('http')
@@ -31,7 +31,7 @@ server.on('listening', onListening)
  * Normalize a port into a number, string, or false.
  */
 
-function normalizePort(val) {
+function normalizePort (val) {
   const port = parseInt(val, 10)
 
   if (isNaN(port)) {

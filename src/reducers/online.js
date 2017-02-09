@@ -1,11 +1,10 @@
-module.exports = function online(state = false, action) {
+module.exports = function online (state = false, action) {
+  switch (action.type) {
 
-	switch (action.type) {
-
-		case 'TOGGLE_ONLINE':
+    case 'TOGGLE_ONLINE':
  			return !state
 
-		default:
-			return state
-	}
+    default:
+      return state
+  }
 }

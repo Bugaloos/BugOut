@@ -14,21 +14,21 @@ test.beforeEach(() => {
     })
 })
 
-//rollback to the original state of the database
+// rollback to the original state of the database
 test.afterEach.always(() => {
   return testKnex.migrate.rollback()
 })
 
 test('Add new user | it should add a new user into the data base', (t) => {
-   t.plan(1)
+  t.plan(1)
  // arrange
-const tableName = 'users'
-const Name = {userName:'Anna'}
-const expected = []
- //act
-return db.addUser('users', Name)
-  .then(function(data){
-//Assert
-    t.is(data.length, 4 ,'add user to db')
-   })
+  const tableName = 'users'
+  const Name = {userName: 'Anna'}
+  const expected = []
+ // act
+  return db.addUser('users', Name)
+  .then(function (data) {
+// Assert
+    t.is(data.length, 4, 'add user to db')
+  })
 })

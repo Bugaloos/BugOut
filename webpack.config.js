@@ -10,7 +10,7 @@ module.exports = {
 
   output: {
     path: PATHS.output,
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
 
   devServer: {

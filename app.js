@@ -5,6 +5,10 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const api = require('./api')
+const PouchDB = require('pouchdb')
+
+//Database
+const db = PouchDB('db')
 
 
 module.exports = function (db) {
@@ -15,13 +19,13 @@ module.exports = function (db) {
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(cookieParser())
 
-  //session config
+  // session config
   app.set('trust proxy', 1) // trust first proxy
   app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
   }))
 
   if (app.get('env') === 'development') {
@@ -35,8 +39,8 @@ module.exports = function (db) {
     const lrserver = livereload.createServer()
 
     lrserver.watch([
-      __dirname + "/public",
-      __dirname + "/src",
+      __dirname + '/public',
+      __dirname + '/src'
     ])
 
     app.use(require('inject-lr-script')())
@@ -47,7 +51,6 @@ module.exports = function (db) {
     }))
   }
 
-
   // static files
   app.use('/', express.static(path.join(__dirname, 'public')))
 
@@ -55,7 +58,7 @@ module.exports = function (db) {
   app.use('/api/v1/', api.resources(db))
 
   // catch 404 and forward to error handler
-  app.use(function(req, res, next) {
+  app.use(function (req, res, next) {
     const err = new Error('Not Found')
     err.status = 404
     next(err)
@@ -66,7 +69,7 @@ module.exports = function (db) {
   // development error handler
   // will print stacktrace
   if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
+    app.use(function (err, req, res, next) {
       res.status(err.status || 500)
       res.json({
         message: err.message,
@@ -77,7 +80,7 @@ module.exports = function (db) {
 
   // production error handler
   // no stacktraces leaked to user
-  app.use(function(err, req, res, next) {
+  app.use(function (err, req, res, next) {
     res.status(err.status || 500)
     res.json({
       message: err.message,

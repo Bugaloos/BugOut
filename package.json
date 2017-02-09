@@ -1,7 +1,7 @@
 {
   "name": "Drink-Splitter",
   "version": "1.0.0",
-  "description": "Drink Splitter",
+  "description": "Bug Out",
   "main": "index.js",
   "scripts": {
     "test": "tape test/**/*.tape.js | tap-diff",
@@ -48,6 +48,7 @@
     "morgan": "^1.7.0",
     "mui": "^1.0.0",
     "pg": "^6.1.2",
+    "pouchdb": "^6.1.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",

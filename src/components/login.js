@@ -17,14 +17,11 @@ class Login extends React.Component {
     var db = new PouchDB('users')
     var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
 
-    var user = {
-      _id: new Date().toISOString(),
-      title: 'Sir Reginald Von Hammersmelt',
-      completed: false
-    };
-    db.put(user, (err, result) => {
+    db.get( email, {include_docs: true}, (err, result) => {
       if (!err) {
-        console.log('Successfully posted a todo!', result);
+        console.log('Snagged one!', result);
+      }else{
+        console.log('missed it', err);
       }
     })
     var opts = {live: true};

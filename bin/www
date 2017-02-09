@@ -2,7 +2,7 @@
 // main
 const PouchDB = require('pouchdb')
 const db = new PouchDB('my_database') // db methods
-const app = require('../app')(db) // app
+const app = require('../server')(db) // app
 const debug = require('debug')('server')
 const http = require('http')
 

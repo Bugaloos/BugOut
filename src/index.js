@@ -13,6 +13,7 @@ const App = require('./containers/app')
 const Home = require('./containers/home')
 const Users = require('./components/users')
 const Login = require('./components/login')
+const Register = require('./components/register')
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
@@ -28,6 +29,7 @@ const Root = ({store}) => {
           <IndexRoute component={Home} />
           <Route path='/users' component={Users} />
           <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
         </Route>
       </Router>
     </Provider>

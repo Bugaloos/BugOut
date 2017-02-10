@@ -1,5 +1,5 @@
 {
-  "name": "Drink-Splitter",
+  "name": "BugOut",
   "version": "1.0.0",
   "description": "Bug Out",
   "main": "index.js",
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TexMix-Drink-Splitter/Drink-Splitter.git"
+    "url": "git+https://github.com/Bugaloos/BugOut.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TexMix-Drink-Splitter/Drink-Splitter/issues"
+    "url": "https://github.com/Bugaloos/BugOut/issues"
   },
-  "homepage": "https://github.com/TexMix-Drink-Splitter/Drink-Splitter#readme",
+  "homepage": "https://github.com/Bugaloos/BugOut#readme",
   "dependencies": {
     "ava": "^0.17.0",
     "babel-core": "^6.21.0",

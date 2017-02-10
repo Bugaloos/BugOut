@@ -2,8 +2,10 @@ const PouchDB = require('pouchdb')
 const request = require('superagent')
 var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
 var usersDB = new PouchDB('users')
+
+var groupsDB = new PouchDB('users')
 var loggedInUserDB = new PouchDB('loggedInUser')
-// var messagesDB = new PouchDB('messages')
+
 
 module.exports = {
 
@@ -49,6 +51,27 @@ module.exports = {
         console.log(user)
       }else{
         console.log('Error!');
+      }
+    })
+  },
+
+  createGroup: function (newGroup) {
+    groupsDB.put(newGroup, (err, result) => {
+      if (err) {
+        console.error(err)
+      } else {
+        console.log('Successfully added group', result)
+      }
+    })
+  },
+
+  getAGroup: function (group) {
+    groupsDB.get(group._id, {include_docs: true}, (err, result) => {
+      if (err) {
+        console.error(err)
+      } else {
+        console.log('Here are the groups', result)
+
       }
     })
   },

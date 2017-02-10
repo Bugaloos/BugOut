@@ -28,19 +28,19 @@ const data = [
 ]
 //FIX MEEEEEEEEE
 
-
 const Messageboard = () => (
   function renderMessage({userName, message}) {
-    <ListItem
-      primaryText={
-        <p>
-          <span style={{color: darkBlack}}>{userName}</span> -- {message}
-        </p>
-      }
-      secondaryTextLines={2}
-    />
-    <Divider inset={true} />
+    return (
+      <ListItem
+        primaryText={
+          <p>
+            <span style={{color: darkBlack}}>{userName}</span> -- {message}
+          </p>
+        }
+      />
+    )
   }
+
   function renderMessages(messages) {
     return messages.map((message) => renderMessage(message))
   }
@@ -50,7 +50,7 @@ const Messageboard = () => (
         <input type='text' value='comment'/>
         <input type='submit' value='Post'/>
       </form>
-      renderMessages()
+    renderMessages()
   </div>
 );
 

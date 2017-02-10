@@ -1,12 +1,21 @@
 const bcrypt = require('bcryptjs') // for auth and password hash
 const express = require('express')
 const route = express.Router()
+require('dotenv').load()
+
+// Load the Cloudant library.
+var Cloudant = require('cloudant')
+
+// Initialize Cloudant with settings from .env
+var username = process.env.cloudant_username || "nodejs"
+var passwordC = process.env.cloudant_password
 
 module.exports = function () {
-  route.post('/login/authenticate', authenticate)
+  route.post('/login/authlocal', authlocal)
+  route.post('/login/authserver', authserver)
   route.post('/register/encrypt', encrypt)
 
-  function authenticate (req, res, next) {
+  function authlocal (req, res, next) {
     const { enteredUser, user } = req.body
     bcrypt.compare(enteredUser.password, user.hash, (err, response) => {
       if (response) {
@@ -16,6 +25,31 @@ module.exports = function () {
       } else {
         res.json({login: false, error: 'Invalid email/Password'})
       }
+    })
+  }
+
+  function authserver (req, res, next) {
+    const { userName, password } = req.body
+    Cloudant({account:username, password:passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
+      var db = cloudant.db.use("users")
+      db.get(userName, (err, user) => {
+        if (err) {
+          console.error(err)
+        } else {
+          bcrypt.compare(password, user.hash, (error, response) => {
+            if(response){
+              const { email, userName } = user
+              req.session.user = { email, userName }
+              res.json({login: true, user})
+            } else {
+              res.json({login: false, error: 'Invalid email/Password'})
+            }
+          })
+        }
+      })
     })
   }
 

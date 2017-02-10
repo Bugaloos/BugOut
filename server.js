@@ -11,7 +11,7 @@ const PouchDB = require('pouchdb')
 // const db = PouchDB('db')
 // const remoteCouch = false
 
-module.exports = function (db) {
+module.exports = function () {
   const app = express()
 
   app.use(logger('dev'))
@@ -50,7 +50,6 @@ module.exports = function (db) {
       publicPath: config.output.publicPath
     }))
   }
-
   // static files
   app.use('/', express.static(path.join(__dirname, 'public')))
 

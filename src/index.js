@@ -32,7 +32,7 @@ const Root = ({store}) => {
       <Router history={hashHistory}>
         <Route path='/' component={App}>
           <IndexRoute component={Home} />
-          <Route path='/login' component={Login} /> //festering
+          <Route path='/login' component={Login} />
 						<Route path='/register' component={Register} />
 
           <Route path='/users' component={Users} />

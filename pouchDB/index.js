@@ -1,21 +1,25 @@
 const PouchDB = require('pouchdb')
+const request = require('superagent')
 var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
 var usersDB = new PouchDB('users')
-const request = require('superagent')
+var loggedInUserDB = new PouchDB('loggedInUser')
 
 module.exports = {
 
   login: function (enteredUser) {
-    usersDB.get(enteredUser.email, {include_docs: true}, (err, user) => {
-      if (!err) {
-        console.log('trying to log in', user)
-        request.post('api/v1/login/authenticate')
-          .send({enteredUser, user})
+    usersDB.get(enteredUser.userName, {include_docs: true}, (err, user) => {
+      if (err) {
+        request.post('api/v1/login/authserver')
+          .send(enteredUser)
           .then(res => {
             console.log(res.body)
           })
       } else {
-        console.log('missed it', err)
+        request.post('api/v1/login/authlocal')
+          .send({enteredUser, user})
+          .then(res => {
+            console.log(res.body)
+          })
       }
     })
   },
@@ -34,5 +38,16 @@ module.exports = {
           }
         })
       })
+  },
+
+  initializeUser: function (store) {
+    console.log('things!');
+    loggedInUserDB.get({include_docs: true}, (err, user) => {
+      if(!err){
+        console.log(user)
+      }else{
+        console.log('Error!');
+      }
+    })
   }
 }

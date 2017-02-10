@@ -5,9 +5,8 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const api = require('./api')
-const PouchDB = require('pouchdb')
 
-//Database
+// Database
 // const db = PouchDB('db')
 // const remoteCouch = false
 
@@ -39,8 +38,8 @@ module.exports = function (db) {
     const lrserver = livereload.createServer()
 
     lrserver.watch([
-      __dirname + '/public',
-      __dirname + '/src'
+      path.join('/public'),
+      path.join('/src)')
     ])
 
     app.use(require('inject-lr-script')())

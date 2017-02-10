@@ -11,7 +11,10 @@ const MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default
 // Top Level Components
 const App = require('./containers/app')
 const Home = require('./containers/home')
+const Group = require('./containers/group')
+const Profile = require('./containers/profile')
 const Users = require('./components/users')
+const Plan = require('./components/plan')
 const Login = require('./components/login')
 const Register = require('./components/register')
 const CreateGroup = require('./components/creategroup')

@@ -5,7 +5,7 @@ const _ = require('lodash')
 const { RaisedButton } = require('material-ui')
 const request = require('superagent')
 const PouchDB = require('pouchdb')
-const db = require('../../pouchDB')
+const db = require('../../../pouchDB')
 
 class Login extends React.Component {
 

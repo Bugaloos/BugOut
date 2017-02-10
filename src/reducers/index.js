@@ -1,6 +1,8 @@
 const { combineReducers } = require('redux')
-const online = require('./online')
+const showRegisterForm = require('./showRegisterForm')
+const showLoginForm = require('./showLoginForm')
 
 module.exports = combineReducers({
-  online
+  showRegisterForm,
+  showLoginForm
 })

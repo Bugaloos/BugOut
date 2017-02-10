@@ -2,6 +2,7 @@ const PouchDB = require('pouchdb')
 const request = require('superagent')
 var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
 var usersDB = new PouchDB('users')
+var groupsDB = new PouchDB('groups')
 var loggedInUserDB = new PouchDB('loggedInUser')
 
 module.exports = {
@@ -29,10 +30,10 @@ module.exports = {
     request.post('api/v1/register/encrypt')
       .send({ userName, password })
       .then(res => {
-        if(res.body.error){
-          console.log('gets here', res.body);
+        if (res.body.error) {
+          console.log('gets here', res.body)
           return res.body
-        }else{
+        } else {
           const user = { _id: userName, email, hash: res.body.hash }
           usersDB.put(user, (err, result) => {
             if (!err) {
@@ -46,24 +47,34 @@ module.exports = {
   },
 
   initializeUser: function (store) {
-    console.log('things!');
+    console.log('things!')
     loggedInUserDB.get({include_docs: true}, (err, user) => {
-      if(!err){
+      if (!err) {
         console.log(user)
-      }else{
-        console.log('Error!');
+      } else {
+        console.log('Error!')
       }
     })
   },
-
   createGroup: function (newGroup) {
-    groupsDB.put(newGroup, (err, result) => {
-      if (err) {
-        console.error(err)
-      } else {
-        console.log('Successfully added group', result)
-      }
-    })
+    const { groupName, groupPlan } = newGroup
+    request.post('api/v1/creategroup')
+    .send({ groupName })
+      .then(res => {
+        if (res.body.error) {
+          console.log('error', res.body)
+          return res.body
+        } else {
+          const group = { _id: groupName, groupPlan }
+          groupsDB.put(group, (err, result) => {
+            if (!err) {
+              console.log('Your group has been added', result)
+            } else {
+              console.error(err)
+            }
+          })
+        }
+      })
   },
 
   getAGroup: function (group) {

@@ -9,7 +9,7 @@ const db = require('../../pouchDB')
 
 // This component will create a new entry in the database with an identifier of groupname, linked to userIDs who are members of the group.
 
-//Data flow for 'create group'
+// Data flow for 'create group'
 // ------> user submits create group
 // ------> create group submits data to PouchDB
 // ------> pouchDB checks for match

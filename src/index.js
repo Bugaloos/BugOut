@@ -26,34 +26,31 @@ store.subscribe(() => {
 })
 
 const Root = ({store}) => {
-
   return (
-  <MuiThemeProvider>
-    <Provider store={store}>
-      <Router history={hashHistory}>
-        <Route path='/' component={App}>
-          <IndexRoute component={Home} />
-          <Route path='/login' component={Login} />
-						<Route path='/register' component={Register} />
+    <MuiThemeProvider>
+      <Provider store={store}>
+        <Router history={hashHistory}>
+          <Route path='/' component={App}>
+            <IndexRoute component={Home} />
+            <Route path='/login' component={Login} />
+            <Route path='/register' component={Register} />
 
-          <Route path='/users' component={Users} />
-          <Route path='/users/:id' component={Profile} />
-          <Route path='/users/:id/edit' component={Profile} />
+            <Route path='/users' component={Users} />
+            <Route path='/users/:id' component={Profile} />
+            <Route path='/users/:id/edit' component={Profile} />
 
+            <Route path='/groups/:id' component={Group} />
+            <Route path='/groups/:id/new' component={Group} />
+            <Route path='/groups/:id/edit' component={Group} />
 
-
-          <Route path='/groups/:id' component={Group} />
-          <Route path='/groups/:id/new' component={Group} />
-          <Route path='/groups/:id/edit' component={Group} />
-
-          <Route path='/plans/:id' component={Plan} />
-          <Route path='/plans/:id/new' component={Plan} />
-          <Route path='/plans/:id/edit' component={Plan} />
-          <Route path='/creategroup' component={CreateGroup} />
-        </Route>
-      </Router>
-    </Provider>
-  </MuiThemeProvider>
+            <Route path='/plans/:id' component={Plan} />
+            <Route path='/plans/:id/new' component={Plan} />
+            <Route path='/plans/:id/edit' component={Plan} />
+            <Route path='/creategroup' component={CreateGroup} />
+          </Route>
+        </Router>
+      </Provider>
+    </MuiThemeProvider>
   )
 }
 

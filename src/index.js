@@ -26,7 +26,6 @@ store.subscribe(() => {
 })
 
 const Root = ({store}) => {
-
 	return (
 		<MuiThemeProvider>
 			<Provider store = {store}>
@@ -53,9 +52,6 @@ const Root = ({store}) => {
 			</Provider>
 		</MuiThemeProvider>
 	)
-}
-// <MuiThemeProvider>
-// </MuiThemeProvider>
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded')

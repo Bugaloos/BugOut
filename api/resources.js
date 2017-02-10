@@ -13,7 +13,7 @@ var passwordC = process.env.cloudant_password
 module.exports = function () {
   route.post('/login/authlocal', authlocal)
   route.post('/login/authserver', authserver)
-  route.post('/register/encrypt', encrypt)
+  route.post('/register/encrypt', isUserUnique, encrypt)
 
   function authlocal (req, res, next) {
     const { enteredUser, user } = req.body
@@ -53,8 +53,25 @@ module.exports = function () {
     })
   }
 
+  function isUserUnique(req, res, next) {
+    const { userName } = req.body
+    Cloudant({account:username, password:passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
+      var db = cloudant.db.use("users")
+      db.get(userName, (err, user) => {
+        if(user){
+          res.json({register: false, error: 'User Name already in use'})
+        } else{
+          next()
+        }
+      })
+    })
+  }
+
   function encrypt (req, res, next) {
-    const password = req.body.password
+    const { userName, password } = req.body
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
         res.json({ hash })

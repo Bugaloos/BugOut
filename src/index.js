@@ -11,8 +11,8 @@ const MuiThemeProvider = require('material-ui/styles')
 // Top Level Components
 const App = require('./containers/app')
 const Home = require('./containers/home')
-const Users = require('./containers/users')
-const Login = require('./containers/login')
+const Users = require('./components/users')
+const Login = require('./components/login')
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

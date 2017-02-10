@@ -6,6 +6,7 @@ var loggedInUserDB = new PouchDB('loggedInUser')
 
 module.exports = {
 
+
   login: function (enteredUser) {
     usersDB.get(enteredUser.userName, {include_docs: true}, (err, user) => {
       if (err) {

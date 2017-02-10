@@ -11,12 +11,7 @@ const MuiThemeProvider = require('material-ui/styles')
 // Top Level Components
 const App = require('./containers/app')
 const Home = require('./containers/home')
-
-// teir 2 components
 const Users = require('./components/users')
-const Profile = require('./containers/profile')
-const Group = require('./containers/group')
-const Plan = require('./components/plan')
 const Login = require('./components/login')
 const Register = require('./components/register')
 
@@ -60,6 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ReactDOM.render(
     <Root store={store} />,
-		root
-	)
+    root
+  )
 })

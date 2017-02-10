@@ -3,6 +3,7 @@ const request = require('superagent')
 var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
 var usersDB = new PouchDB('users')
 var loggedInUserDB = new PouchDB('loggedInUser')
+// var messagesDB = new PouchDB('messages')
 
 module.exports = {
 
@@ -50,5 +51,5 @@ module.exports = {
         console.log('Error!');
       }
     })
-  }
+  },
 }

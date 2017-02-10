@@ -26,12 +26,13 @@ module.exports = {
   },
 
   register: function (newUser) {
+    console.log('identifier', newUser);
     const { userName, email, password } = newUser
-    request.post('api/v1/register/encrypt')
-      .send({ userName, password })
+    request.post('api/v1/register')
+      .send({ userName, password, email })
       .then(res => {
-        if (res.body.error) {
-          console.log('gets here', res.body)
+        console.log(res.body);
+        if(res.body.error){
           return res.body
         } else {
           const user = { _id: userName, email, hash: res.body.hash }
@@ -85,6 +86,18 @@ module.exports = {
         console.log('Here are the groups', result)
       }
     })
-  }
+  },
 
+  postMessage: function (userName, group, message) {
+    var groupDB = new PouchDB(group)
+    const time = new Date().toISOString()
+    const entry = { _id: time, userName, message}
+    groupDB.put(entry)
+  },
+
+  getMessages: function (group) {
+    var groupDB = new PouchDB(group)
+    groupDB.allDocs({include_docs: true, descending: true}, function(err, doc){
+    })
+  }
 }

@@ -12,13 +12,13 @@ class Login extends React.Component {
   handleSubmit () {
     const { dispatch } = this.props
 
-    const name = this.refs.name.value
+    const userName = this.refs.userName.value
     const email = this.refs.email.value
     const password = this.refs.password.value
 
     var newUser = {
-      _id: email,
-      name,
+      email,
+      userName,
       password
     }
     db.register(newUser)
@@ -34,8 +34,8 @@ class Login extends React.Component {
     return (
       <form>
         <div>
-          Name:
-          <input className='homePageButton' type='text' ref='name' placeholder='Name' /><br />
+          User Name:
+          <input className='homePageButton' type='text' ref='userName' placeholder='User Name' /><br />
           Email:
           <input className='homePageButton' type='text' ref='email' placeholder='Email' /><br />
           Password:

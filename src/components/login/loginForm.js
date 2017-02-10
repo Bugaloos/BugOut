@@ -20,7 +20,7 @@ class Login extends React.Component {
     //
     // function syncError() {
     //   syncDom.setAttribute('data-sync-state', 'error');
-    // }
+    // }  
   }
 
   render () {

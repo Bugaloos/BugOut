@@ -7,10 +7,10 @@ const { connect } = require('react-redux')
 
 function Home (props) {
   return (
-    <div>
-      <h1>Home</h1>
-      <p>This is the container home component</p>
-      <button onClick={() => props.dispatch({type: 'TOGGLE_ONLINE', online: false})}>Toggle online</button>
+    <div className='homepage'>
+      <h3>Make a plan for you and your loved ones that is ready when you need it</h3>
+      <button onClick={() => props.dispatch({type: 'TOGGLE_ONLINE', online: false})}>Register</button>
+      <button onClick={() => props.dispatch({type: 'TOGGLE_ONLINE', online: false})}>Login</button>
     </div>
   )
 }

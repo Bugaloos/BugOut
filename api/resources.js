@@ -55,15 +55,14 @@ module.exports = function () {
   }
   function isGroupUnique (req, res, next) {
     const { groupName } = req.body
-    Cloudant({account: username, password: passwordC},
-    (error, cloudant) => {
+    Cloudant({account: username, password: passwordC}, (error, cloudant) => {
       if (error) {
         return console.log('Failed to hookup with Cloudant:' + error.message)
       }
       var db = cloudant.db.use('groups')
       db.get(groupName, (err, group) => {
         if (err) {
-          console.log(error)
+          res.json({error: err})
         } else if (group) {
           res.json({addgroup: false, error: 'This group already exists'})
         } else {

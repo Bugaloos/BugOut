@@ -1,4 +1,39 @@
 body {
-  background-color: white;
+  background-color: #ffffff;
   font-family: 'Raleway', sans-serif;
+  text-align: center;
+  color: 212121;
+}
+.navBar{
+  margin: auto;
+  margin: 3 em;
+  padding: 2em;
+  width: 40%;
+  background-color: #E64A19;
+}
+h1 {
+  font-size: 2em;
+  padding: 1em;
+  border-radius: 25%;
+  border-width: thin;
+  border-color: #fff59d;
+  border-style: solid;
+}
+button{
+  font-size: 1em;
+  background-color: #FED18C;
+  margin: auto;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin: 1em;
+  border: none
+}
+.homepage{
+  width: 50%;
+  padding: 5em;
+  padding-top: 2em;
+  margin: auto;
+  text-align: center;
 }

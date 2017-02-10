@@ -28,7 +28,7 @@ const data = [
 ]
 //FIX MEEEEEEEEE
 
-const Messageboard = () => (
+const Messageboard = () => {
   function renderMessage({userName, message}) {
     return (
       <ListItem
@@ -44,14 +44,16 @@ const Messageboard = () => (
   function renderMessages(messages) {
     return messages.map((message) => renderMessage(message))
   }
-  <div>
-    <span>{(moment().format('dddd DD MMMM YYYY '))}</span>
-      <form>
-        <input type='text' value='comment'/>
-        <input type='submit' value='Post'/>
-      </form>
-    renderMessages()
-  </div>
-);
+  return (
+    <div>
+      <span>{(moment().format('dddd DD MMMM YYYY '))}</span>
+        <form>
+          <input type='text' value='comment'/>
+          <input type='submit' value='Post'/>
+        </form>
+        {renderMessages(data)}
+    </div>
+  )
+};
 
 module.exports = connect((state) => state)(Messageboard)

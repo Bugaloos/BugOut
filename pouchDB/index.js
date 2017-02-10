@@ -71,5 +71,5 @@ module.exports = {
         console.log('Here are the groups', result)
       }
     })
-  }
+  },
 }

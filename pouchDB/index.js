@@ -1,6 +1,7 @@
 const PouchDB = require('pouchdb')
 var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
 var usersDB = new PouchDB('users')
+// var messagesDB = new PouchDB('messages')
 
 module.exports = {
 
@@ -22,5 +23,5 @@ module.exports = {
         console.error(err)
       }
     })
-  }
+  },
 }

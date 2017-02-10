@@ -16,15 +16,17 @@ import MenuItem from 'material-ui/MenuItem';
 const { connect } = require('react-redux')
 const moment = require('moment')
 
+const userName = 'Lucas'
+var text = ''
 const data = [
   {userName: "Lucas",
-  message: "Hello"},
+    message: "Hello"},
   {userName: "Bill",
-  message: "Salut"},
+    message: "Salut"},
   {userName: "Mischa",
-  message: "Konnichi wa"},
+    message: "Konnichi wa"},
   {userName: "Meghan",
-  message: "Hola"},
+    message: "Hola"},
 ]
 //FIX MEEEEEEEEE
 
@@ -44,12 +46,17 @@ const Messageboard = () => {
   function renderMessages(messages) {
     return messages.map((message) => renderMessage(message))
   }
+  function postMessage(){
+    data.push({userName, message:text})
+    console.log({data})
+  }
+  const updateText = (e) => text=e.value
   return (
     <div>
       <span>{(moment().format('dddd DD MMMM YYYY '))}</span>
         <form>
-          <input type='text' value='comment'/>
-          <input type='submit' value='Post'/>
+          <input onChange={(e) => updateText(e)} type='text'/>
+          <input onClick={ () => postMessage() } type='submit' value='Post'/>
         </form>
         {renderMessages(data)}
     </div>

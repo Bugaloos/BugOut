@@ -13,7 +13,7 @@ var passwordC = process.env.cloudant_password
 module.exports = function () {
   route.post('/login/authlocal', authlocal)
   route.post('/login/authserver', authserver)
-  route.post('/register/encrypt', isUserUnique, encrypt)
+  route.post('/register', isUserUnique, encrypt)
 
   function authlocal (req, res, next) {
     const { enteredUser, user } = req.body
@@ -71,10 +71,32 @@ module.exports = function () {
   }
 
   function encrypt (req, res, next) {
-    const { userName, password } = req.body
+    const { userName, password, email } = req.body
     bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(password, salt, (err, hash) => {
-        res.json({ hash })
+      if(err) throw err
+      bcrypt.hash(password, salt, (error, hash) => {
+        if(error) throw error
+        const user = {_id: userName, email, hash}
+        console.log(user);
+        addUserToCouch(user, (err, response) => {
+          if (err) {
+            res.json({register: false, error: err})
+          }else{
+            res.json({register: true, user: {_id: userName, email}})
+          }
+        })
+      })
+    })
+  }
+
+  function addUserToCouch (user, cb) {
+    Cloudant({account:username, password:passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
+      var db = cloudant.db.use("users")
+      db.insert(user, (err, res) => {
+        cb(err, res)
       })
     })
   }

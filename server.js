@@ -38,8 +38,8 @@ module.exports = function (db) {
     const lrserver = livereload.createServer()
 
     lrserver.watch([
-      path.join('/public'),
-      path.join('/src)')
+      path.join(__dirname, '/src/index.js'),
+      path.join(__dirname, '/public')
     ])
 
     app.use(require('inject-lr-script')())

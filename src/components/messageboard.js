@@ -14,65 +14,43 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 const { connect } = require('react-redux')
+const moment = require('moment')
 
-const data = {
-  userName: "Lucas",
-  message: "Hello"
-}
-
+const data = [
+  {userName: "Lucas",
+  message: "Hello"},
+  {userName: "Bill",
+  message: "Salut"},
+  {userName: "Mischa",
+  message: "Konnichi wa"},
+  {userName: "Meghan",
+  message: "Hola"},
+]
 //FIX MEEEEEEEEE
 
 
 const Messageboard = () => (
+  function renderMessage({userName, message}) {
+    <ListItem
+      primaryText={
+        <p>
+          <span style={{color: darkBlack}}>{userName}</span> -- {message}
+        </p>
+      }
+      secondaryTextLines={2}
+    />
+    <Divider inset={true} />
+  }
+  function renderMessages(messages) {
+    return messages.map((message) => renderMessage(message))
+  }
   <div>
-      <List>
-        <Subheader>Group Message Board</Subheader>
-
-        <ListItem
-          primaryText={
-            <p>
-              <span style={{color: darkBlack}}>Lucas</span> --
-              I am going to see the fish flapping about at Oriental Bay! Fun!!
-            </p>
-          }
-          secondaryTextLines={2}
-        />
-        <Divider inset={true} />
-        <ListItem
-          primaryText={
-            <p>
-              <span style={{color: darkBlack}}>Mischa</span> --
-              Wow I am going to raft down Cuba Street!
-            </p>
-          }
-          secondaryTextLines={2}
-        />
-        <Divider inset={true} />
-        <ListItem
-          primaryText={
-            <p>
-              <span style={{color: darkBlack}}>Meghan</span> --
-              I am going to go up to the top floor to see how much it shakes in the next quake!
-            </p>
-          }
-          secondaryTextLines={2}
-        />
-        <Divider inset={true} />
-        <ListItem
-          primaryText={
-            <p>
-              <span style={{color: darkBlack}}>Bill</span> --
-              Looting is so fun! Free stuff for everyone!
-            </p>
-          }
-          secondaryTextLines={2}
-        />
-      </List>
+    <span>{(moment().format('dddd DD MMMM YYYY '))}</span>
       <form>
         <input type='text' value='comment'/>
         <input type='submit' value='Post'/>
       </form>
-
+      renderMessages()
   </div>
 );
 

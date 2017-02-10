@@ -1,0 +1,3 @@
+Create Group
+--> Populate the group based on single username queries to the database
+--> Send the users as an array

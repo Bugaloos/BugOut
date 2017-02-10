@@ -26,6 +26,7 @@ store.subscribe(() => {
 })
 
 const Root = ({store}) => {
+
   return (
   <MuiThemeProvider>
     <Provider store={store}>
@@ -39,6 +40,8 @@ const Root = ({store}) => {
           <Route path='/users/:id' component={Profile} />
           <Route path='/users/:id/edit' component={Profile} />
 
+
+
           <Route path='/groups/:id' component={Group} />
           <Route path='/groups/:id/new' component={Group} />
           <Route path='/groups/:id/edit' component={Group} />
@@ -47,13 +50,13 @@ const Root = ({store}) => {
           <Route path='/plans/:id/new' component={Plan} />
           <Route path='/plans/:id/edit' component={Plan} />
           <Route path='/creategroup' component={CreateGroup} />
-
         </Route>
       </Router>
     </Provider>
   </MuiThemeProvider>
   )
 }
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded')
   const root = document.querySelector('#app')

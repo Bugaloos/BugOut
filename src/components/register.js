@@ -12,15 +12,11 @@ class Login extends React.Component {
   handleSubmit () {
     const { dispatch } = this.props
 
-    const name = this.refs.name.value
+    const userName = this.refs.userName.value
     const email = this.refs.email.value
     const password = this.refs.password.value
 
-    var newUser = {
-      _id: email,
-      name,
-      password
-    }
+    var newUser = { email, userName, password }
     db.register(newUser)
     // var opts = {live: true};
     // db.sync(remoteCouch, opts, syncError)
@@ -35,7 +31,7 @@ class Login extends React.Component {
       <form>
         <div>
           Name:
-          <input className='homePageButton' type='text' ref='name' placeholder='Name' /><br />
+          <input className='homePageButton' type='text' ref='userName' placeholder='User Name' /><br />
           Email:
           <input className='homePageButton' type='text' ref='email' placeholder='Email' /><br />
           Password:

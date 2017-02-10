@@ -8,7 +8,6 @@ const reducer = require('./reducers')
 const initialState = require('../state')
 const MuiThemeProvider = require('material-ui/styles')
 
-
 // Top Level Components
 const App = require('./containers/app')
 const Home = require('./containers/home')
@@ -21,7 +20,6 @@ const Plan = require('./components/plan')
 const Login = require('./components/login')
 const Register = require('./components/register')
 
-
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 store.subscribe(() => {
@@ -29,30 +27,29 @@ store.subscribe(() => {
 })
 
 const Root = ({store}) => {
-
-	return (
-		<Provider store = {store}>
-			<Router history = {hashHistory}>
-				<Route path = '/' component={App}>
-					<IndexRoute component={Home} />
-						<Route path='/login' component={Login} /> //festering
+  return (
+    <Provider store={store}>
+      <Router history={hashHistory}>
+        <Route path='/' component={App}>
+          <IndexRoute component={Home} />
+          <Route path='/login' component={Login} /> //festering
 						<Route path='/register' component={Register} />
 
-						<Route path = '/users' component={Users} />
-						<Route path = '/users/:id' component={Profile} />
-						<Route path = '/users/:id/edit' component={Profile} />
+          <Route path='/users' component={Users} />
+          <Route path='/users/:id' component={Profile} />
+          <Route path='/users/:id/edit' component={Profile} />
 
-						<Route path = '/groups/:id' component={Group} />
-						<Route path = '/groups/:id/new' component={Group} />
-						<Route path = '/groups/:id/edit' component={Group} />
+          <Route path='/groups/:id' component={Group} />
+          <Route path='/groups/:id/new' component={Group} />
+          <Route path='/groups/:id/edit' component={Group} />
 
-						<Route path = '/plans/:id' component={Plan} />
-						<Route path = '/plans/:id/new' component={Plan} />
-						<Route path = '/plans/:id/edit' component={Plan} />
-				</Route>
-			</Router>
-		</Provider>
-	)
+          <Route path='/plans/:id' component={Plan} />
+          <Route path='/plans/:id/new' component={Plan} />
+          <Route path='/plans/:id/edit' component={Plan} />
+        </Route>
+      </Router>
+    </Provider>
+  )
 }
 // <MuiThemeProvider>
 // </MuiThemeProvider>

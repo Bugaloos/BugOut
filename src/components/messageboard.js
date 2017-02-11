@@ -3,16 +3,16 @@
 
 // This compenent will require a group ID, and based upon this will search for all messages that have been posted to the group with that id
 
-import React from 'react'
-import {List, ListItem} from 'material-ui/List'
-import Divider from 'material-ui/Divider'
-import Subheader from 'material-ui/Subheader'
-import Avatar from 'material-ui/Avatar'
-import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors'
-import IconButton from 'material-ui/IconButton'
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
-import IconMenu from 'material-ui/IconMenu'
-import MenuItem from 'material-ui/MenuItem'
+const React = require ('react')
+const { List, ListItem } = require ('material-ui/List')
+const Divider = require ('material-ui/Divider')
+const Subheader = require ('material-ui/Subheader')
+const Avatar = require ('material-ui/Avatar')
+const { grey400, darkBlack, lightBlack } = require ('material-ui/styles/colors')
+const IconButton = require ('material-ui/IconButton')
+const MoreVertIcon = require ('material-ui/svg-icons/navigation/more-vert')
+const IconMenu = require ('material-ui/IconMenu')
+const MenuItem = require ('material-ui/MenuItem')
 const { connect } = require('react-redux')
 const moment = require('moment')
 

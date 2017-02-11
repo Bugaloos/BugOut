@@ -2,6 +2,7 @@ const PouchDB = require('pouchdb')
 const request = require('superagent')
 var remoteCouch = 'https://bill-burgess.cloudant.com/users'
 var usersDB = new PouchDB('users')
+var groupsDB = new PouchDB('groups')
 var loggedInUserDB = new PouchDB('loggedInUser')
 
 usersDB.sync(remoteCouch, {
@@ -56,16 +57,54 @@ module.exports = {
       })
   },
 
-  postMessage: function (userName, group, message) {
-    var groupDB = new PouchDB(group)
-    const time = new Date().toISOString()
-    const entry = { _id: time, userName, message}
-    groupDB.put(entry)
+  createGroup: function (newGroup) {
+    const { groupName, groupPlan } = newGroup
+    request.post('api/v1/creategroup')
+    .send({ groupName })
+      .then(res => {
+        if (res.body.error) {
+          return res.body
+        } else {
+          const group = { _id: groupName, groupPlan }
+          groupsDB.put(group, (err, result) => {
+            if (!err) {
+              console.log('Your group has been added', result)
+            } else {
+              console.error(err)
+            }
+          })
+        }
+      })
   },
 
-  getMessages: function (group) {
+  getAGroup: function (group) {
+    groupsDB.get(group._id, {include_docs: true}, (err, result) => {
+      if (err) {
+        console.error(err)
+      } else {
+        console.log('Here are the groups', result)
+      }
+    })
+  },
+
+  postMessage: function (userName, group, message, cb) {
     var groupDB = new PouchDB(group)
-    groupDB.allDocs({include_docs: true, descending: true}, function(err, doc){
+    const time = new Date().toISOString()
+    const entry = { _id: time, userName, text: message }
+    groupDB.put(entry, (err, result) => {
+      if(err) throw err
+      cb(null, result)
+    })
+  },
+
+  getMessages: function (group, cb) {
+    var groupPV = new PouchDB(group)
+    groupPV.allDocs({include_docs: true, descending: true}, (err, docs) => {
+      if (err) {
+        cb(err, null)
+      }else{
+        cb(null, docs.rows)
+      }
     })
   }
 }

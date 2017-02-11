@@ -10,13 +10,16 @@ class Messages extends React.Component {
   componentDidMount () {
     const { dispatch, group } = this.props
 
-    db.getMessages(group, (err, response) => {
-      if(err) throw(err)
-      const messages = response.map(respond => {
-        const {text, userName} = respond.doc
-        return {text, userName}
+    db.syncGroup(group, dispatch, (err, status) => {
+      if(err) throw err
+      db.getMessages(group, (err, response) => {
+        if(err) throw err
+        const messages = response.map(respond => {
+          const {text, userName} = respond.doc
+          return {text, userName}
+        })
+        dispatch({type: 'UPDATE_MESSAGES', payload: messages})
       })
-      dispatch({type: 'UPDATE_MESSAGES', payload: messages})
     })
   }
 

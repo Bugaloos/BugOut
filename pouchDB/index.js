@@ -1,9 +1,7 @@
 const PouchDB = require('pouchdb')
 const request = require('superagent')
-var remoteCouch = 'https://bill-burgess.cloudant.com/users/_all_docs'
 var usersDB = new PouchDB('users')
 var groupsDB = new PouchDB('groups')
-var loggedInUserDB = new PouchDB('loggedInUser')
 
 module.exports = {
 
@@ -54,7 +52,7 @@ module.exports = {
     .send({ groupName })
       .then(res => {
 
-        
+
         if (!res.body.register) {
           cb(null, res.body)
         } else {
@@ -98,5 +96,28 @@ module.exports = {
         cb(null, docs.rows)
       }
     })
+  },
+
+  syncGroup: function (group, dispatch, cb) {
+    var groupPouch = new PouchDB(group)
+    const groupCouch = `https://bill-burgess.cloudant.com/${group}`
+    const opts = {
+      live: true,
+      retry: true
+    }
+    PouchDB.sync(group, groupCouch)
+      .on('change', info => {
+        this.getMessages(group, (err, response) => {
+          if(err) throw err
+          const messages = response.map(respond => {
+            const {text, userName} = respond.doc
+            return {text, userName}
+          })
+          dispatch({type: 'UPDATE_MESSAGES', payload: messages})
+        })
+      })
+      .then(res => {
+        cb(null, group)
+      })
   }
 }

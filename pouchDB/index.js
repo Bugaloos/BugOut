@@ -1,8 +1,17 @@
 const PouchDB = require('pouchdb')
 const request = require('superagent')
-var remoteCouch = 'https://bill-burgess.cloudant.com/users/_all_docs'
+var remoteCouch = 'https://bill-burgess.cloudant.com/users'
 var usersDB = new PouchDB('users')
 var loggedInUserDB = new PouchDB('loggedInUser')
+
+usersDB.sync(remoteCouch, {
+  live:true,
+  retry:false
+}).on('change', function(change){
+  //yoyoyoyoyoyo, whats changed???
+}).on('error', function(err){
+  //yoyppypypyoyp, something BROKE
+})
 
 module.exports = {
 

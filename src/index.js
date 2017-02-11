@@ -18,6 +18,7 @@ const Plan = require('./components/plan')
 const Login = require('./components/login')
 const Register = require('./components/register')
 const CreateGroup = require('./components/creategroup')
+const CreatePlan = require('./containers/userPlan')
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
@@ -50,6 +51,7 @@ const Root = ({store}) => {
           <Route path='/plans/:id/new' component={Plan} />
           <Route path='/plans/:id/edit' component={Plan} />
           <Route path='/creategroup' component={CreateGroup} />
+          <Route path='/createplan' component={CreatePlan} />
         </Route>
       </Router>
     </Provider>

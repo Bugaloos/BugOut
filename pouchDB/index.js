@@ -58,6 +58,7 @@ module.exports = {
       }
     })
   },
+
   createGroup: function (newGroup) {
     const { groupName, groupPlan } = newGroup
     request.post('api/v1/creategroup')
@@ -92,14 +93,19 @@ module.exports = {
   postMessage: function (userName, group, message) {
     var groupDB = new PouchDB(group)
     const time = new Date().toISOString()
-    const entry = { _id: time, userName, message}
+    const entry = { _id: time, userName, message }
     groupDB.put(entry)
   },
 
-  getMessages: function (group) {
-    var groupDB = new PouchDB(group)
-    groupDB.allDocs({include_docs: true, descending: true}, function(err, doc){
-
+  getMessages: function (group, cb) {
+    console.log('group', group, 'endgroup');
+    var groupPV = new PouchDB(group)
+    groupPV.allDocs({include_docs: true, descending: true}, (err, docs) => {
+      if (err) {
+        cb(err, null)
+      }else{
+        cb(null, docs.rows)
+      }
     })
   }
 }

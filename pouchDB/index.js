@@ -48,24 +48,12 @@ module.exports = {
       })
   },
 
-  initializeUser: function (store) {
-    console.log('things!')
-    loggedInUserDB.get({include_docs: true}, (err, user) => {
-      if (!err) {
-        console.log(user)
-      } else {
-        console.log('Error!')
-      }
-    })
-  },
-
   createGroup: function (newGroup) {
     const { groupName, groupPlan } = newGroup
     request.post('api/v1/creategroup')
     .send({ groupName })
       .then(res => {
         if (res.body.error) {
-          console.log('error', res.body)
           return res.body
         } else {
           const group = { _id: groupName, groupPlan }
@@ -90,15 +78,17 @@ module.exports = {
     })
   },
 
-  postMessage: function (userName, group, message) {
+  postMessage: function (userName, group, message, cb) {
     var groupDB = new PouchDB(group)
     const time = new Date().toISOString()
-    const entry = { _id: time, userName, message }
-    groupDB.put(entry)
+    const entry = { _id: time, userName, text: message }
+    groupDB.put(entry, (err, result) => {
+      if(err) throw err
+      cb(null, result)
+    })
   },
 
   getMessages: function (group, cb) {
-    console.log('group', group, 'endgroup');
     var groupPV = new PouchDB(group)
     groupPV.allDocs({include_docs: true, descending: true}, (err, docs) => {
       if (err) {

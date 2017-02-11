@@ -14,7 +14,7 @@ module.exports = function () {
   route.post('/login/authlocal', authlocal)
   route.post('/login/authserver', authserver)
   route.post('/register', isUserUnique, encrypt)
-  route.post('/createGroup', isGroupUnique, createGroupDB)
+  route.post('/createGroup', isGroupUnique, createGroupDB, addToGroups)
 
   function authlocal (req, res, next) {
     const { enteredUser, user } = req.body
@@ -121,26 +121,36 @@ module.exports = function () {
 
   function createGroupDB(req, res, next){
     const { groupName } = req.body
-    console.log(groupName);
     Cloudant({account:username, password:passwordC}, (error, cloudant) => {
       if (error) {
         return console.log('Failed to initialize Cloudant: ' + error.message)
       }
       cloudant.db.create(groupName, function() {
-
-        // Specify the database we are going to use (groupDB)...
         var groupDB = cloudant.db.use(groupName)
-
-        // ...and insert a document in it.
-        groupDB.insert({ crazy: true }, 'rabbit', function(err, body, header) {
+        groupDB.insert({ userName: 'Bill' }, 'admin', function(err, body, header) {
           if (err) {
-            return console.log('[groupDB.insert] ', err.message);
+            res.json({register: false, error: err.message})
           }
-
-          console.log('You have inserted the rabbit.');
-          console.log(body);
+          next()
         });
       });
+    })
+  }
+
+  function addToGroups(req, res, next) {
+    const { groupName } = req.body
+    Cloudant({account:username, password:passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
+      var db = cloudant.db.use("groups")
+      db.insert({ admin: 'Bill' }, groupName, function(err, body, header) {
+        if (err) {
+          res.json({register: false, error: err.message})
+        }else{
+          res.json({register: true, group: {name: groupName, admin: 'Bill'}})
+        }
+      })
     })
   }
 

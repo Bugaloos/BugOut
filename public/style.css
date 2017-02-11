@@ -1,5 +1,15 @@
+colours { #010101
+         #533D25
+         #C1A986
+         #576C31
+         #564E0F
+         #CC8745
+         #FFFFFF
+         #fff59d
+}
+
 body {
-  background-color: #ffffff;
+  background-color: #FEFEFE     ;
   font-family: 'Raleway', sans-serif;
   text-align: center;
   color: 212121;
@@ -9,19 +19,20 @@ body {
   margin: 3 em;
   padding: 2em;
   width: 40%;
-  background-color: #E64A19;
+  background-color: #fff59d;
 }
 h1 {
   font-size: 2em;
   padding: 1em;
   border-radius: 25%;
-  border-width: thin;
-  border-color: #fff59d;
+  border-width: medium;
+  border-color: #576C31;
   border-style: solid;
 }
 button{
+  color: white;
   font-size: 1em;
-  background-color: #FED18C;
+  -color: #C1A986;
   margin: auto;
   padding-left: 2em;
   padding-right: 2em;

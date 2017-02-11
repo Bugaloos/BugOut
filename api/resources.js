@@ -7,14 +7,13 @@ require('dotenv').load()
 var Cloudant = require('cloudant')
 
 // Initialize Cloudant with settings from .env
-var username = process.env.cloudant_username || 'nodejs'
+var username = process.env.cloudant_username || "nodejs"
 var passwordC = process.env.cloudant_password
 
 module.exports = function () {
   route.post('/login/authlocal', authlocal)
   route.post('/login/authserver', authserver)
-  route.post('/register/encrypt', isUserUnique, encrypt)
-  route.post('/creategroup', isGroupUnique)
+  route.post('/register', isUserUnique, encrypt)
 
   function authlocal (req, res, next) {
     const { enteredUser, user } = req.body
@@ -24,65 +23,47 @@ module.exports = function () {
         req.session.user = { email, userName }
         res.json({login: true, user})
       } else {
-        res.json({login: false, error: 'Invalid email/Password'})
+        res.json({login: false, error: 'Invalid user name/Password'})
       }
     })
   }
 
   function authserver (req, res, next) {
     const { userName, password } = req.body
-    Cloudant({account: username, password: passwordC}, (error, cloudant) => {
+    Cloudant({account:username, password:passwordC}, (error, cloudant) => {
       if (error) {
         return console.log('Failed to initialize Cloudant: ' + error.message)
       }
-      var db = cloudant.db.use('users')
+      var db = cloudant.db.use("users")
       db.get(userName, (err, user) => {
         if (err) {
-          console.error(err)
+          res.json({login: false, error: 'Invalid User name/password'})
         } else {
           bcrypt.compare(password, user.hash, (error, response) => {
-            if (response) {
+            if(response){
               const { email, userName } = user
               req.session.user = { email, userName }
               res.json({login: true, user})
             } else {
-              res.json({login: false, error: 'Invalid email/Password'})
+              res.json({login: false, error: 'Invalid user name/Password!'})
             }
           })
         }
       })
     })
   }
-  function isGroupUnique (req, res, next) {
-    const { groupName } = req.body
-    Cloudant({account: username, password: passwordC}, (error, cloudant) => {
-      if (error) {
-        return console.log('Failed to hookup with Cloudant:' + error.message)
-      }
-      var db = cloudant.db.use('groups')
-      db.get(groupName, (err, group) => {
-        if (err) {
-          res.json({error: err})
-        } else if (group) {
-          res.json({addgroup: false, error: 'This group already exists'})
-        } else {
-          next()
-        }
-      })
-    })
-  }
 
-  function isUserUnique (req, res, next) {
+  function isUserUnique(req, res, next) {
     const { userName } = req.body
-    Cloudant({account: username, password: passwordC}, (error, cloudant) => {
+    Cloudant({account:username, password:passwordC}, (error, cloudant) => {
       if (error) {
         return console.log('Failed to initialize Cloudant: ' + error.message)
       }
-      var db = cloudant.db.use('users')
+      var db = cloudant.db.use("users")
       db.get(userName, (err, user) => {
-        if (user) {
+        if(user){
           res.json({register: false, error: 'User Name already in use'})
-        } else {
+        } else{
           next()
         }
       })
@@ -96,12 +77,11 @@ module.exports = function () {
       bcrypt.hash(password, salt, (error, hash) => {
         if(error) throw error
         const user = {_id: userName, email, hash}
-        console.log(user);
         addUserToCouch(user, (err, response) => {
           if (err) {
             res.json({register: false, error: err})
           }else{
-            res.json({register: true, user: {_id: userName, email}})
+            res.json({register: true, user: {_id: userName, email, hash}})
           }
         })
       })

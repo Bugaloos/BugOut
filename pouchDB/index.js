@@ -1,48 +1,49 @@
 const PouchDB = require('pouchdb')
 const request = require('superagent')
-var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
+var remoteCouch = 'https://bill-burgess.cloudant.com/users/_all_docs'
 var usersDB = new PouchDB('users')
 var groupsDB = new PouchDB('groups')
 var loggedInUserDB = new PouchDB('loggedInUser')
 
 module.exports = {
 
-  login: function (enteredUser) {
+  login: function (enteredUser, cb) {
     usersDB.get(enteredUser.userName, {include_docs: true}, (err, user) => {
       if (err) {
         request.post('api/v1/login/authserver')
           .send(enteredUser)
           .then(res => {
-            console.log(res.body)
+            cb(null, res.body)
           })
+          .catch(err)
       } else {
         request.post('api/v1/login/authlocal')
           .send({enteredUser, user})
           .then(res => {
-            console.log(res.body)
+            cb(null, res.body)
           })
       }
     })
   },
 
-  register: function (newUser) {
-    console.log('identifier', newUser);
-    const { userName, email, password } = newUser
+  register: function (newUser, cb) {
+    const { userName, email } = newUser
     request.post('api/v1/register')
-      .send({ userName, password, email })
+      .send(newUser)
       .then(res => {
-        console.log(res.body);
-        if(res.body.error){
-          return res.body
-        } else {
-          const user = { _id: userName, email, hash: res.body.hash }
+        if(res.body.register){
+          console.log('look here', res.body)
+          const user = { _id: userName, email, hash: res.body.user.hash }
           usersDB.put(user, (err, result) => {
             if (!err) {
-              console.log('Successfully registered', result)
+              console.log(result);
+              cb(null, {register: true, user: result.id})
             } else {
-              console.error(err)
+              cb(null, {register: false, error: 'Service disrupted'})
             }
           })
+        }else{
+          cb(null, res.body)
         }
       })
   },

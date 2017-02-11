@@ -35,7 +35,6 @@ module.exports = {
           const user = { _id: userName, email, hash: res.body.user.hash }
           usersDB.put(user, (err, result) => {
             if (!err) {
-              console.log(result);
               cb(null, {register: true, user: result.id})
             } else {
               cb(null, {register: false, error: 'Service disrupted'})

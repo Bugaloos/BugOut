@@ -38,7 +38,7 @@ const Messageboard = () => {
           <p>
             <span style={{color: darkBlack}}>{userName}</span> -- {message}
           </p>
-        }
+        }const updateText = (e) => text = e.value
       />
     )
   }

@@ -99,6 +99,7 @@ module.exports = {
   getMessages: function (group) {
     var groupDB = new PouchDB(group)
     groupDB.allDocs({include_docs: true, descending: true}, function(err, doc){
+
     })
   }
 }

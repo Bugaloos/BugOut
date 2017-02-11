@@ -39,6 +39,7 @@ const Root = ({store}) => {
             <Route path='/users/:id' component={Profile} />
             <Route path='/users/:id/edit' component={Profile} />
 
+            <Route path='/groups' component={Group} />
             <Route path='/groups/:id' component={Group} />
             <Route path='/groups/:id/new' component={Group} />
             <Route path='/groups/:id/edit' component={Group} />

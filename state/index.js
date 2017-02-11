@@ -2,5 +2,7 @@ module.exports = {
   showRegisterForm: false,
   showLoginForm: false,
   authErr: null,
-  loggedIn: null
+  loggedIn: 'Meghan',
+  messages: [],
+  group: 'Bugaloos'
 }

@@ -9,7 +9,7 @@ const Register = require('../components/register')
 function Home (props) {
   return (
     <div className='homepage'>
-      <h3>Make a plan for you and your loved ones that is ready when you need it</h3>
+      <h3>Make a plan that is ready when you need it</h3>
       < Register {...props} />
       < Login {...props} />
     </div>

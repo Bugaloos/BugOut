@@ -8,7 +8,6 @@ const App = (props) => {
       <div className='navBar'>
         <nav>
           <h1 id='maintitle'> Bug Out</h1>
-          <img src={'http://placehold.it/400x20&text=slide1'} alt="boohoo" className="img-responsive"/>
         </nav>
       </div>
       <br />

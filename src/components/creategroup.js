@@ -26,11 +26,13 @@ class CreateGroup extends React.Component {
     const groupPlan = this.refs.groupPlan.input.value
 
     var newGroup = {
-      _id: groupName,
+      groupName,
       groupPlan
     }
 
-    db.createGroup(newGroup)
+    db.createGroup(newGroup, (err, status) => {
+      console.log('waterfall effect', status);
+    })
   }
 
   render () {

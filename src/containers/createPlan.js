@@ -7,8 +7,8 @@ function CreatePlan (props) {
   return (
     <div>
       <h1>User Plan</h1>
-      <MeetingPoint router={props.router} />
       <BugOutInventory router={props.router} />
+      <MeetingPoint router={props.router} />
       <button>Submit</button>
     </div>
   )

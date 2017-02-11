@@ -3,11 +3,15 @@ const showRegisterForm = require('./showRegisterForm')
 const showLoginForm = require('./showLoginForm')
 const authErr = require('./authErr')
 const loggedIn = require('./loggedIn')
+const messages = require('./messages')
+const group = require('./group')
 
 module.exports = combineReducers({
   showRegisterForm,
   showLoginForm,
   authErr,
-  loggedIn
+  loggedIn,
+  messages,
+  group
 
 })

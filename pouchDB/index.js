@@ -1,6 +1,6 @@
 const PouchDB = require('pouchdb')
 const request = require('superagent')
-var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
+var remoteCouch = 'https://bill-burgess.cloudant.com/users/_all_docs'
 var usersDB = new PouchDB('users')
 var loggedInUserDB = new PouchDB('loggedInUser')
 

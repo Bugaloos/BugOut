@@ -47,23 +47,22 @@ module.exports = {
       })
   },
 
-  createGroup: function (newGroup) {
+  createGroup: function (newGroup, cb) {
     const { groupName, groupPlan } = newGroup
     request.post('api/v1/creategroup')
     .send({ groupName })
       .then(res => {
-        if (res.body.error) {
-          console.log('error', res.body)
-          return res.body
+        console.log('heres your goat back ', res.body);
+        if (!res.body.register) {
+          cb(null, res.body)
         } else {
-          const group = { _id: groupName, groupPlan }
-          groupsDB.put(group, (err, result) => {
-            if (!err) {
-              console.log('Your group has been added', result)
-            } else {
-              console.error(err)
-            }
-          })
+          var newGroupDB = new PouchDB(groupName)
+          const newGroupRemoteCouch = `https://bill-burgess.cloudant.com/${groupName}`
+          const opts = {
+            live: true,
+            retry: false
+          }
+          PouchDB.sync(groupName, newGroupRemoteCouch)
         }
       })
   },

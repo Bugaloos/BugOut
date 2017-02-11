@@ -31,7 +31,7 @@ class CreateGroup extends React.Component {
     }
 
     db.createGroup(newGroup, (err, status) => {
-
+      console.log('waterfall effect', status);
     })
   }
 

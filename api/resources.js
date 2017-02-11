@@ -130,8 +130,9 @@ module.exports = function () {
         groupDB.insert({ userName: 'Bill' }, 'admin', function(err, body, header) {
           if (err) {
             res.json({register: false, error: err.message})
+          }else{
+            next()
           }
-          next()
         });
       });
     })

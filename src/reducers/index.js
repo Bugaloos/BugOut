@@ -1,6 +1,17 @@
 const { combineReducers } = require('redux')
-const online = require('./online')
+const showRegisterForm = require('./showRegisterForm')
+const showLoginForm = require('./showLoginForm')
+const authErr = require('./authErr')
+const loggedIn = require('./loggedIn')
+const messages = require('./messages')
+const group = require('./group')
 
 module.exports = combineReducers({
-  online
+  showRegisterForm,
+  showLoginForm,
+  authErr,
+  loggedIn,
+  messages,
+  group
+
 })

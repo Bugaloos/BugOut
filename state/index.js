@@ -1,1 +1,8 @@
-module.exports = {}
+module.exports = {
+  showRegisterForm: false,
+  showLoginForm: false,
+  authErr: null,
+  loggedIn: 'Meghan',
+  messages: [],
+  group: 'Bugaloos'
+}

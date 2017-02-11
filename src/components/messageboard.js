@@ -15,8 +15,8 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 const { connect } = require('react-redux')
 const moment = require('moment')
+const pouchDB = require('../../pouchDB')
 
-const userName = 'Lucas'
 var text = ''
 const data = [
   {userName: "Lucas",
@@ -29,38 +29,43 @@ const data = [
     message: "Hola"},
 ]
 //FIX MEEEEEEEEE
+const group = 'Bugaloos'
 
-const Messageboard = () => {
-  function renderMessage({userName, message}) {
-    return (
-      <ListItem
+class Messageboard extends React.Component {
+  handleClick(){
+    const message = this.refs.message.value
+    const userName = 'Bill'
+    pouchDB.postMessage(userName, group, message)
+  }
+  render(){
+    pouchDB.getMessages(group)
+    function renderMessage({userName, message}) {
+      return (
+        <ListItem
         primaryText={
           <p>
-            <span style={{color: darkBlack}}>{userName}</span> -- {message}
+          <span style={{color: darkBlack}}>{userName}</span> -- {message}
           </p>
         }
-      />
+        />
+      )
+    }
+
+    function renderMessages(messages) {
+      return messages.map((message) => renderMessage(message))
+    }
+
+    return (
+      <div>
+      <span>{(moment().format('dddd DD MMMM YYYY '))}</span>
+      <form>
+      <input ref='message' type='text'/>
+      <input onClick={this.handleClick.bind(this)} type='submit' value='Post'/>
+      </form>
+      {renderMessages(data)}
+      </div>
     )
   }
-
-  function renderMessages(messages) {
-    return messages.map((message) => renderMessage(message))
-  }
-  function postMessage(){
-    data.push({userName, message:text})
-    console.log({data})
-  }
-  const updateText = (e) => text=e.value
-  return (
-    <div>
-      <span>{(moment().format('dddd DD MMMM YYYY '))}</span>
-        <form>
-          <input onChange={(e) => updateText(e)} type='text'/>
-          <input onClick={ () => postMessage() } type='submit' value='Post'/>
-        </form>
-        {renderMessages(data)}
-    </div>
-  )
 };
 
 module.exports = connect((state) => state)(Messageboard)

@@ -45,14 +45,17 @@ module.exports = {
       })
   },
 
-  initializeUser: function (store) {
-    console.log('things!');
-    loggedInUserDB.get({include_docs: true}, (err, user) => {
-      if(!err){
-        console.log(user)
-      }else{
-        console.log('Error!');
-      }
+  postMessage: function (userName, group, message) {
+    var groupDB = new PouchDB(group)
+    const time = new Date().toISOString()
+    const entry = { _id: time, userName, message}
+    groupDB.put(entry)
+  },
+
+  getMessages: function (group) {
+    var groupDB = new PouchDB(group)
+    groupDB.allDocs({include_docs: true, descending: true}, function(err, doc){
+      
     })
   }
 }

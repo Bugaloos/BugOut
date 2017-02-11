@@ -7,7 +7,7 @@ const request = require('superagent')
 const PouchDB = require('pouchdb')
 const db = require('../../pouchDB')
 
-class Login extends React.Component {
+class Register extends React.Component {
 
   handleSubmit () {
     const { dispatch } = this.props
@@ -21,7 +21,14 @@ class Login extends React.Component {
       userName,
       password
     }
-    db.register(newUser)
+    db.register(newUser, (err, status) => {
+      if(err) throw error
+      if(status.register){
+        dispatch({type: 'LOG_IN', payload: status.user})
+      }else{
+        dispatch({type: 'AUTH_ERR', payload: status.error})
+      }
+    })
     // var opts = {live: true};
     // db.sync(remoteCouch, opts, syncError)
     //
@@ -49,4 +56,4 @@ class Login extends React.Component {
   }
 }
 
-module.exports = connect((state) => state)(Login)
+module.exports = connect((state) => state)(Register)

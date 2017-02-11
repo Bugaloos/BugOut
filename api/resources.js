@@ -23,7 +23,7 @@ module.exports = function () {
         req.session.user = { email, userName }
         res.json({login: true, user})
       } else {
-        res.json({login: false, error: 'Invalid email/Password'})
+        res.json({login: false, error: 'Invalid user name/Password'})
       }
     })
   }
@@ -37,7 +37,7 @@ module.exports = function () {
       var db = cloudant.db.use("users")
       db.get(userName, (err, user) => {
         if (err) {
-          console.error(err)
+          res.json({login: false, error: 'Invalid User name/password'})
         } else {
           bcrypt.compare(password, user.hash, (error, response) => {
             if(response){
@@ -45,7 +45,7 @@ module.exports = function () {
               req.session.user = { email, userName }
               res.json({login: true, user})
             } else {
-              res.json({login: false, error: 'Invalid email/Password'})
+              res.json({login: false, error: 'Invalid user name/Password!'})
             }
           })
         }
@@ -77,12 +77,11 @@ module.exports = function () {
       bcrypt.hash(password, salt, (error, hash) => {
         if(error) throw error
         const user = {_id: userName, email, hash}
-        console.log(user);
         addUserToCouch(user, (err, response) => {
           if (err) {
             res.json({register: false, error: err})
           }else{
-            res.json({register: true, user: {_id: userName, email}})
+            res.json({register: true, user: {_id: userName, email, hash}})
           }
         })
       })

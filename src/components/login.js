@@ -15,7 +15,14 @@ class Login extends React.Component {
     const userName = this.refs.userName.value
     const password = this.refs.password.value
 
-    db.login({ userName, password })
+    db.login({ userName, password }, (err, status) => {
+      if(err) throw err
+      if(status.login){
+        dispatch({type: 'LOG_IN', payload: status.user._id})
+      }else{
+        dispatch({type: 'AUTH_ERR', payload: status.error})
+      }
+    })
     // var opts = {live: true};
     // db.sync(remoteCouch, opts, syncError)
     //
@@ -28,10 +35,10 @@ class Login extends React.Component {
     return (
       <form>
         <div>
-              User Name:
-              <input className='homePageButton' type='text' ref='userName' placeholder='User Name' />
-              Password:
-              <input className='homePageButton' type='password' ref='password' placeholder='Password' />
+          User Name:
+          <input className='homePageButton' type='text' ref='userName' placeholder='User Name' />
+          Password:
+          <input className='homePageButton' type='password' ref='password' placeholder='Password' />
         </div>
         <button onClick={this.handleSubmit.bind(this)}>Login </button>
       </form>

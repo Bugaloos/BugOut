@@ -7,21 +7,28 @@ const request = require('superagent')
 const PouchDB = require('pouchdb')
 const db = require('../../pouchDB')
 
-class Login extends React.Component {
+class Register extends React.Component {
 
   handleSubmit () {
     const { dispatch } = this.props
 
-    const name = this.refs.name.value
+    const userName = this.refs.userName.value
     const email = this.refs.email.value
     const password = this.refs.password.value
 
     var newUser = {
-      _id: email,
-      name,
+      email,
+      userName,
       password
     }
-    db.register(newUser)
+    db.register(newUser, (err, status) => {
+      if(err) throw error
+      if(status.register){
+        dispatch({type: 'LOG_IN', payload: status.user})
+      }else{
+        dispatch({type: 'AUTH_ERR', payload: status.error})
+      }
+    })
     // var opts = {live: true};
     // db.sync(remoteCouch, opts, syncError)
     //
@@ -34,8 +41,8 @@ class Login extends React.Component {
     return (
       <form>
         <div>
-          Name:
-          <input className='homePageButton' type='text' ref='name' placeholder='Name' /><br />
+          User Name:
+          <input className='homePageButton' type='text' ref='userName' placeholder='User Name' /><br />
           Email:
           <input className='homePageButton' type='text' ref='email' placeholder='Email' /><br />
           Password:
@@ -49,4 +56,4 @@ class Login extends React.Component {
   }
 }
 
-module.exports = connect((state) => state)(Login)
+module.exports = connect((state) => state)(Register)

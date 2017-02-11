@@ -1,46 +1,48 @@
 const PouchDB = require('pouchdb')
 const request = require('superagent')
-var remoteCouch = 'https://bill-burgess.cloudant.com/users/'
+var remoteCouch = 'https://bill-burgess.cloudant.com/users/_all_docs'
 var usersDB = new PouchDB('users')
 var loggedInUserDB = new PouchDB('loggedInUser')
 
 module.exports = {
 
-  login: function (enteredUser) {
+  login: function (enteredUser, cb) {
     usersDB.get(enteredUser.userName, {include_docs: true}, (err, user) => {
       if (err) {
         request.post('api/v1/login/authserver')
           .send(enteredUser)
           .then(res => {
-            console.log(res.body)
+            cb(null, res.body)
           })
+          .catch(err)
       } else {
         request.post('api/v1/login/authlocal')
           .send({enteredUser, user})
           .then(res => {
-            console.log(res.body)
+            cb(null, res.body)
           })
       }
     })
   },
 
-  register: function (newUser) {
-    const { userName, email, password } = newUser
-    request.post('api/v1/register/encrypt')
-      .send({ userName, password })
+  register: function (newUser, cb) {
+    const { userName, email } = newUser
+    request.post('api/v1/register')
+      .send(newUser)
       .then(res => {
-        if(res.body.error){
-          console.log('gets here', res.body);
-          return res.body
-        }else{
-          const user = { _id: userName, email, hash: res.body.hash }
+        if(res.body.register){
+          console.log('look here', res.body)
+          const user = { _id: userName, email, hash: res.body.user.hash }
           usersDB.put(user, (err, result) => {
             if (!err) {
-              console.log('Successfully registered', result)
+              console.log(result);
+              cb(null, {register: true, user: result.id})
             } else {
-              console.error(err)
+              cb(null, {register: false, error: 'Service disrupted'})
             }
           })
+        }else{
+          cb(null, res.body)
         }
       })
   },
@@ -55,7 +57,7 @@ module.exports = {
   getMessages: function (group) {
     var groupDB = new PouchDB(group)
     groupDB.allDocs({include_docs: true, descending: true}, function(err, doc){
-      
+
     })
   }
 }

@@ -1,6 +1,8 @@
 const { combineReducers } = require('redux')
-const online = require('./online')
+const authErr = require('./authErr')
+const loggedIn = require('./loggedIn')
 
 module.exports = combineReducers({
-  online
+  authErr,
+  loggedIn
 })

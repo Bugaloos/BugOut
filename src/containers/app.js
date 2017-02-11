@@ -7,8 +7,7 @@ const App = (props) => {
     <div>
       <div className='navBar'>
         <nav>
-          <Link to='/'><button>Home</button></Link>
-          <Link to='/users'><button>Users</button></Link>
+          <h1 id='maintitle'> Bug Out</h1>
         </nav>
       </div>
       <br />

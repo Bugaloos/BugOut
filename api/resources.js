@@ -7,13 +7,14 @@ require('dotenv').load()
 var Cloudant = require('cloudant')
 
 // Initialize Cloudant with settings from .env
-var username = process.env.cloudant_username
+var username = process.env.cloudant_username || "nodejs"
 var passwordC = process.env.cloudant_password
 
 module.exports = function () {
   route.post('/login/authlocal', authlocal)
   route.post('/login/authserver', authserver)
   route.post('/register', isUserUnique, encrypt)
+  route.post('/createGroup', isGroupUnique, createGroupDB)
 
   function authlocal (req, res, next) {
     const { enteredUser, user } = req.body
@@ -35,7 +36,6 @@ module.exports = function () {
         return console.log('Failed to initialize Cloudant: ' + error.message)
       }
       var db = cloudant.db.use("users")
-      console.log('db', db);
       db.get(userName, (err, user) => {
         if (err) {
           res.json({login: false, error: 'Invalid User name/password'})
@@ -98,6 +98,49 @@ module.exports = function () {
       db.insert(user, (err, res) => {
         cb(err, res)
       })
+    })
+  }
+
+  function isGroupUnique(req, res, next) {
+    const { groupName } = req.body
+    Cloudant({account:username, password:passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
+      var db = cloudant.db.use("groups")
+      db.get(groupName, (err, group) => {
+        if(group){
+          console.log('this is group', group)
+          res.json({register: false, error: 'Group Name already in use'})
+        } else {
+          next()
+        }
+      })
+    })
+  }
+
+  function createGroupDB(req, res, next){
+    const { groupName } = req.body
+    console.log(groupName);
+    Cloudant({account:username, password:passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
+      cloudant.db.create(groupName, function() {
+
+        // Specify the database we are going to use (groupDB)...
+        var groupDB = cloudant.db.use(groupName)
+
+        // ...and insert a document in it.
+        groupDB.insert({ crazy: true }, 'rabbit', function(err, body, header) {
+          if (err) {
+            return console.log('[groupDB.insert] ', err.message);
+          }
+
+          console.log('You have inserted the rabbit.');
+          console.log(body);
+        });
+      });
     })
   }
 

@@ -7,7 +7,7 @@ require('dotenv').load()
 var Cloudant = require('cloudant')
 
 // Initialize Cloudant with settings from .env
-var username = process.env.cloudant_username
+var username = process.env.cloudant_username || "nodejs"
 var passwordC = process.env.cloudant_password
 
 module.exports = function () {
@@ -35,7 +35,6 @@ module.exports = function () {
         return console.log('Failed to initialize Cloudant: ' + error.message)
       }
       var db = cloudant.db.use("users")
-      console.log('db', db);
       db.get(userName, (err, user) => {
         if (err) {
           res.json({login: false, error: 'Invalid User name/password'})

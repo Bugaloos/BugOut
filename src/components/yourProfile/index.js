@@ -1,18 +1,21 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const Group = require ('../components/groups')
-const Plan = require ('../components/plan')
-const YourProfile = require ('../components/yourProfile')
+const Group = require ('../groups')
+const Plan = require ('../plan')
+const Stepper = require ('./stepper')
 
 // This component will show plans and groups based upon a userID
 function Profile (props) {
   return (
     <div>
-      <h1>Welcome {props.loggedIn}!</h1>
-      <YourProfile {...props} />
+      <Stepper {...props} />
     </div>
 
   )
 }
 
 module.exports = connect((state) => state)(Profile)
+
+// (props.planComplete
+//   ? <CompleteProfile {...props} />
+// :

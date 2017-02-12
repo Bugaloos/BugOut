@@ -15,6 +15,7 @@ module.exports = function () {
   route.post('/login/authserver', authserver)
   route.post('/register', isUserUnique, encrypt)
   route.post('/createGroup', isGroupUnique, createGroupDB, addToGroups)
+  route.post('/createplan', addPlan)
 
   function authlocal (req, res, next) {
     const { enteredUser, user } = req.body
@@ -152,6 +153,14 @@ module.exports = function () {
           res.json({register: true, group: {name: groupName, admin: 'Bill'}})
         }
       })
+    })
+  }
+
+  function addPlan(req, res, next){
+    Cloudant({account:username, password:passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
     })
   }
 

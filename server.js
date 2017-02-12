@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const api = require('./api')
 const favicon =require('serve-favicon')
+require('dotenv').load()
 
 // Database
 // const db = PouchDB('db')

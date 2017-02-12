@@ -109,14 +109,16 @@ module.exports = {
   createPlan: function (plan, user, cb) {
     request.post('api/v1/createplan')
       .send({ plan, user })
-  },
+  },//wip
+
+
 
   syncGroup: function (group, cb) {
     var groupPouch = new PouchDB(group)
     const groupCouch = new PouchDB(`https://bill-burgess.cloudant.com/${group}`, {
       auth: {
-        username: process.env.cloudant_username,
-        password: process.env.cloudant_password
+        username: username,
+        password: passwordC
       }
     })
     const opts = {

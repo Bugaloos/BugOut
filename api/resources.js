@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs') // for auth and password hash
 const express = require('express')
 const route = express.Router()
-require('dotenv').load()
+
 
 // Load the Cloudant library.
 var Cloudant = require('cloudant')

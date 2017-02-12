@@ -4,5 +4,8 @@ module.exports = {
   authErr: null,
   loggedIn: null,
   messages: [],
-  group: 'Bugaloos'
+  group: 'Bugaloos',
+  planComplete: false,
+  stepIndex: null,
+  visited: []
 }

@@ -5,6 +5,7 @@ const authErr = require('./authErr')
 const loggedIn = require('./loggedIn')
 const messages = require('./messages')
 const group = require('./group')
+const planComplete = require('./planComplete')
 
 module.exports = combineReducers({
   showRegisterForm,
@@ -12,6 +13,7 @@ module.exports = combineReducers({
   authErr,
   loggedIn,
   messages,
-  group
+  group,
+  planComplete
 
 })

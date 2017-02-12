@@ -52,7 +52,7 @@ class HalfStepper extends React.Component {
   }
   render () {
     const finished = false
-    const {stepIndex, dispatch} = this.props
+    const {stepIndex} = this.props
 
     return (
       <div style={{maxWidth: 500, maxHeight: 400, margin: 'auto'}}>
@@ -86,5 +86,3 @@ class HalfStepper extends React.Component {
 }
 
 module.exports = connect((state) => state)(HalfStepper)
-
-//     dispatch({type: 'UPDATE_VISITED', payload: stepIndex})

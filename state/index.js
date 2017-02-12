@@ -1,6 +1,10 @@
 module.exports = {
   authErr: null,
   group: 'Bugaloos',
+  setLocations: {
+    meetingPoint: ' ',
+    safePoint: ' '
+  },
   loggedIn: null,
   messages: [],
   planComplete: false,
@@ -9,6 +13,5 @@ module.exports = {
   showCreateGroup: false,
   showCreatePlan: false,
   showJoinGroup: false,
-  stepIndex: 0,
-  visited: []
+  stepIndex: 0
 }

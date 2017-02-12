@@ -63,7 +63,9 @@
     "superagent": "^3.4.1",
     "victory": "^0.17.0",
     "webpack": "^1.14.0",
-    "webpack-dev-middleware": "^1.9.0"
+    "webpack-dev-middleware": "^1.9.0",
+    "url-loader": "^0.5.7",
+    "file-loader": "^0.10.0"
   },
   "devDependencies": {
     "eslint": "^3.14.1",

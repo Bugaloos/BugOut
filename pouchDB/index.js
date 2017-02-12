@@ -110,8 +110,8 @@ module.exports = {
     var groupPouch = new PouchDB(group)
     const groupCouch = new PouchDB(`https://bill-burgess.cloudant.com/${group}`, {
       auth: {
-        username: 'bill-burgess',
-        password: 'Alpha3886'
+        username: username,
+        password: passwordC
       }
     })
     const opts = {

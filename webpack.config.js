@@ -2,11 +2,15 @@ const path = require('path')
 
 const PATHS = {
   entry: path.join(__dirname, '/src/index.js'),
+
   output: path.join(__dirname, '/public')
 }
 
 module.exports = {
   entry: PATHS.entry,
+  node: {
+    fs: "empty"
+  },
 
   output: {
     path: PATHS.output,

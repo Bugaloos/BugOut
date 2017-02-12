@@ -15,6 +15,7 @@ module.exports = function () {
   route.post('/login/authserver', authserver)
   route.post('/register', isUserUnique, encrypt)
   route.post('/createGroup', isGroupUnique, createGroupDB, addToGroups)
+  route.get('/getAuth', sendAuth)
 
   function authlocal (req, res, next) {
     const { enteredUser, user } = req.body
@@ -30,6 +31,7 @@ module.exports = function () {
   }
 
   function authserver (req, res, next) {
+    console.log('heres your user name', process.env.cloudant_username);
     const { userName, password } = req.body
     Cloudant({account:username, password:passwordC}, (error, cloudant) => {
       if (error) {
@@ -153,6 +155,14 @@ module.exports = function () {
         }
       })
     })
+  }
+
+  function sendAuth(req, res, next){
+    const auth = {
+      username: username,
+      password: passwordC
+    }
+    res.json(auth)
   }
 
   return route

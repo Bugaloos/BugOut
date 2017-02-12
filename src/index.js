@@ -7,6 +7,7 @@ const { Router, Route, IndexRoute, hashHistory } = require('react-router')
 const reducer = require('./reducers')
 const initialState = require('../state')
 const MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default
+require('dotenv').load()
 
 // Top Level Components
 const App = require('./containers/app')

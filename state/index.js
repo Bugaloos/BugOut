@@ -6,6 +6,6 @@ module.exports = {
   messages: [],
   group: 'Bugaloos',
   planComplete: false,
-  stepIndex: null,
+  stepIndex: 0,
   visited: []
 }

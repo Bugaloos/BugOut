@@ -1,8 +1,8 @@
 module.exports = function planComplete (state = null, action) {
   switch (action.type) {
 
-    case 'STEP':
-      state += action.payload
+    case 'CURRENT_PLAN_STAGE':
+      state = action.payload
       return state
 
     default:

@@ -31,42 +31,43 @@ const getStyles = () => {
 class HalfStepper extends React.Component {
 
   componentWillMount() {
-    console.log("stepper props", this.props);
-    const {stepIndex, visited} = this.props;
-    this.setState({visited: visited.concat(stepIndex)});
+    console.log("stepper props", this.props)
+    const {stepIndex, visited} = this.props
+    this.setState({visited: visited.concat(stepIndex)})
   }
 
   componentWillUpdate(nextProps, nextState) {
-    const {stepIndex, visited} = nextState;
+    const {stepIndex, visited} = nextState
     if (visited.indexOf(stepIndex) === -1) {
-      this.setState({visited: visited.concat(stepIndex)});
+      this.setState({visited: visited.concat(stepIndex)})
     }
   }
 
   handleNext() {
-    const {stepIndex, dispatch} = this.props;
+    const {stepIndex, dispatch} = this.props
     if (stepIndex < 2) {
-      dispatch({type: 'STEP', payload: 1});
+      dispatch({type: 'STEP', payload: 1})
     }
   };
 
   handlePrev() {
-    const {stepIndex, dispatch} = this.props;
+    const { stepIndex, dispatch } = this.props
     if (stepIndex > 0) {
-      dispatch({type: 'STEP', payload: -1});
+      dispatch({type: 'STEP', payload: -1})
     }
   };
 
-  getStepContent(stepIndex) {
+  getStepContent() {
+    const { stepIndex } = this.props
     switch (stepIndex) {
       case 0:
-        return 'Select campaign settings...';
+        return 'Select campaign settings...'
       case 1:
-        return 'What is an ad group anyways?';
+        return 'What is an ad group anyways?'
       case 2:
-        return 'This is the bit I really care about!';
+        return 'This is the bit I really care about!'
       default:
-        return 'Click a step to get started.';
+        return 'Click a step to get started.'
     }
   }
 
@@ -111,13 +112,13 @@ class HalfStepper extends React.Component {
               <FlatButton
                 label="Back"
                 disabled={stepIndex === 0}
-                onTouchTap={this.handlePrev.bind(this)}
+                onClick={this.handlePrev.bind(this)}
                 style={styles.backButton}
               />
               <RaisedButton
                 label="Next"
                 primary={true}
-                onTouchTap={this.handleNext.bind(this)}
+                onClick={this.handleNext.bind(this)}
               />
             </div>
           )}

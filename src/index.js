@@ -48,7 +48,6 @@ const Root = ({store}) => {
             <Route path='/plans/:id/new' component={Plan} />
             <Route path='/plans/:id/edit' component={Plan} />
             <Route path='/creategroup' component={CreateGroup} />
-            <Route path='/' component={}
           </Route>
         </Router>
       </Provider>

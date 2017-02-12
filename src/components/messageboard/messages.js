@@ -2,8 +2,8 @@ const React = require('react')
 const { connect } = require('react-redux')
 const { Link } = require('react-router')
 const db = require('../../../pouchDB')
-import {List, ListItem} from 'material-ui/List'
-import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors'
+const { List, ListItem } = require('material-ui/List')
+const { grey400, darkBlack , lightBlack} = require('material-ui/styles/colors')
 
 function updateMessages(group, dispatch){
   db.getMessages(group, (err, response) => {

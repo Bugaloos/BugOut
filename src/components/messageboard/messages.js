@@ -11,7 +11,7 @@ class Messages extends React.Component {
     const { dispatch, group } = this.props
 
     db.getMessages(group, (err, response) => {
-      if(err) throw(err)
+      if (err) throw (err)
       const messages = response.map(respond => {
         const {text, userName} = respond.doc
         return {text, userName}
@@ -23,19 +23,19 @@ class Messages extends React.Component {
   render () {
     const { messages } = this.props
 
-    function renderMessage({userName, text}) {
+    function renderMessage ({userName, text}) {
       return (
         <ListItem
-        primaryText={
-          <p>
-          <span style={{color: darkBlack}} key={userName} >{userName}</span> -- {text}
-          </p>
+          primaryText={
+            <p>
+              <span style={{color: darkBlack}} key={userName} >{userName}</span> -- {text}
+            </p>
         }
         />
       )
     }
 
-    function renderMessages(messages) {
+    function renderMessages (messages) {
       const renderedMessages = messages.map(renderMessage)
       return renderedMessages
     }

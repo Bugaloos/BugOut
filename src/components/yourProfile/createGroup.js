@@ -5,7 +5,7 @@ const _ = require('lodash')
 const TextField = require('material-ui/TextField').default
 const request = require('superagent')
 const PouchDB = require('pouchdb')
-const db = require('../../pouchDB')
+const db = require('../../../pouchDB')
 
 // This component will create a new entry in the database with an identifier of groupname, linked to userIDs who are members of the group.
 
@@ -25,14 +25,16 @@ class CreateGroup extends React.Component {
     const groupName = this.refs.groupName.input.value
     const groupPlan = this.refs.groupPlan.input.value
 
-    var newGroup = {
-      groupName,
-      groupPlan
-    }
+    dispatch({type: 'STEP_FORWARD', payload: 1})
 
-    db.createGroup(newGroup, (err, status) => {
-      console.log('waterfall effect', status);
-    })
+    // var newGroup = {
+    //   groupName,
+    //   groupPlan
+    // }
+
+    // db.createGroup(newGroup, (err, status) => {
+    //   console.log('waterfall effect', status)
+    // })
   }
 
   render () {
@@ -49,7 +51,7 @@ class CreateGroup extends React.Component {
               ref='groupPlan' />
             <br />
           </div>
-          <button onClick={this.handleSubmit.bind(this)}>Sign Up</button>
+          <button onClick={this.handleSubmit.bind(this)}>Next Step</button>
         </form>
       </div>
     )

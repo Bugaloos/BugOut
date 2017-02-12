@@ -54,7 +54,7 @@ module.exports = {
     .send({ groupName })
       .then(res => {
 
-        
+
         if (!res.body.register) {
           cb(null, res.body)
         } else {
@@ -79,10 +79,10 @@ module.exports = {
     })
   },
 
-  postMessage: function (userName, group, message, cb) {
+  postMessage: function (userName, group, text, cb) {
     var groupDB = new PouchDB(group)
     const time = new Date().toISOString()
-    const entry = { _id: time, userName, text: message }
+    const entry = { _id: time, userName, text }
     groupDB.put(entry, (err, result) => {
       if(err) throw err
       cb(null, result)
@@ -98,5 +98,10 @@ module.exports = {
         cb(null, docs.rows)
       }
     })
+  },
+
+  createPlan: function (plan, user, cb) {
+    request.post('api/v1/createplan')
+      .send({ plan, user })
   }
 }

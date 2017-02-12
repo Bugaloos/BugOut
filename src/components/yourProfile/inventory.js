@@ -5,15 +5,21 @@ const _ = require('lodash')
 import Checkbox from 'material-ui/Checkbox';
 
 class Inventory extends React.Component {
+
+  handleSubmit (){
+    const { dispatch } = this.props
+  }
+
   render(){
     const styles = {
-  block: {
-    maxWidth: 250,
-  },
-  checkbox: {
-    marginBottom: 16,
-  },
-}
+      block: {
+        maxWidth: 250,
+      },
+      checkbox: {
+        marginBottom: 16,
+      },
+    }
+
     const inventory = [
       {name: 'torch', checked:false},
       {name: 'radio', checked:false},
@@ -23,15 +29,26 @@ class Inventory extends React.Component {
       {name: 'water', checked:false}
     ]
 
-      return (
+    return (
+      <div>
+        {displayItems(inventory)}
+        <button onClick={this.handleSubmit.bind(this)}> Submit </button>
+      </div>
+    )
+
+    function displayItems(inventory){
+      return inventory.map(item => {
+        return (
           <div style={styles.block}>
           <Checkbox
-          label='item.name'
+          label={item.name}
           style={styles.checkbox}
           defaultChecked={item.checked}
           />
           </div>
         )
+      })
+    }
     }
 }
 

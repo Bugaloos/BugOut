@@ -98,26 +98,20 @@ module.exports = {
     })
   },
 
-  syncGroup: function (group, dispatch, cb) {
+  syncGroup: function (group, cb) {
     var groupPouch = new PouchDB(group)
     const groupCouch = `https://bill-burgess.cloudant.com/${group}`
     const opts = {
       live: true,
-      retry: true
+      retry: true,
+      since: 'now'
     }
     PouchDB.sync(group, groupCouch)
       .on('change', info => {
         this.getMessages(group, (err, response) => {
           if(err) throw err
-          const messages = response.map(respond => {
-            const {text, userName} = respond.doc
-            return {text, userName}
-          })
-          dispatch({type: 'UPDATE_MESSAGES', payload: messages})
+          cb(null, group)
         })
-      })
-      .then(res => {
-        cb(null, group)
       })
   }
 }

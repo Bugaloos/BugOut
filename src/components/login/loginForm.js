@@ -15,10 +15,11 @@ class Login extends React.Component {
     const password = this.refs.password.value
 
     db.login({ userName, password }, (err, status) => {
-      if(err) throw err
-      if(status.login){
+      if (err) throw err
+      if (status.login) {
         dispatch({type: 'LOG_IN', payload: status.user._id})
-      }else{
+        this.props.router.push(`/users/${status.user._id}`)
+      } else {
         dispatch({type: 'AUTH_ERR', payload: status.error})
       }
     })
@@ -28,7 +29,7 @@ class Login extends React.Component {
     //
     // function syncError() {
     //   syncDom.setAttribute('data-sync-state', 'error');
-    // }  
+    // }
   }
 
   render () {
@@ -40,7 +41,7 @@ class Login extends React.Component {
           Password:
           <input className='homePageButton' type='password' ref='password' placeholder='Password' />
         </div>
-        <button onClick={this.handleSubmit.bind(this)}>Login </button>
+          <button onClick={this.handleSubmit.bind(this)}> Login </button>
       </form>
     )
   }

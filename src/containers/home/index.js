@@ -7,7 +7,7 @@ const NotLoggedIn = require('./notLoggedIn')
 // If an active session is detected, this page will ???(redirect to profile? render profile)???
 
 function Home (props) {
-  return props.showRegisterForm
+  return props.loggedIn
     ? <LoggedIn {...props} />
     : <NotLoggedIn {...props} />
 }

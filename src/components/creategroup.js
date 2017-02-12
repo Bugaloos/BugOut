@@ -22,7 +22,7 @@ class CreateGroup extends React.Component {
 
   handleSubmit () {
     const { dispatch } = this.props
-    const groupName = this.refs.groupName.input.value
+    const groupName = this.refs.groupName.input.value.toLowerCase()
     const groupPlan = this.refs.groupPlan.input.value
 
     var newGroup = {

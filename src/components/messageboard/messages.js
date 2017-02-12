@@ -20,18 +20,22 @@ class Messages extends React.Component {
 
   componentDidMount () {
     const { dispatch, group } = this.props
-
     updateMessages(group, dispatch)
 
-
-
+    db.getMessages(group, (err, response) => {
+      if (err) throw (err)
+      const messages = response.map(respond => {
+        const {text, userName} = respond.doc
+        return {text, userName}
+      })
+      dispatch({type: 'UPDATE_MESSAGES', payload: messages})
+    })
   }
 
 
   render () {
     const { dispatch, group } = this.props
     const { messages } = this.props
-
 
     setInterval(function (){
       db.syncGroup(group, (err, status) => {
@@ -43,16 +47,16 @@ class Messages extends React.Component {
     function renderMessage({userName, text}) {
       return (
         <ListItem
-        primaryText={
-          <p>
-          <span style={{color: darkBlack}} key={userName} >{userName}</span> -- {text}
-          </p>
+          primaryText={
+            <p>
+              <span style={{color: darkBlack}} key={userName} >{userName}</span> -- {text}
+            </p>
         }
         />
       )
     }
 
-    function renderMessages(messages) {
+    function renderMessages (messages) {
       const renderedMessages = messages.map(renderMessage)
       return renderedMessages
     }

@@ -32,7 +32,7 @@ module.exports = {
     request.post('api/v1/register')
       .send(newUser)
       .then(res => {
-        if(res.body.register){
+        if (res.body.register) {
           console.log('look here', res.body)
           const user = { _id: userName, email, hash: res.body.user.hash }
           usersDB.put(user, (err, result) => {
@@ -42,20 +42,17 @@ module.exports = {
               cb(null, {register: false, error: 'Service disrupted'})
             }
           })
-        }else{
+        } else {
           cb(null, res.body)
         }
       })
   },
 
   createGroup: function (newGroup, cb) {
-
     const { groupName, groupPlan } = newGroup
     request.post('api/v1/creategroup')
     .send({ groupName })
       .then(res => {
-
-
         if (!res.body.register) {
           cb(null, res.body)
         } else {
@@ -90,7 +87,7 @@ module.exports = {
     const time = new Date().toISOString()
     const entry = { _id: time, userName, text: message }
     groupDB.put(entry, (err, result) => {
-      if(err) throw err
+      if (err) throw err
       cb(null, result)
     })
   },
@@ -100,7 +97,7 @@ module.exports = {
     groupPV.allDocs({include_docs: true, descending: true}, (err, docs) => {
       if (err) {
         cb(err, null)
-      }else{
+      } else {
         cb(null, docs.rows)
       }
     })

@@ -21,13 +21,27 @@ body {
   width: 40%;
   background-color: #fff59d;
 }
+
 #maintitle {
-  font-size: 2em;
-  padding: 1em;
+  padding-top: 5%;
   border-radius: 25%;
   border-width: medium;
   border-color: #576C31;
   border-style: solid;
+  overflow: hidden;
+}
+
+#mainTitleText {
+  width: 65%;
+  float: left;
+  padding-left: 3%;
+  font-size: 4em;
+}
+
+#maintitle img {
+  margin-top: 3%;
+  width: 14%;
+  padding-right: 5%
 }
 button{
   color: white;

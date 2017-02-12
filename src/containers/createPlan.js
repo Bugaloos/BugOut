@@ -9,7 +9,6 @@ function CreatePlan (props) {
       <h1>User Plan</h1>
       <BugOutInventory router={props.router} />
       <MeetingPoint router={props.router} />
-      <button>Submit</button>
     </div>
   )
 }

@@ -5,9 +5,12 @@ function BugOutInventory (props) {
   return (
     <div>
       <h1>This is the bug out Inventory Component </h1>
-      <form>
-      
-      </form>
+      <ul>
+        <li>Marmite</li>
+        <li>Underwear</li>
+        <li>Dog food</li>
+      </ul>
+      <button onClick={() => dispatch({type:'UPDATE_USER_CACHE', payload: })}>Submit</button>
     </div>
   )
 }

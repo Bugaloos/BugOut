@@ -15,6 +15,7 @@ function MeetingPoint (props) {
           <input className='' type='text' ref='meeting point' placeholder='Meeting Point' />
           <input className='' type='text' ref='safe point' placeholder='Safe Point' />
         </div>
+        <button>Submit</button>
       </form>
     </div>
   )

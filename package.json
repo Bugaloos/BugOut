@@ -62,7 +62,9 @@
     "sqlite3": "^3.1.8",
     "superagent": "^3.4.1",
     "webpack": "^1.14.0",
-    "webpack-dev-middleware": "^1.9.0"
+    "webpack-dev-middleware": "^1.9.0",
+    "url-loader": "^0.5.7",
+    "file-loader": "^0.10.0",
   },
   "devDependencies": {
     "eslint": "^3.14.1",
@@ -71,12 +73,10 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-react": "^6.9.0",
     "eslint-plugin-standard": "^2.0.1",
-    "file-loader": "^0.10.0",
     "nodemon": "^1.11.0",
     "standard": "^8.6.0",
     "style-loader": "^0.13.1",
     "tap-diff": "^0.1.1",
     "tape": "^4.6.3",
-    "url-loader": "^0.5.7"
   }
 }

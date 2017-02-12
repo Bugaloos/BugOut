@@ -1,15 +1,15 @@
-import React from 'react'
-import {
+const React =require('react')
+const RaisedButton = require('material-ui/RaisedButton')
+const FlatButton = require('material-ui/FlatButton')
+const { connect } = require('react-redux')
+const CreatePlan = require('./createPlan')
+const KeyLocations = require('./planKeyLocations')
+const {
   Step,
   Stepper,
   StepLabel,
   StepContent
-  } from 'material-ui/Stepper'
-import RaisedButton from 'material-ui/RaisedButton'
-import FlatButton from 'material-ui/FlatButton'
-const { connect } = require('react-redux')
-const CreatePlan = require('./createPlan')
-const KeyLocations = require('./planKeyLocations')
+} = require('material-ui/Stepper')
 
 class PlanStepper extends React.Component {
 

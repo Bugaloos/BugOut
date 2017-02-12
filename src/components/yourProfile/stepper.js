@@ -31,15 +31,15 @@ const getStyles = () => {
 class HalfStepper extends React.Component {
 
   componentWillMount() {
-    console.log("stepper props", this.props)
-    const {stepIndex, visited} = this.props
+    const {stepIndex, dispatch, visited} = this.props
     this.setState({visited: visited.concat(stepIndex)})
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    const {stepIndex, visited} = nextState
+  componentWillUpdate() {
+    const {stepIndex, dispatch, visited} = this.props
     if (visited.indexOf(stepIndex) === -1) {
-      this.setState({visited: visited.concat(stepIndex)})
+      console.log('tell me about it', );
+      dispatch({type: 'UPDATE_VISITED', payload: stepIndex})
     }
   }
 
@@ -77,18 +77,7 @@ class HalfStepper extends React.Component {
 
     return (
       <div style={styles.root}>
-        <p>
-          <a
-            href="#"
-            onClick={(event) => {
-              event.preventDefault();
-              this.setState({stepIndex: null, visited: []});
-            }}
-          >
-            Click here
-          </a> to reset the example.
-        </p>
-        <Stepper linear={false}>
+          <Stepper linear={false}>
           <Step completed={visited.indexOf(0) !== -1} active={stepIndex === 0}>
             <StepButton onClick={() => this.setState({stepIndex: 0})}>
               Select campaign settings
@@ -129,3 +118,5 @@ class HalfStepper extends React.Component {
 }
 
 module.exports = connect((state) => state)(HalfStepper)
+
+//     dispatch({type: 'UPDATE_VISITED', payload: stepIndex})

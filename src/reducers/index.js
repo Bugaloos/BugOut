@@ -7,6 +7,7 @@ const messages = require('./messages')
 const group = require('./group')
 const planComplete = require('./planComplete')
 const stepIndex = require('./stepIndex')
+const visited = require('./visited')
 
 
 module.exports = combineReducers({
@@ -17,6 +18,6 @@ module.exports = combineReducers({
   messages,
   group,
   planComplete,
-  stepIndex
-
+  stepIndex,
+  visited
 })

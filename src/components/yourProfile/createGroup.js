@@ -20,15 +20,16 @@ class CreateGroup extends React.Component {
     const { dispatch } = this.props
     const groupName = this.refs.groupName.input.value
 
-    dispatch({type: 'STEP_FORWARD', payload: 1})
+    dispatch({type: 'GROUP_STEP_FORWARD', payload: 1})
 
     var newGroup = {
       groupName
     }
 
-    db.createGroup(newGroup, (err, status) => {
-      console.log('waterfall effect', status)
-    })
+  //   db.createGroup(newGroup, (err, status) => {
+  //     if (err) console.log(err)
+  //     console.log('waterfall effect', status)
+  //   })
   }
 
   render () {

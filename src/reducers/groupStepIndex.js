@@ -1,11 +1,11 @@
-module.exports = function stepIndex (state = null, action) {
+module.exports = function groupStepIndex (state = null, action) {
   switch (action.type) {
 
-    case 'STEP_FORWARD':
+    case 'GROUP_STEP_FORWARD':
       state += action.payload
       return state
 
-    case 'STEP_BACK':
+    case 'GROUP_STEP_BACK':
       state -= action.payload
       return state
 

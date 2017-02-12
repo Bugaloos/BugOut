@@ -9,29 +9,29 @@ import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 const { connect } = require('react-redux')
 const Group = require('./createGroup')
-const KeyLocations = require('./keyLocations')
+const KeyLocations = require('./groupKeyLocations')
 
 class HalfStepper extends React.Component {
 
   handleNext () {
     const {dispatch} = this.props
-    dispatch({type: 'STEP_FORWARD', payload: 1})
+    dispatch({type: 'GROUP_STEP_FORWARD', payload: 1})
   }
 
   handlePrev () {
-    const {stepIndex, dispatch} = this.props
-    if (stepIndex > 0) {
-      dispatch({type: 'STEP_BACK', payload: 1})
+    const {groupStepIndex, dispatch} = this.props
+    if (groupStepIndex > 0) {
+      dispatch({type: 'GROUP_STEP_BACK', payload: 1})
     }
   }
 
   renderStepActions (step) {
-    const {stepIndex} = this.props
+    const {groupStepIndex} = this.props
 
     return (
       <div style={{margin: '12px 0'}}>
         <RaisedButton
-          label={stepIndex === 2 ? 'Finish' : 'Next'}
+          label={groupStepIndex === 2 ? 'Finish' : 'Next'}
           disableTouchRipple
           disableFocusRipple
           primary
@@ -41,7 +41,7 @@ class HalfStepper extends React.Component {
         {step > 0 && (
           <FlatButton
             label='Back'
-            disabled={stepIndex === 0}
+            disabled={groupStepIndex === 0}
             disableTouchRipple
             disableFocusRipple
             onClick={this.handlePrev.bind(this)}
@@ -52,11 +52,11 @@ class HalfStepper extends React.Component {
   }
   render () {
     const finished = false
-    const {stepIndex} = this.props
+    const {groupStepIndex} = this.props
 
     return (
       <div style={{maxWidth: 500, maxHeight: 400, margin: 'auto'}}>
-        <Stepper activeStep={stepIndex} orientation='vertical'>
+        <Stepper activeStep={groupStepIndex} orientation='vertical'>
           <Step>
             <StepLabel>Setup Your Group</StepLabel>
             <StepContent>

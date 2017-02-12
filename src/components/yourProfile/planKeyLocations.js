@@ -2,21 +2,15 @@ const React = require('react')
 const { connect } = require('react-redux')
 const TextField = require('material-ui/TextField').default
 
-class CreatePlan extends React.Component {
+class KeyLocations extends React.Component {
 
   handleSubmit () {
     const { dispatch } = this.props
-    const planName = this.refs.planName.input.value
+    const meetingPoint = this.refs.meetingPoint.input.value
+    const safePoint = this.refs.safePoint.input.value
 
     dispatch({type: 'PLAN_STEP_FORWARD', payload: 1})
-
-    var newPlan = {
-      planName
-    }
-
-    // db.createPlan(newPlan, (err, status) => {
-    //   console.log('waterfall effect', status)
-    // })
+    dispatch({type: 'ADD_LOCATIONS', payload: meetingPoint, safePoint})
   }
 
   render () {
@@ -25,8 +19,12 @@ class CreatePlan extends React.Component {
         <form>
           <div>
             <TextField
-              hintText='Plan Name'
-              ref='planName' />
+              hintText='Meeting Point'
+              ref='meetingPoint' />
+            <br />
+            <TextField
+              hintText='Safe Point'
+              ref='safePoint' />
             <br />
           </div>
           <button onClick={this.handleSubmit.bind(this)}>Next Step</button>
@@ -36,5 +34,4 @@ class CreatePlan extends React.Component {
   }
 }
 
-module.exports = connect((state) => state)(CreatePlan)
-// <button onClick={this.handleSubmit.bind(this)}>Sign Up</button>
+module.exports = connect((state) => state)(KeyLocations)

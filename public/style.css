@@ -23,26 +23,11 @@ body {
 }
 #maintitle {
   font-size: 2em;
-}
-#mainTitleText {
-  width: 65%;
-  float: left;
-  padding-left: 5%
-}
-#maintitle {
-  font-size: 2em;
-  padding-bottom: 5%;
-  padding-top: 5%;
+  padding: 1em;
   border-radius: 25%;
   border-width: medium;
   border-color: #576C31;
   border-style: solid;
-}
-
-#maintitle img {
-  width: 12%;
-  padding-top: 1em;
-  padding-right: 5%
 }
 button{
   color: white;

@@ -22,7 +22,8 @@ body {
   background-color: #fff59d;
 }
 
-#maintitle {
+a #maintitle {
+  color: #576C31; 
   padding-top: 5%;
   border-radius: 25%;
   border-width: medium;
@@ -32,6 +33,7 @@ body {
 }
 
 #mainTitleText {
+  color: #FEFEFE
   width: 65%;
   float: left;
   padding-left: 3%;

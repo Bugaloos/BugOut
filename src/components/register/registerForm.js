@@ -22,10 +22,11 @@ class Register extends React.Component {
       password
     }
     db.register(newUser, (err, status) => {
-      if(err) throw error
-      if(status.register){
+      if (err) throw error
+      if (status.register) {
         dispatch({type: 'LOG_IN', payload: status.user})
-      }else{
+        this.props.router.push(`/users/${status.user._id}`)
+      } else {
         dispatch({type: 'AUTH_ERR', payload: status.error})
       }
     })

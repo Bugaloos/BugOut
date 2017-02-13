@@ -1,5 +1,4 @@
 const initialState = require('../../state')
-console.log(initialState);
 module.exports = function plan (state = initialState.plan, action) {
   switch (action.type) {
 

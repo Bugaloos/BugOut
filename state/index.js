@@ -2,15 +2,13 @@ module.exports = {
   authErr: null,
   groupStepIndex: 0,
   setLocations: {
-    meetingPoint: ' ',
-    safePoint: ' '
+    meetingPoint: '',
+    safePoint: ''
   },
   loggedIn: null,
   messages: [],
   group: 'bugaloos',
   planComplete: false,
-  stepIndex: 0,
-  visited: [],
   plan:{
     inventory:[
       {name: 'Torch', checked:false},

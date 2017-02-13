@@ -47,6 +47,7 @@ module.exports = {
   createUserPlan: function(userName, plan, cb){
     request.post('api/v1/user/plan')
       .send({userName, plan})
+      .end((err, res) => cb(err, res.body))
   },
 
   checkGroupUnique: function(groupName, cb) {

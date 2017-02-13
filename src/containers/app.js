@@ -1,6 +1,7 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const { Link } = require('react-router')
+const Logout = require('../components/logout')
 // const antCircle = require('../images/AntNoCircle.png')
 const App = (props) => {
   return (
@@ -17,6 +18,7 @@ const App = (props) => {
       <br />
       <br />
       {props.children}
+      <Logout {...props} />
     </div>
   )
 }

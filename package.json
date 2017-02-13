@@ -6,7 +6,6 @@
   "scripts": {
     "test": "ava test/**/*.js --serial --verbose",
     "knex": "knex",
-    "postinstall": "webpack --config webpack.production.config.js --progress -p",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "lint": "eslint . || true"
@@ -61,6 +60,7 @@
     "react-router": "^3.0.2",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
+    "redux-persist": "^4.3.1",
     "serve-favicon": "^2.3.2",
     "sqlite3": "^3.1.8",
     "superagent": "^3.4.1",

@@ -9,8 +9,10 @@ class KeyLocations extends React.Component {
     const meetingPoint = this.refs.meetingPoint.input.value
     const safePoint = this.refs.safePoint.input.value
 
+    console.log({ meetingPoint, safePoint });
+
     dispatch({type: 'PLAN_STEP_FORWARD', payload: 1})
-    dispatch({type: 'ADD_LOCATIONS', payload: meetingPoint, safePoint})
+    dispatch({type: 'ADD_LOCATIONS', payload: { meetingPoint, safePoint }})
   }
 
   render () {

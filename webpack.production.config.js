@@ -8,7 +8,10 @@ const PATHS = {
 
 module.exports = {
   entry: PATHS.entry,
-
+  node: {
+    fs: "empty"
+  },
+  
   output: {
     path: PATHS.output,
     filename: 'bundle.js'

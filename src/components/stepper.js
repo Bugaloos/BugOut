@@ -1,12 +1,12 @@
-import React from 'react';
-import {
+const React = require('react');
+const RaisedButton = require('material-ui/RaisedButton');
+const FlatButton = require('material-ui/FlatButton');
+const { connect } = require('react-redux')
+const {
   Step,
   Stepper,
   StepButton,
-} from 'material-ui/Stepper';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-const { connect } = require('react-redux')
+} = require('material-ui/Stepper');
 
 
 const getStyles = () => {

@@ -19,19 +19,19 @@ class HalfStepper extends React.Component {
   }
 
   handlePrev () {
-    const {groupStepIndex, dispatch} = this.props
-    if (groupStepIndex > 0) {
+    const {group.step, dispatch} = this.props
+    if (group.step > 0) {
       dispatch({type: 'GROUP_STEP_BACK', payload: 1})
     }
   }
 
   renderStepActions (step) {
-    const {groupStepIndex} = this.props
+    const {group.step} = this.props
 
     return (
       <div style={{margin: '12px 0'}}>
         <RaisedButton
-          label={groupStepIndex === 2 ? 'Finish' : 'Next'}
+          label={group.step === 2 ? 'Finish' : 'Next'}
           disableTouchRipple
           disableFocusRipple
           primary
@@ -41,7 +41,7 @@ class HalfStepper extends React.Component {
         {step > 0 && (
           <FlatButton
             label='Back'
-            disabled={groupStepIndex === 0}
+            disabled={group.step === 0}
             disableTouchRipple
             disableFocusRipple
             onClick={this.handlePrev.bind(this)}
@@ -52,11 +52,11 @@ class HalfStepper extends React.Component {
   }
   render () {
     const finished = false
-    const {groupStepIndex} = this.props
+    const {group.step} = this.props
 
     return (
       <div style={{maxWidth: 500, maxHeight: 400, margin: 'auto'}}>
-        <Stepper activeStep={groupStepIndex} orientation='vertical'>
+        <Stepper activeStep={group.step} orientation='vertical'>
           <Step>
             <StepLabel>Setup Your Group</StepLabel>
             <StepContent>

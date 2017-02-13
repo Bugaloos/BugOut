@@ -1,30 +1,29 @@
 module.exports = {
   authErr: null,
-  groupStepIndex: 0,
+  error: null,
   setLocations: {
     meetingPoint: '',
     safePoint: ''
   },
   loggedIn: null,
   messages: [],
-  group: 'bugaloos',
+  group: {
+    name: 'bugaloos',
+    step: 0
+  },
   planComplete: false,
-  plan:{
-    inventory:[
-      {name: 'Torch', checked:false},
-      {name: 'Radio', checked:false},
-      {name: 'Warm Clothes', checked:false},
-      {name: 'First Aid Kit', checked:false},
-      {name: 'Snack Food', checked:false},
-      {name: 'Water', checked:false}
+  plan: {
+    inventory: [
+      {name: 'Torch', checked: false},
+      {name: 'Radio', checked: false},
+      {name: 'Warm Clothes', checked: false},
+      {name: 'First Aid Kit', checked: false},
+      {name: 'Snack Food', checked: false},
+      {name: 'Water', checked: false}
     ]
   },
   planStepIndex: 0,
-  planComplete: false,
+  showingComponent: 'CREATE_GROUP',
   showRegisterForm: false,
-  showLoginForm: false,
-  showCreateGroup: false,
-  showCreatePlan: false,
-  showJoinGroup: false
-
+  showLoginForm: false
 }

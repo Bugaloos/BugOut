@@ -1,8 +1,8 @@
-module.exports = function online (state = false, action) {
+module.exports = function showRegisterForm (state = false, action) {
   switch (action.type) {
 
     case 'TOGGLE_REGISTER_FORM':
-      return !state.showRegisterForm
+      return !state
 
     default:
       return state

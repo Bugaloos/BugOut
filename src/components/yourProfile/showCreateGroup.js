@@ -4,7 +4,7 @@ const CreateGroupStepper = require('./createGroupStepper')
 
 function showCreateGroup (props) {
   const createGroupButton =
-    <button onClick={() => props.dispatch({type: 'TOGGLE_CREATE_GROUP'})}>Create A Group</button>
+    <button onClick={() => props.dispatch({type: 'TOGGLE_CREATE_GROUP'})}>Create A Misplaced Group</button>
 
   return props.showCreateGroup
     ? <CreateGroupStepper {...props} />

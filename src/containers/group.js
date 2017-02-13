@@ -10,7 +10,7 @@ function Group (props) {
   return (
     <div>
       <h1>{props.group}</h1>
-      <Link to ={`/users/${props.loggedIn}`}>
+      <Link to={`/users/${props.loggedIn}`}>
         <button>{props.loggedIn}s profile</button>
       </Link>
       <p>This is the main description of the plan for {props.group}</p>

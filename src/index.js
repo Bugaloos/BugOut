@@ -7,20 +7,25 @@ const { Router, Route, IndexRoute, hashHistory } = require('react-router')
 const reducer = require('./reducers')
 const initialState = require('../state')
 const MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default
+
 require('dotenv').load()
+
+const injectTapEventPlugin = require('react-tap-event-plugin')
+
 
 // Top Level Components
 const App = require('./containers/app')
 const Home = require('./containers/home')
 const Group = require('./containers/group')
-const Profile = require('./containers/profile')
+const Profile = require('./components/yourProfile')
 const Users = require('./components/users')
 const Plan = require('./components/plan')
 const Login = require('./components/login')
 const Register = require('./components/register')
-const CreateGroup = require('./components/creategroup')
+const CreateGroup = require('./components/yourProfile/createGroup')
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+injectTapEventPlugin()
 
 store.subscribe(() => {
   console.log('Index.js state log', store.getState())

@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const api = require('./api')
-const favicon =require('serve-favicon')
+const favicon = require('serve-favicon')
 
 // Database
 // const db = PouchDB('db')
@@ -14,7 +14,7 @@ const favicon =require('serve-favicon')
 module.exports = function () {
   const app = express()
 
-  app.use(favicon(path.join(__dirname, 'public', 'image', 'favicon.ico')));
+  app.use(favicon(path.join(__dirname, 'public', 'image', 'favicon.ico')))
   app.use(logger('dev'))
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: false }))

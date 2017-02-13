@@ -41,7 +41,7 @@ class Login extends React.Component {
           Password:
           <input className='homePageButton' type='password' ref='password' placeholder='Password' />
         </div>
-          <button onClick={this.handleSubmit.bind(this)}> Login </button>
+        <button onClick={this.handleSubmit.bind(this)}> Login </button>
       </form>
     )
   }

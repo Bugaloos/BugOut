@@ -9,7 +9,8 @@
     "postinstall": "webpack --config webpack.production.config.js --progress -p",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "lint": "eslint . || true"
+    "lint": "eslint . || true",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",

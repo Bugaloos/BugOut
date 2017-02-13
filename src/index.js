@@ -4,6 +4,8 @@ const { Provider } = require('react-redux')
 const { createStore, applyMiddleware, compose } = require('redux')
 const createHistory = require('history').createHashHistory
 const { Router, Route, IndexRoute, hashHistory } = require('react-router')
+const { persistStore, autoRehydrate } = require('redux-persist')
+
 const reducer = require('./reducers')
 const initialState = require('../state')
 const MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default
@@ -24,7 +26,25 @@ const Login = require('./components/login')
 const Register = require('./components/register')
 const CreateGroup = require('./components/yourProfile/createGroup')
 
-const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(
+  reducer,
+  undefined,
+  compose(
+    applyMiddleware(),
+    autoRehydrate()
+  ),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+persistStore(store, {
+  blacklist: [
+    'showCreateGroup',
+    'showCreatePlan',
+    'showJoinGroup',
+    'showLoginForm',
+    'showRegisterForm',
+    'authErr',
+    'group'
+  ]
+})
 injectTapEventPlugin()
 
 store.subscribe(() => {

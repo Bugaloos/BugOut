@@ -45,7 +45,6 @@ module.exports = function () {
           bcrypt.compare(password, user.hash, (error, response) => {
             if (response) {
               const { email, userName } = user
-              req.session.user = { email, userName }
               res.json({login: true, user})
             } else {
               res.json({login: false, error: 'Invalid user name/Password!'})

@@ -1,0 +1,13 @@
+{
+  "name": "React HN",
+  "short_name": "React HN",
+  "icons": {
+        "src": "img/apple-touch-icon-120x120.png",
+        "sizes": "128x128",
+        "type": "image/png"
+      },
+  "start_url": "./index.html",
+  "background_color": "#fff59d",
+  "display": "standalone",
+  "theme_color": "#564E0F"
+}

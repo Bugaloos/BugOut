@@ -3,14 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>Bug Out</title>
-    <script src="bundle.js"></script>
+    <script src="bundle.js" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   </head>
   <body>
+    <div className='navBar'>
+      <div class="loader">
+      <svg viewBox="0 0 32 32" width="32" height="32">
+        <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+      </svg>
+      </div>
     <div id='app'></div>
-    <footer>
-
-    </footer>
+    <script>
+    if ('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  }
+  </script>
   </body>
 </html>

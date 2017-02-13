@@ -7,7 +7,11 @@ const { Router, Route, IndexRoute, hashHistory } = require('react-router')
 const reducer = require('./reducers')
 const initialState = require('../state')
 const MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default
-import injectTapEventPlugin from 'react-tap-event-plugin'
+
+require('dotenv').load()
+
+const injectTapEventPlugin = require('react-tap-event-plugin')
+
 
 // Top Level Components
 const App = require('./containers/app')

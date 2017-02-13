@@ -6,10 +6,10 @@ const NotLoggedIn = require('./notLoggedIn')
 
 // If an active session is detected, this page will ???(redirect to profile? render profile)???
 
-function Home () {
+function Home (props) {
   return props.loggedIn
-    ? <YourProfile {...this.props} />
-    : <NotLoggedIn {...this.props} />
+    ? <YourProfile {...props} />
+    : <NotLoggedIn {...props} />
 }
 
 module.exports = connect((state) => state)(Home)

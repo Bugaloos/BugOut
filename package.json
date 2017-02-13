@@ -65,7 +65,6 @@
     "sqlite3": "^3.1.8",
     "superagent": "^3.4.1",
     "url-loader": "^0.5.7",
-    "victory": "^0.17.0",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.9.0"
   },

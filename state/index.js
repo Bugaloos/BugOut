@@ -11,8 +11,8 @@ module.exports = {
     name: 'bugaloos',
     step: 0
   },
-  planComplete: false,
   plan: {
+    step:0,
     inventory: [
       {name: 'Torch', checked: false},
       {name: 'Radio', checked: false},
@@ -22,7 +22,6 @@ module.exports = {
       {name: 'Water', checked: false}
     ]
   },
-  planStepIndex: 0,
   showingComponent: 'CREATE_GROUP',
   showRegisterForm: false,
   showLoginForm: false

@@ -4,8 +4,19 @@ const TextField = require('material-ui/TextField').default
 const db = require('../../../pouchDB')
 
 class GroupName extends React.Component {
+  moveForward () {
+    const groupName = this.refs.groupName.input.value
+    const { dispatch } = this.props.dispatch
+    db.checkGroupUnique(groupName, (err, status) => {
+      if (err) {
+        dispatch({type: 'ERROR', payload: 'GROUP_NAME_TAKEN'})
+      } else {
+        dispatch({type: 'UPDATE_GROUP', payload: groupName})
+      }
+    })
+  }
+
   render () {
-    const { dispatch } = this.props
     return (
       <div>
         <form>
@@ -15,18 +26,7 @@ class GroupName extends React.Component {
               ref='groupName' />
             <br />
           </div>
-          <button onClick={() => {
-            const payload = {
-              name: this.refs.groupName.input.value
-            }
-            db.checkGroupUnique(payload.name, (err, status) => {
-              if (err) {
-                dispatch({type: 'ERROR', payload: 'GROUP_NAME_TAKEN'})
-              } else {
-                dispatch({type: 'UPDATE_GROUP', payload})
-              }
-            })
-          }}>Next Step</button>
+          <button onClick={() => this.moveForward()}>Next Step</button>
         </form>
       </div>
     )

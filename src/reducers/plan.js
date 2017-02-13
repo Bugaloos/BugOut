@@ -7,14 +7,14 @@ module.exports = function plan (state = initialState.plan, action) {
       return state
 
     case 'TOGGLE_ITEM':
-      return {...state, inventory: state.inventory.map((item) => {
-        if (item.name === action.payload) {
-          return {...item, checked: !item.checked}
-        }
-        return item
-      })
+      return {...state,
+        inventory: state.inventory.map((item) => {
+          if (item.name === action.payload) {
+            return {...item, checked: !item.checked}
+          }
+          return item
+        })
       }
-
     default:
       return state
   }

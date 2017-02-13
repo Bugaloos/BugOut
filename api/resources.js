@@ -16,6 +16,9 @@ module.exports = function () {
   route.post('/register', isUserUnique, encrypt)
   route.post('/createGroup', isGroupUnique, createGroupDB, addToGroups)
   route.post('/checkgroup', isGroupUnique, returnGroupAvailable)
+  route.post('/user/plan', updateUser)
+  route.get('/getAuth', sendAuth)
+
 
   function authlocal (req, res, next) {
     const { enteredUser, user } = req.body
@@ -31,6 +34,7 @@ module.exports = function () {
   }
 
   function authserver (req, res, next) {
+    console.log('heres your user name', process.env.cloudant_username);
     const { userName, password } = req.body
     Cloudant({account: username, password: passwordC}, (error, cloudant) => {
       if (error) {
@@ -69,6 +73,30 @@ module.exports = function () {
           next()
         }
       })
+    })
+  }
+
+  function updateUser (req, res, next) {
+    const {userName, plan} = req.body
+    Cloudant({account: username, password: passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
+      var db = cloudant.db.use('users')
+      db.get(userName)
+        .then(doc => {
+          return db.put({
+            _id: userName,
+            _rev: doc._rev,
+            plan: plan,
+          })
+        .then(response => {
+          res.json({update: true})
+        })
+        })
+        .catch(err => {
+          res.json({update: false, error: err})
+        })
     })
   }
 
@@ -154,6 +182,14 @@ module.exports = function () {
         }
       })
     })
+  }
+
+  function sendAuth(req, res, next){
+    const auth = {
+      username: username,
+      password: passwordC
+    }
+    res.json(auth)
   }
 
   return route

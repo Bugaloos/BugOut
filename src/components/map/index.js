@@ -27,7 +27,7 @@ class Map extends React.Component {
   }
 
   geocodeAddress(address) {
-    this.geocoder.geocode({ 'address': address }, function handleResults(results, status) 
+    this.geocoder.geocode({ 'address': address }, function handleResults(results, status){
 
       if (status === google.maps.GeocoderStatus.OK) {
 
@@ -137,5 +137,6 @@ class Map extends React.Component {
     )
   }
 }
+
 
 module.exports = connect((state) => state)(Map)

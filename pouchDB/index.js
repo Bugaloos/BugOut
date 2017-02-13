@@ -33,7 +33,6 @@ module.exports = {
       .send(newUser)
       .then(res => {
         if (res.body.register) {
-          console.log('look here', res.body)
           const user = { _id: userName, email, hash: res.body.user.hash }
           usersDB.put(user, (err, result) => {
             if (!err) {
@@ -48,10 +47,15 @@ module.exports = {
       })
   },
 
-  createGroup: function (newGroup, cb) {
-    const { groupName, groupPlan } = newGroup
+  checkGroupUnique: function(groupName, cb) {
+    request.post('api/v1/checkgroup')
+      .send({groupName})
+      .end((err, res) => cb(err, res.body))
+  },
+
+  createGroup: function (groupName, userName, groupPlan, cb) {
     request.post('api/v1/creategroup')
-    .send({ groupName })
+      .send({ groupName, userName, groupPlan })
       .then(res => {
         if (!res.body.register) {
           cb(null, res.body)

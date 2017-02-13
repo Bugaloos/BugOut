@@ -14,7 +14,7 @@ const favicon = require('serve-favicon')
 module.exports = function () {
   const app = express()
 
-  app.use(favicon(path.join(__dirname, 'public', 'image', 'favicon.ico')))
+  app.use(favicon(path.join(__dirname, 'public', 'image', 'favicon2.ico'), {maxAge: 5}))
   app.use(logger('dev'))
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: false }))

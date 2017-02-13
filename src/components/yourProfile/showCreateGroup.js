@@ -1,5 +1,4 @@
 const React = require('react')
-const { connect } = require('react-redux')
 const CreateGroupStepper = require('./createGroupStepper')
 
 function showCreateGroup (props) {
@@ -13,4 +12,4 @@ function showCreateGroup (props) {
       }>Create A Group</button>
 }
 
-module.exports = connect((state) => state)(showCreateGroup)
+module.exports = showCreateGroup

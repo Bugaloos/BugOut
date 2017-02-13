@@ -1,23 +1,7 @@
 const PouchDB = require('pouchdb')
 const request = require('superagent')
-<<<<<<< HEAD
-var remoteCouch = 'https://bill-burgess.cloudant.com/users'
-=======
->>>>>>> d8626bae684694b3533c64ae9bf39c56755df2f4
 var usersDB = new PouchDB('users')
 var groupsDB = new PouchDB('groups')
-
-var username = process.env.cloudant_username || "nodejs"
-var passwordC = process.env.cloudant_password
-
-usersDB.sync(remoteCouch, {
-  live:true,
-  retry:false
-}).on('change', function(change){
-  //yoyoyoyoyoyo, whats changed???
-}).on('error', function(err){
-  //yoyppypypyoyp, something BROKE
-})
 
 module.exports = {
 
@@ -64,24 +48,22 @@ module.exports = {
   createGroup: function (newGroup, cb) {
     const { groupName, groupPlan } = newGroup
     request.post('api/v1/creategroup')
-    .send({ groupName })
+      .send({ groupName })
       .then(res => {
         if (!res.body.register) {
           cb(null, res.body)
         } else {
           var newGroupDB = new PouchDB(groupName)
-          const newGroupRemoteCouch = new PouchDB(`https://bill-burgess.cloudant.com/${groupName}`, {
-            auth: {
-              username: username,
-              password: passwordC
-            }
-          })
-          const opts = {
-            live: true,
-            retry: false
+          request.get('api/v1/getAuth')
+            .then(response => {
+              const newGroupRemoteCouch = new PouchDB(`https://bill-burgess.cloudant.com/${groupName}`, {auth: response.body})
+              const opts = {
+                live: true,
+                retry: false
+              }
+              PouchDB.sync(groupName, newGroupRemoteCouch)
+            })
           }
-          PouchDB.sync(groupName, newGroupRemoteCouch)
-        }
       })
   },
 
@@ -118,21 +100,19 @@ module.exports = {
 
   syncGroup: function (group, cb) {
     var groupPouch = new PouchDB(group)
-    const groupCouch = new PouchDB(`https://bill-burgess.cloudant.com/${group}`, {
-      auth: {
-        username: username,
-        password: passwordC
-      }
-    })
-    const opts = {
-      live: false,
-      retry: false
-    }
-    PouchDB.sync(group, groupCouch)
-      .on('change', info => {
-        this.getMessages(group, (err, response) => {
-          if(err) throw err
-          cb(null, group)
+    request.get('api/v1/getAuth')
+      .then(res => {
+        const groupCouch = new PouchDB(`https://bill-burgess.cloudant.com/${group}`, {auth: res.body})
+        const opts = {
+          live: false,
+          retry: false
+        }
+        PouchDB.sync(group, groupCouch)
+        .on('change', info => {
+          this.getMessages(group, (err, response) => {
+            if(err) throw err
+            cb(null, group)
+          })
         })
       })
   }

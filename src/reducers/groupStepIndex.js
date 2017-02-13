@@ -1,4 +1,4 @@
-module.exports = function groupStepIndex (state = null, action) {
+module.exports = function groupStepIndex (state = 0, action) {
   switch (action.type) {
 
     case 'GROUP_STEP_FORWARD':

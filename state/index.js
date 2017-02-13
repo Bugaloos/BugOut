@@ -28,4 +28,5 @@ module.exports = {
   showCreateGroup: false,
   showCreatePlan: false,
   showJoinGroup: false
+
 }

@@ -5,11 +5,7 @@ const groupStepIndex = require('./groupStepIndex')
 const loggedIn = require('./loggedIn')
 const messages = require('./messages')
 const planComplete = require('./planComplete')
-
-const stepIndex = require('./stepIndex')
 const plan = require('./plan')
-
-
 const planStepIndex = require('./planStepIndex')
 const setLocations = require('./setLocations')
 const showRegisterForm = require('./showRegisterForm')
@@ -26,10 +22,7 @@ module.exports = combineReducers({
   loggedIn,
   messages,
   planComplete,
-
-  stepIndex,
-  plan
-
+  plan,
   planStepIndex,
   setLocations,
   showLoginForm,

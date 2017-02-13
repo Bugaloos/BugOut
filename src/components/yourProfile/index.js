@@ -2,7 +2,7 @@ const React = require('react')
 const { connect } = require('react-redux')
 const Group = require ('../groups')
 const Plan = require ('../plan')
-const Stepper = require ('./stepper')
+
 const Inventory = require ('./inventory')
 const ShowCreateGroup = require('./showCreateGroup')
 const ShowCreatePlan = require('./showCreatePlan')

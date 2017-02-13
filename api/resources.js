@@ -31,7 +31,6 @@ module.exports = function () {
   }
 
   function authserver (req, res, next) {
-    console.log('heres your user name', process.env.cloudant_username);
     const { userName, password } = req.body
     Cloudant({account: username, password: passwordC}, (error, cloudant) => {
       if (error) {
@@ -112,7 +111,6 @@ module.exports = function () {
       var db = cloudant.db.use('groups')
       db.get(groupName, (err, group) => {
         if (group) {
-          console.log('this is group', group)
           res.json({register: false, error: 'Group Name already in use'})
         } else {
           next()

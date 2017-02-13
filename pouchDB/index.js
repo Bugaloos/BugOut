@@ -30,7 +30,6 @@ module.exports = {
       .send(newUser)
       .then(res => {
         if (res.body.register) {
-          console.log('look here', res.body)
           const user = { _id: userName, email, hash: res.body.user.hash }
           usersDB.put(user, (err, result) => {
             if (!err) {
@@ -65,16 +64,6 @@ module.exports = {
             })
           }
       })
-  },
-
-  getAGroup: function (group) {
-    groupsDB.get(group._id, {include_docs: true}, (err, result) => {
-      if (err) {
-        console.error(err)
-      } else {
-        console.log('Here are the groups', result)
-      }
-    })
   },
 
   postMessage: function (userName, group, message, cb) {

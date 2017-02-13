@@ -7,6 +7,7 @@ const { Router, Route, IndexRoute, hashHistory } = require('react-router')
 const reducer = require('./reducers')
 const initialState = require('../state')
 const MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default
+const runtime = require('offline-plugin/runtime')
 
 require('dotenv').load()
 
@@ -72,3 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     root
   )
 })
+
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+}

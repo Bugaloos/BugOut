@@ -42,6 +42,8 @@
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "express-session": "^1.15.0",
+    "file-loader": "^0.10.0",
+    "fs": "0.0.1-security",
     "history": "^4.5.1",
     "inject-lr-script": "^2.1.0",
     "knex": "^0.12.6",
@@ -62,10 +64,9 @@
     "serve-favicon": "^2.3.2",
     "sqlite3": "^3.1.8",
     "superagent": "^3.4.1",
-    "webpack": "^1.14.0",
-    "webpack-dev-middleware": "^1.9.0",
     "url-loader": "^0.5.7",
-    "file-loader": "^0.10.0"
+    "webpack": "^1.14.0",
+    "webpack-dev-middleware": "^1.9.0"
   },
   "devDependencies": {
     "eslint": "^3.14.1",

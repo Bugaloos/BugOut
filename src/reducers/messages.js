@@ -1,4 +1,4 @@
-module.exports = function messages (state = null, action) {
+module.exports = function messages (state = [], action) {
   switch (action.type) {
 
     case 'UPDATE_MESSAGES':

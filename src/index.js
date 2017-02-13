@@ -41,7 +41,8 @@ persistStore(store, {
     'showJoinGroup',
     'showLoginForm',
     'showRegisterForm',
-    'authErr'
+    'authErr',
+    'group'
   ]
 })
 injectTapEventPlugin()

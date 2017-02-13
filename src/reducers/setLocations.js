@@ -1,4 +1,4 @@
-module.exports = function setLocations (state = null, action) {
+module.exports = function setLocations (state = {meetingPoint: '', safePoint: ''}, action) {
   switch (action.type) {
 
     case 'ADD_LOCATIONS':

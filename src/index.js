@@ -9,6 +9,7 @@ const { persistStore, autoRehydrate } = require('redux-persist')
 const reducer = require('./reducers')
 const initialState = require('../state')
 const MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default
+
 require('dotenv').load()
 
 const injectTapEventPlugin = require('react-tap-event-plugin')
@@ -23,7 +24,11 @@ const Login = require('./components/login')
 const Register = require('./components/register')
 const CreatePlan = require('./containers/createPlan')
 const CreateGroup = require('./components/yourProfile/groupNew')
+
 const OfflineDetails = require('./components/offlineDetails')
+
+const Info = require('./components/info')
+
 
 const store = createStore(
   reducer,
@@ -70,7 +75,9 @@ const Root = ({store}) => {
             <Route path='/plans/:id/edit' component={Plan} />
             <Route path='/creategroup' component={CreateGroup} />
             <Route path='/createplan' component={CreatePlan} />
-            
+
+            <Route path='/info' component={Info} />
+
           </Route>
         </Router>
       </Provider>

@@ -1,7 +1,7 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const Group = require('../components/groups')
-const Plan = require('../components/plan')
+const Group = require('../groups')
+const Plan = require('../plan')
 
 // This component will show plans and groups based upon a userID
 function CompleteProfile (props) {
@@ -9,7 +9,7 @@ function CompleteProfile (props) {
     <div>
       <div>
         <h2>Your Plans</h2>
-        < Plan {...props} />
+        <Plan {...props} />
       </div>
       <div>
         <h2>Your Groups</h2>

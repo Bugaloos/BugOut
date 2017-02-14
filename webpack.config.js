@@ -1,5 +1,4 @@
 const path = require('path')
-const OfflinePlugin = require('offline-plugin');
 
 const PATHS = {
   entry: path.join(__dirname, '/src/index.js'),
@@ -46,11 +45,7 @@ module.exports = {
   },
 
   plugins: [
-    new OfflinePlugin({
-      ServiceWorker: {
-        events: true
-      }
-    })
+
   ],
 
   devtool: 'eval-source-map'

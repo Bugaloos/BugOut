@@ -1,6 +1,7 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const _ = require('lodash')
+const db = require('../../../pouchDB')
 // This component will return a specific plan based upon the userID or groupID which it recives
 import Checkbox from 'material-ui/Checkbox';
 
@@ -31,8 +32,10 @@ class Inventory extends React.Component {
   }
 
   handleSubmit (){
-    //TODO wire to database
     const { dispatch } = this.props
+    db.addUserToGroup('userName', 'groupName', (err, status) => { //when user plan
+      //do something with data
+    })
   }
 
   handleCheck(name){

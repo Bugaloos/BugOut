@@ -7,12 +7,12 @@ const Register = require('../../components/register')
 // If an active session is detected, this page will ???(redirect to profile? render profile)???
 
 function NotLoggedIn (props) {
-  const { dispatch } = props
+  const { dispatch, router, showLoginForm, showRegisterForm } = props
   return (
     <div className='homepage'>
       <h3>Make a plan for you and your loved ones that is ready when you need it</h3>
-      < Register dispatch={dispatch} />
-      < Login dispatch={dispatch} />
+      < Register dispatch={dispatch} router={router} showRegisterForm={showRegisterForm} />
+      < Login dispatch={dispatch} router={router} showLoginForm={showLoginForm} />
     </div>
   )
 }

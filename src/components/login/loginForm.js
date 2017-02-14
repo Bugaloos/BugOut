@@ -9,7 +9,7 @@ const db = require('../../../pouchDB')
 class Login extends React.Component {
 
   handleSubmit () {
-    const { dispatch } = this.props
+    const { dispatch, router } = this.props
 
     const userName = this.refs.userName.value
     const password = this.refs.password.value
@@ -19,7 +19,7 @@ class Login extends React.Component {
       if (status.login) {
         dispatch({type: 'AUTH_ERR', payload: null})
         dispatch({type: 'LOG_IN', payload: status.user._id})
-        this.props.router.push(`/users/${status.user._id}`)
+        router.push(`/users/${status.user._id}`)
       } else {
         dispatch({type: 'AUTH_ERR', payload: status.error})
       }

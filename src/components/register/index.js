@@ -3,9 +3,9 @@ const RegisterForm = require('./registerForm')
 const ShowRegisterButton = require('./showRegisterButton')
 
 const RegisterFormShowing = (props) => {
-  const { dispatch } = props
-  return props.showRegisterForm
-    ? <RegisterForm dispatch={dispatch} />
+  const { dispatch, router, showRegisterForm } = props
+  return showRegisterForm
+    ? <RegisterForm dispatch={dispatch} router={router} />
     : <ShowRegisterButton dispatch={dispatch} />
 }
 

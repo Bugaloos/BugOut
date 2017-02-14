@@ -66,25 +66,51 @@ var Map = React.createClass({
   },
 
   componentDidMount: function () {
-    var mapElement = this.mapElement;
+    var geocoder;
+  var map;
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var mapOptions = {
+      zoom: 8,
+      center: latlng
+    }
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  }
 
-    this.map = new google.maps.Map(mapElement, {
-      zoom: INITIAL_MAP_ZOOM_LEVEL,
-      center: {
-        lat: INITIAL_LOCATION.position.latitude,
-        lng: INITIAL_LOCATION.position.longitude
+  function codeAddress() {
+    var address = 'Sydney';
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
       }
     });
-
-    this.marker = new google.maps.Marker({
-      map: this.map,
-      position: {
-        lat: INITIAL_LOCATION.position.latitude,
-        lng: INITIAL_LOCATION.position.longitude
-      }
-    });
-
-    this.geocoder = new google.maps.Geocoder();
+  }
+    // var mapElement = this.mapElement;
+    // console.log('this is SYDNEY: ', this.geocodeAddress('Sydney'));
+    // this.map = new google.maps.Map(mapElement, {
+    //   zoom: INITIAL_MAP_ZOOM_LEVEL,
+    //   center: {
+    //     lat: INITIAL_LOCATION.position.latitude,
+    //     lng: INITIAL_LOCATION.position.longitude
+    //   }
+    // });
+    //
+    // this.marker = new google.maps.Marker({
+    //   map: this.map,
+    //   position: {
+    //     lat: INITIAL_LOCATION.position.latitude,
+    //     lng: INITIAL_LOCATION.position.longitude
+    //   }
+    // });
+    //
+    // this.geocoder = new google.maps.Geocoder();
   },
 
   setSearchInputElementReference: function (inputReference) {
@@ -108,7 +134,7 @@ var Map = React.createClass({
 
                   <div className="form-group">
                     <label className="sr-only" htmlFor="address">Address</label>
-                    <input type="text" className="form-control input-lg" id="address" placeholder="Butt Street, New Zealand" ref={this.setSearchInputElementReference} required />
+                    <input type="text" className="form-control input-lg" id="address" placeholder="Butt Street, Wellington" ref={this.setSearchInputElementReference} required />
                   </div>
 
                 </div>
@@ -129,7 +155,7 @@ var Map = React.createClass({
 
             {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info">{this.state.foundAddress}</p>}
 
-            <div style={{width:800, height:600}} className="map" ref={this.setMapElementReference}></div>
+            <div style={{width:800, height:600}} id="map" ref={this.setMapElementReference}></div>
 
           </div>
         </div>

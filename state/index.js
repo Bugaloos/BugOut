@@ -2,8 +2,9 @@ module.exports = {
   authErr: null,
   groupStepIndex: 0,
   setLocations: {
-    meetingPoint: ' ',
-    safePoint: ' '
+    meetingPoint: 'Wellington',
+    safePoint: 'Sydney',
+    cache: 'Auckland'
   },
   loggedIn: null,
   messages: [],

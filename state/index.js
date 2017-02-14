@@ -1,9 +1,14 @@
 module.exports = {
   authErr: null,
   error: null,
-  setLocations: {
-    meetingPoint: '',
-    safePoint: ''
+
+  groupStepIndex: 0,
+  locations: {
+    meetingPoint: {lat:-41, lng:179},
+    safePoint: {lat:-41, lng:180},
+    cache: {lat:-41, lng:181}
+
+
   },
   loggedIn: null,
   messages: [],

@@ -1,20 +1,20 @@
 var React = require('react');
+const _ = require('lodash')
 
 var INITIAL_LOCATION = {
   address: 'Wellington, New Zealand',
   position: {
-    latitude: -41.2865,
-    longitude: 174.7762
+    latitude: -41.310552,
+    longitude: 174.763051
   }
 };
 
-var INITIAL_MAP_ZOOM_LEVEL = 8;
+var INITIAL_MAP_ZOOM_LEVEL = 15;
 
 var ATLANTIC_OCEAN = {
   latitude: 29.532804,
   longitude: -55.491477
 };
-
 
 
 var Map = React.createClass({
@@ -23,6 +23,16 @@ var Map = React.createClass({
       isGeocodingError: false,
       foundAddress: INITIAL_LOCATION.address
     };
+  },
+
+
+  componentWillReceiveProps: function (locations) {
+    this.locations = _.map(this.props.locations, (location) => {
+      return new google.maps.Marker({
+        map: this.map,
+        position: location
+      })
+    })
   },
 
 
@@ -80,6 +90,15 @@ var Map = React.createClass({
       }
     });
 
+    this.locations = _.map(this.props.locations, (location) => {
+      console.log('this is the location: ', location, 'this is this: ', this);
+      return new google.maps.Marker({
+        map: this.map,
+        position: location
+      })
+    })
+    console.log('this.locations: ', this.locations);
+
     this.marker = new google.maps.Marker({
       map: this.map,
       position: {
@@ -112,7 +131,7 @@ var Map = React.createClass({
 
                   <div className="form-group">
                     <label className="sr-only" htmlFor="address">Address</label>
-                    <input type="text" className="form-control input-lg" id="address" placeholder="Butt Street, New Zealand" ref={this.setSearchInputElementReference} required />
+                    <input type="text" className="form-control input-lg" id="address" placeholder="Butt Street, Wellington" ref={this.setSearchInputElementReference} required />
                   </div>
 
                 </div>

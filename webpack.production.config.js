@@ -12,6 +12,10 @@ module.exports = {
     fs: "empty"
   },
 
+  externals: {
+      'google':     'google'
+    },
+
   output: {
     path: PATHS.output,
     filename: 'bundle.js'
@@ -41,11 +45,11 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    })
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('production')
+    //   }
+    // })
   ],
 
   devtool: 'cheap-module-source-map'

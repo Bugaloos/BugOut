@@ -5,8 +5,8 @@ const db = require('../../../pouchDB')
 const { List, ListItem } = require('material-ui/List')
 const { grey400, darkBlack, lightBlack} = require('material-ui/styles/colors')
 
-function updateMessages(group, dispatch){
-  db.getMessages(group, (err, response) => {
+function updateMessages( groupName, dispatch){
+  db.getMessages(groupName, (err, response) => {
     if(err) throw err
     const messages = response.map(respond => {
       const {text, userName} = respond.doc
@@ -19,10 +19,11 @@ function updateMessages(group, dispatch){
 class Messages extends React.Component {
 
   componentDidMount () {
-    const { dispatch, group } = this.props
-    updateMessages(group, dispatch)
+    const { dispatch} = this.props
+    const groupName = this.props.group.name
+    updateMessages(groupName, dispatch)
 
-    db.getMessages(group, (err, response) => {
+    db.getMessages(groupName, (err, response) => {
       if (err) throw (err)
       const messages = response.map(respond => {
         const {text, userName, _id} = respond.doc
@@ -32,15 +33,14 @@ class Messages extends React.Component {
     })
   }
 
-
   render () {
-    const { dispatch, group } = this.props
-    const { messages } = this.props
+    const { dispatch, messages } = this.props
+    const groupName = this.props.group.name
 
     setInterval(function (){
-      db.syncGroup(group, (err, status) => {
+      db.syncGroup(groupName, (err, status) => {
         if(err) throw err
-        updateMessages(group, dispatch)
+        updateMessages(groupName, dispatch)
       })
     }, 5000)
 

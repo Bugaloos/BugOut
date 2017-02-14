@@ -14,7 +14,8 @@ module.exports = function () {
   route.post('/login/authlocal', authlocal)
   route.post('/login/authserver', authserver)
   route.post('/register', isUserUnique, encrypt)
-  route.post('/createGroup', isGroupUnique, createGroupDB, addToGroups)
+  route.post('/groups/create', isGroupUnique, addGroupToUser, createGroupDB, addToGroups)
+  route.post('/user/update', addGroupToUser, returnGroupAdded)
   route.post('/checkgroup', isGroupUnique, returnGroupAvailable)
   route.post('/user/plan', updateUser)
   route.get('/getAuth', sendAuth)
@@ -74,27 +75,27 @@ module.exports = function () {
     })
   }
 
-  function updateUser (req, res, next) {
-    const {userName, plan} = req.body
+  function updateUser (req, res, next){
+    const { userName, plan } = req.body
     Cloudant({account: username, password: passwordC}, (error, cloudant) => {
       if (error) {
         return console.log('Failed to initialize Cloudant: ' + error.message)
       }
-      var db = cloudant.db.use('users')
-      db.get(userName)
-        .then(doc => {
-          return db.put({
-            _id: userName,
-            _rev: doc._rev,
-            plan: plan,
+      var usersDB = cloudant.db.use('users')
+      usersDB.get(userName, (err, user) => {
+        if(err){
+          res.json({add: false, error: 'User not found'})
+        }else{
+          user.plan = plan
+          usersDB.insert(user, userName, (err, body, header) => {
+            if (err) {
+              res.json({add: false, error: err.message})
+            } else {
+              res.json({add: true})
+            }
           })
-        .then(response => {
-          res.json({update: true})
-        })
-        })
-        .catch(err => {
-          res.json({update: false, error: err})
-        })
+        }
+      })
     })
   }
 
@@ -177,6 +178,35 @@ module.exports = function () {
           res.json({register: false, error: err.message})
         } else {
           res.json({register: true, group: {_id: groupName, admin: userName, plan: groupPlan}})
+        }
+      })
+    })
+  }
+
+  function returnGroupAdded (req, res, next){
+    const { userName, groupName } = req.body
+    res.json({add: true})
+  }
+
+  function addGroupToUser (req, res, next){
+    const { userName, groupName } = req.body
+    Cloudant({account: username, password: passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
+      var usersDB = cloudant.db.use('users')
+      usersDB.get(userName, (err, user) => {
+        if(err){
+          res.json({add: false, error: 'User not found'})
+        }else{
+          user.group = groupName
+          usersDB.insert(user, userName, (err, body, header) => {
+            if (err) {
+              res.json({add: false, register: false, error: err.message})
+            } else {
+              next()
+            }
+          })
         }
       })
     })

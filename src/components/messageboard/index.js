@@ -17,17 +17,19 @@ const { connect } = require('react-redux')
 const moment = require('moment')
 const db = require('../../../pouchDB')
 
+const GroupAddUser = require('./groupAddUser')
 const Messages = require('./messages')
 
 class Messageboard extends React.Component {
   handleClick () {
-    const { group, dispatch } = this.props
+    const { dispatch } = this.props
+    const groupName = this.props.group.name
     const message = this.refs.message.value
     const userName = this.props.loggedIn
 
-    db.postMessage(userName, group, message, (err, status) => {
+    db.postMessage(userName, groupName, message, (err, status) => {
       if (status.ok) {
-        db.getMessages(group, (err, response) => {
+        db.getMessages(groupName, (err, response) => {
           if (err) throw (err)
           const messages = response.map(respond => {
             const {text, userName} = respond.doc
@@ -43,6 +45,7 @@ class Messageboard extends React.Component {
   render () {
     return (
       <div>
+        <GroupAddUser />
         <span>{(moment().format('dddd DD MMMM YYYY '))}</span>
         <form>
           <input ref='message' type='text' />

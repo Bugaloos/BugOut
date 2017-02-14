@@ -1,30 +1,45 @@
 module.exports = {
   authErr: null,
-  groupStepIndex: 0,
+  error: null,
   setLocations: {
     meetingPoint: '',
     safePoint: ''
   },
   loggedIn: null,
   messages: [],
-  group: 'bugaloos',
-  planComplete: false,
-  plan:{
-    inventory:[
-      {name: 'Torch', checked:false},
-      {name: 'Radio', checked:false},
-      {name: 'Warm Clothes', checked:false},
-      {name: 'First Aid Kit', checked:false},
-      {name: 'Snack Food', checked:false},
-      {name: 'Water', checked:false}
+  groupPlan: {
+    meetingPoint: '',
+    safePoint: '',
+    inventory: [
+      {name: 'Torch', checked: false},
+      {name: 'Radio', checked: false},
+      {name: 'Warm Clothes', checked: false},
+      {name: 'First Aid Kit', checked: false},
+      {name: 'Snack Food', checked: false},
+      {name: 'Water', checked: false}
     ]
   },
-  planStepIndex: 0,
-  planComplete: false,
-  showRegisterForm: false,
-  showLoginForm: false,
-  showCreateGroup: false,
-  showCreatePlan: false,
-  showJoinGroup: false
+  group: {
+    proposedGroupName: '',
+    step: 0,
+    name: 'pokefriends'
+  },
 
+  userPlan: {
+    meetingPoint: '',
+    safePoint: '',
+    step: 0,
+    inventory: [
+      {name: 'Torch', checked: false},
+      {name: 'Radio', checked: false},
+      {name: 'Warm Clothes', checked: false},
+      {name: 'First Aid Kit', checked: false},
+      {name: 'Snack Food', checked: false},
+      {name: 'Water', checked: false}
+    ],
+  },
+  showingUserAdded: true,
+  showingComponent: null,
+  showRegisterForm: false,
+  showLoginForm: false
 }

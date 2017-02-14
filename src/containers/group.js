@@ -1,7 +1,7 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const Messageboard = require('../components/messageboard')
-// const Map = require('../components/map')
+const Map = require('../components/map')
 const { Link } = require('react-router')
 
 // This container will have a text about the groups plan based upon the groupsID and will also call the messageboard component using the groupsID.
@@ -10,16 +10,15 @@ const { Link } = require('react-router')
 function Group (props) {
   return (
     <div>
-      <h1>{props.group}</h1>
+      <h1>{props.group.name}</h1>
       <Link to={`/users/${props.loggedIn}`}>
         <button>{props.loggedIn}s profile</button>
       </Link>
-      <p>This is the main description of the plan for {props.group}</p>
+      <Map />
+      <p>This is the main description of the plan for {props.group.name}</p>
       <Messageboard router={props.router} />
     </div>
   )
 }
 
 module.exports = connect((state) => state)(Group)
-
-// <Map />

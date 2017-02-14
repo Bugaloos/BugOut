@@ -53,11 +53,13 @@ module.exports = {
   checkGroupUnique: function(groupName, cb) {
     request.post('api/v1/checkgroup')
       .send({groupName})
-      .end((err, res) => cb(err, res.body))
+      .end((err, res) => {
+        cb(err, res.body)
+      })
   },
 
   createGroup: function (groupName, userName, groupPlan, cb) {
-    request.post('api/v1/creategroup')
+    request.post('api/v1/groups/create')
       .send({ groupName, userName, groupPlan })
       .then(res => {
         if (!res.body.register) {
@@ -115,5 +117,11 @@ module.exports = {
           })
         })
       })
+  },
+
+  addUserToGroup: function(userName, groupName, cb){
+    request.post('api/v1/user/update')
+      .send({ userName, groupName })
+      .end((err, res) => cb(err, res.body))
   }
 }

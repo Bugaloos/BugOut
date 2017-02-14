@@ -9,7 +9,8 @@
     "postinstall": "webpack --config webpack.production.config.js --progress -p",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "lint": "eslint . || true"
+    "lint": "eslint . || true",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/Bugaloos/BugOut#readme",
   "dependencies": {
+    "@mapbox/react-geocoder": "^2.5.0",
     "ava": "^0.17.0",
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
@@ -56,6 +58,7 @@
     "pg": "^6.1.2",
     "pouchdb": "^6.1.2",
     "react": "^15.4.2",
+    "react-component-google-maps": "^0.3.0",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.2",

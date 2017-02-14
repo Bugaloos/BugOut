@@ -36,8 +36,8 @@ const store = createStore(
 persistStore(store, {
   blacklist: [
     'authErr',
+    'error',
     'showingComponent',
-    'group'
   ]
 })
 injectTapEventPlugin()

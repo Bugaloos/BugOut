@@ -23,8 +23,9 @@ module.exports = {
     },
     step: 0,
   },
+
   plan: {
-    step:0,
+    step: 0,
     meetingPoint: '',
     safePoint: '',
     inventory: [

@@ -11,7 +11,7 @@ module.exports = function group (state = initialState.group, action) {
       })
 
     case 'TOGGLE_GROUP_ITEM':
-      return {...state,
+      return {...state.plan,
         inventory: state.plan.inventory.map((item) => {
           if (item.name === action.payload) {
             return {...item, checked: !item.checked}
@@ -21,14 +21,15 @@ module.exports = function group (state = initialState.group, action) {
       }
 
     case 'UPDATE_GROUP_LOCATIONS':
-      return Object.assign({}, state, {
+      return Object.assign({}, state.plan, {
         safePoint: action.payload.safePoint,
         meetingPoint: action.payload.meetingPoint,
         step: state.step + 1
       })
 
-    case 'GROUP_STEP_BACK':
-      return Object.assign({}, state, {state: state.step - 1})
+    case 'GROUP_BACK':
+      console.log('Trying to go back')
+      return Object.assign({}, state, {step: state.step - 1})
 
     default:
       return state

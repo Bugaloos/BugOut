@@ -1,7 +1,4 @@
-
-function handlePrev () {
-  const { dispatch, showingComponent } = this.props
-
+module.exports = function handlePrev (showingComponent, dispatch) {
   if (showingComponent === 'CREATE_GROUP') {
     dispatch({type: 'GROUP_BACK'})
   } else if (showingComponent === 'CREATE_PLAN') {

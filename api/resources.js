@@ -75,28 +75,27 @@ module.exports = function () {
     })
   }
 
-  function updateUser (req, res, next) {
-    const {userName, plan} = req.body
+  function updateUser (req, res, next){
+    const { userName, plan } = req.body
     Cloudant({account: username, password: passwordC}, (error, cloudant) => {
       if (error) {
         return console.log('Failed to initialize Cloudant: ' + error.message)
       }
-      var db = cloudant.db.use('users')
-      db.get(userName)
-        .then(doc => {
-          return db.put({
-            _id: userName,
-            _rev: doc._rev,
-            group: doc.group || null,
-            plan: plan,
+      var usersDB = cloudant.db.use('users')
+      usersDB.get(userName, (err, user) => {
+        if(err){
+          res.json({add: false, error: 'User not found'})
+        }else{
+          user.plan = plan
+          usersDB.insert(user, userName, (err, body, header) => {
+            if (err) {
+              res.json({add: false, error: err.message})
+            } else {
+              res.json({add: true})
+            }
           })
-        .then(response => {
-          res.json({update: true})
-        })
-        })
-        .catch(err => {
-          res.json({update: false, error: err})
-        })
+        }
+      })
     })
   }
 

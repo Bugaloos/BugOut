@@ -13,10 +13,12 @@ class Login extends React.Component {
 
     const userName = this.refs.userName.value
     const password = this.refs.password.value
+    
 
     db.login({ userName, password }, (err, status) => {
       if (err) throw err
       if (status.login) {
+        dispatch({type: 'AUTH_ERR', payload: null})
         dispatch({type: 'LOG_IN', payload: status.user._id})
         this.props.router.push(`/users/${status.user._id}`)
       } else {
@@ -33,6 +35,9 @@ class Login extends React.Component {
           <input className='homePageButton' type='text' ref='userName' placeholder='User Name' />
           Password:
           <input className='homePageButton' type='password' ref='password' placeholder='Password' />
+        </div><br /><br />
+        <div style={{color: 'red'}} >
+          {this.props.authErr}
         </div>
         <button onClick={this.handleSubmit.bind(this)}> Login </button>
       </form>

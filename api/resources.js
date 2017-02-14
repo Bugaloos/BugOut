@@ -34,7 +34,6 @@ module.exports = function () {
   }
 
   function authserver (req, res, next) {
-    console.log('heres your user name', process.env.cloudant_username);
     const { userName, password } = req.body
     Cloudant({account: username, password: passwordC}, (error, cloudant) => {
       if (error) {

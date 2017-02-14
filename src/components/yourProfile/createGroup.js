@@ -26,11 +26,6 @@ class CreateGroup extends React.Component {
     var newGroup = {
       groupName
     }
-
-  //   db.createGroup(newGroup, (err, status) => {
-  //     if (err) console.log(err)
-  //     console.log('waterfall effect', status)
-  //   })
   }
 
   render () {

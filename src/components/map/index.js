@@ -1,39 +1,141 @@
-const React = require('react')
-const { connect } = require('react-redux')
+var React = require('react');
 
-const Geocoder = require('@mapbox/react-geocoder');
+var INITIAL_LOCATION = {
+  address: 'Wellington, New Zealand',
+  position: {
+    latitude: -41.2865,
+    longitude: 174.7762
+  }
+};
+
+var INITIAL_MAP_ZOOM_LEVEL = 8;
+
+var ATLANTIC_OCEAN = {
+  latitude: 29.532804,
+  longitude: -55.491477
+};
 
 var Map = React.createClass({
-  getInitialState: function() {
-    return { value: null };
+  getInitialState: function () {
+    return {
+      isGeocodingError: false,
+      foundAddress: INITIAL_LOCATION.address
+    };
   },
-  onSelect: function(value) {
-    this.setState({ value: value });
+
+  geocodeAddress: function (address) {
+    this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
+
+      if (status === google.maps.GeocoderStatus.OK) {
+
+        this.setState({
+          foundAddress: results[0].formatted_address,
+          isGeocodingError: false
+        });
+
+        this.map.setCenter(results[0].geometry.location);
+        this.marker.setPosition(results[0].geometry.location);
+
+        return;
+      }
+
+      this.setState({
+        foundAddress: null,
+        isGeocodingError: true
+      });
+
+      this.map.setCenter({
+        lat: ATLANTIC_OCEAN.latitude,
+        lng: ATLANTIC_OCEAN.longitude
+      });
+
+      this.marker.setPosition({
+        lat: ATLANTIC_OCEAN.latitude,
+        lng: ATLANTIC_OCEAN.longitude
+      });
+
+    }.bind(this));
   },
-  render: function() {
-    /* jshint ignore:start */
+
+  handleFormSubmit: function (submitEvent) {
+    submitEvent.preventDefault();
+
+    var address = this.searchInputElement.value;
+
+    this.geocodeAddress(address);
+  },
+
+  componentDidMount: function () {
+    var mapElement = this.mapElement;
+
+    this.map = new google.maps.Map(mapElement, {
+      zoom: INITIAL_MAP_ZOOM_LEVEL,
+      center: {
+        lat: INITIAL_LOCATION.position.latitude,
+        lng: INITIAL_LOCATION.position.longitude
+      }
+    });
+
+    this.marker = new google.maps.Marker({
+      map: this.map,
+      position: {
+        lat: INITIAL_LOCATION.position.latitude,
+        lng: INITIAL_LOCATION.position.longitude
+      }
+    });
+
+    this.geocoder = new google.maps.Geocoder();
+  },
+
+  setSearchInputElementReference: function (inputReference) {
+    this.searchInputElement = inputReference;
+  },
+
+  setMapElementReference: function (mapElementReference) {
+    this.mapElement = mapElementReference;
+  },
+
+  render: function () {
     return (
-      <div>
-        <div className='clearfix pad1'>
-          {/* Geocoder:
-              accessToken -- Mapbox developer access token (required)
-              onSelect    -- function called after selecting result (required)
-              showLoader  -- Boolean to attach `.loading` class to results list
-          */}
-          <Geocoder
-            accessToken='pk.eyJ1IjoibHVjYXMtd2lsbHMiLCJhIjoiY2l6NG95MW93MDRuZzJ4cXdrd24wd2tyYyJ9.oLXI1Q8_WadIltTGGBi4SQ'
-            onSelect={this.onSelect}
-            showLoader={true}
-            />
+      <div className="container">
+
+        <div className="row">
+          <div className="col-sm-12">
+
+            <form className="form-inline" onSubmit={this.handleFormSubmit}>
+              <div className="row">
+                <div className="col-xs-8 col-sm-10">
+
+                  <div className="form-group">
+                    <label className="sr-only" htmlFor="address">Address</label>
+                    <input type="text" className="form-control input-lg" id="address" placeholder="Butt Street, New Zealand" ref={this.setSearchInputElementReference} required />
+                  </div>
+
+                </div>
+                <div className="col-xs-4 col-sm-2">
+
+                  <button type="submit" className="btn btn-default btn-lg">
+                    <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+
+                </div>
+              </div>
+            </form>
+
+          </div>
         </div>
-        {this.state.value && <pre className='keyline-all'>{JSON.stringify(this.state.value, null, 2)}</pre>}
+        <div className="row">
+          <div style={{width:'100%', height:'100%'}} className="col-sm-12">
+
+            {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info">{this.state.foundAddress}</p>}
+
+            <div style={{width:800, height:600}} className="map" ref={this.setMapElementReference}></div>
+
+          </div>
+        </div>
       </div>
     );
-    /* jshint ignore:end */
   }
 });
 
-/* jshint ignore:start */
-/* jshint ignore:end */
-
-module.exports = connect((state) => state)(Map)
+module.exports = Map;

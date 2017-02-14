@@ -1,3 +1,4 @@
+const initialState = require('../../state')
 module.exports = function showJoinGroup (state = false, action) {
   switch (action.type) {
 
@@ -5,7 +6,7 @@ module.exports = function showJoinGroup (state = false, action) {
       return !state
 
     case 'LOG_OUT':
-      return state
+      return initialState.showJoinGroup
 
     default:
       return state

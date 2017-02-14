@@ -7,7 +7,7 @@ module.exports = function showingComponent (state = initialState.showingComponen
       return state
 
     case 'LOG_OUT':
-      return state
+      return initialState.showingComponent
 
     default:
       return state

@@ -1,3 +1,4 @@
+const initialState = require('../../state')
 module.exports = function authErr (state = null, action) {
   switch (action.type) {
 
@@ -5,7 +6,7 @@ module.exports = function authErr (state = null, action) {
       return action.payload
 
     case 'LOG_OUT':
-        return state
+        return initialState.authErr
 
     default:
       return state

@@ -1,3 +1,4 @@
+const initialState = require('../../state')
 module.exports = function messages (state = [], action) {
   switch (action.type) {
 
@@ -6,7 +7,7 @@ module.exports = function messages (state = [], action) {
       return state
 
     case 'LOG_OUT':
-      return state
+      return initialState.messages
 
     default:
       return state

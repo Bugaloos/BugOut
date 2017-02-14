@@ -1,3 +1,4 @@
+const initialState = require('../../state')
 module.exports = function showRegisterForm (state = false, action) {
   switch (action.type) {
 
@@ -5,7 +6,7 @@ module.exports = function showRegisterForm (state = false, action) {
       return !state
 
     case 'LOG_OUT':
-      return state
+      return initialState.showRegisterForm
 
     default:
       return state

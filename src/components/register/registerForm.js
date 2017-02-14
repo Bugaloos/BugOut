@@ -5,7 +5,9 @@ const _ = require('lodash')
 const { RaisedButton } = require('material-ui')
 const request = require('superagent')
 const PouchDB = require('pouchdb')
+
 const db = require('../../../pouchDB')
+const checkValid = require('./checkvalid')
 
 class Register extends React.Component {
 
@@ -15,28 +17,33 @@ class Register extends React.Component {
     const userName = this.refs.userName.value
     const email = this.refs.email.value
     const password = this.refs.password.value
-
+    const confirmPassword = this.refs.confirmPassword.value
+    
     var newUser = {
       email,
       userName,
-      password
+      password,
+      confirmPassword
     }
-    db.register(newUser, (err, status) => {
-      if (err) throw error
-      if (status.register) {
-        dispatch({type: 'LOG_IN', payload: status.user})
-        this.props.router.push(`/users/${status.user._id}`)
-      } else {
-        dispatch({type: 'AUTH_ERR', payload: status.error})
+
+    checkValid(newUser, res => {
+      if(res.valid) {
+        db.register(newUser, (err, status) => {
+          if (err) throw error
+          if (status.register) {
+            dispatch({type: 'AUTH_ERR', payload: null})
+            dispatch({type: 'LOG_IN', payload: status.user})
+            this.props.router.push(`/users/${status.user._id}`)
+          } else {
+            dispatch({type: 'AUTH_ERR', payload: status.error})
+          }
+        })
+      }else{
+        dispatch(res.dispatch)
       }
     })
-    // var opts = {live: true};
-    // db.sync(remoteCouch, opts, syncError)
-    //
-    // function syncError() {
-    //   syncDom.setAttribute('data-sync-state', 'error');
-    // }
   }
+
 
   render () {
     return (
@@ -50,7 +57,8 @@ class Register extends React.Component {
           <input className='homePageButton' type='password' ref='password' placeholder='Password' /><br />
           Confirm Password:
           <input className='homePageButton' type='password' ref='confirmPassword' placeholder='Password' />
-        </div>
+        </div><br /><br />
+        <div style={{color: 'red'}}>{this.props.authErr}</div>
         <button onClick={this.handleSubmit.bind(this)}>Sign Up</button>
       </form>
     )

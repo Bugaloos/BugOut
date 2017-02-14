@@ -7,9 +7,6 @@ class Logout extends React.Component {
   handleSubmit () {
     const { dispatch } = this.props
 
-    const userName = this.refs.userName.value
-    const password = this.refs.password.value
-
     dispatch({type: 'LOG_IN', payload: null})
     this.props.router.push('/')
   }

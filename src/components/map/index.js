@@ -4,12 +4,12 @@ const _ = require('lodash')
 var INITIAL_LOCATION = {
   address: 'Wellington, New Zealand',
   position: {
-    latitude: -41.2865,
-    longitude: 174.7762
+    latitude: -41.310552,
+    longitude: 174.763051
   }
 };
 
-var INITIAL_MAP_ZOOM_LEVEL = 8;
+var INITIAL_MAP_ZOOM_LEVEL = 15;
 
 var ATLANTIC_OCEAN = {
   latitude: 29.532804,

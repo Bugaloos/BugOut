@@ -5,8 +5,8 @@ module.exports = {
   groupStepIndex: 0,
   locations: {
     meetingPoint: {lat:-41, lng:179},
-    safePoint: {lat:-40, lng:179},
-    cache: {lat:-41, lng:180}
+    safePoint: {lat:-41, lng:180},
+    cache: {lat:-41, lng:181}
 
 
   },

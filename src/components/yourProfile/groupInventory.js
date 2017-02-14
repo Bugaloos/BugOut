@@ -49,12 +49,13 @@ class Inventory extends React.Component {
 
   handleCheck (name) {
     return () => {
-      this.props.dispatch({type: 'GROUP_TOGGLE_ITEM', payload: name})
+      console.log(name)
+      this.props.dispatch({type: 'TOGGLE_GROUP_ITEM', payload: name})
     }
   }
 
-  render(){
-    const { group, groupPlan } = this.props
+  render () {
+    const { groupPlan } = this.props
     const inventory = groupPlan.inventory
 
     return (
@@ -65,9 +66,7 @@ class Inventory extends React.Component {
 
       </div>
     )
-
-    }
+  }
 }
-
 
 module.exports = connect((state) => state)(Inventory)

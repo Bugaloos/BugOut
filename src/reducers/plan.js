@@ -23,7 +23,8 @@ module.exports = function plan (state = initialState.plan, action) {
       })
 
     case 'GROUP_BACK':
-      return Object.assign({}, state, {state: state.step - 1})
+      console.log('Trying to go back')
+      return Object.assign({}, state, {step: state.step - 1})
 
     default:
       return state

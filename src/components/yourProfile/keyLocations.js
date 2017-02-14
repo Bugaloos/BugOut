@@ -33,7 +33,7 @@ class KeyLocations extends React.Component {
               ref='safePoint' />
             <br />
           </div>
-          <button onClick={() => { handlePrev(this.props.dispatch, this.props.showingComponent) }}>Back</button>
+          <button onClick={() => { handlePrev(this.props.showingComponent, this.props.dispatch) }}>Back</button>
           <button onClick={this.handleSubmit.bind(this)}>Next Step</button>
         </form>
       </div>

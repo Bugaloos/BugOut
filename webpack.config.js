@@ -1,5 +1,6 @@
 const path = require('path')
 
+
 const PATHS = {
   entry: path.join(__dirname, '/src/index.js'),
 
@@ -11,6 +12,10 @@ module.exports = {
   node: {
     fs: "empty"
   },
+
+  externals: {
+        'google':     'google'
+      },
 
   output: {
     path: PATHS.output,

@@ -22,6 +22,10 @@ module.exports = function plan (state = initialState.plan, action) {
         step: state.step + 1
       })
 
+    case 'PLAN_BACK':
+      console.log('Trying to go back')
+      return Object.assign({}, state, {step: state.step - 1})
+
     default:
       return state
   }

@@ -1,7 +1,5 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const Group = require('../groups')
-const Inventory = require('./inventory')
 const GroupNew = require('./groupNew')
 const PlanNew = require('./planNew')
 const GroupJoin = require('./groupJoin')

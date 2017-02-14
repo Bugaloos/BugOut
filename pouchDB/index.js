@@ -120,7 +120,7 @@ module.exports = {
   },
 
   addUserToGroup: function(userName, groupName, cb){
-    request.get('api/v1/groups/update')
+    request.post('api/v1/user/update')
       .send({ userName, groupName })
       .end((err, res) => cb(err, res.body))
   }

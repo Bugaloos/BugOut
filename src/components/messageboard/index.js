@@ -17,6 +17,7 @@ const { connect } = require('react-redux')
 const moment = require('moment')
 const db = require('../../../pouchDB')
 
+const GroupAddUser = require('./groupAddUser')
 const Messages = require('./messages')
 
 class Messageboard extends React.Component {
@@ -44,6 +45,7 @@ class Messageboard extends React.Component {
   render () {
     return (
       <div>
+        <GroupAddUser />
         <span>{(moment().format('dddd DD MMMM YYYY '))}</span>
         <form>
           <input ref='message' type='text' />

@@ -25,9 +25,8 @@ var Map = React.createClass({
     };
   },
 
-  componentWillReceiveProps: function (nextProps.locations) {
+  componentWillReceiveProps: function (locations) {
     this.locations = _.map(this.props.locations, (location) => {
-      console.log('this is the location: ', location, 'this is this: ', this);
       return new google.maps.Marker({
         map: this.map,
         position: location

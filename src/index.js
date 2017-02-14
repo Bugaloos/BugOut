@@ -37,13 +37,9 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 persistStore(store, {
   blacklist: [
-    'showCreateGroup',
-    'showCreatePlan',
-    'showJoinGroup',
-    'showLoginForm',
-    'showRegisterForm',
     'authErr',
-    'group'
+    'group',
+    'showingComponent'
   ]
 })
 injectTapEventPlugin()

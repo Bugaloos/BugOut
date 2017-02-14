@@ -8,7 +8,7 @@ const plan = require('./plan')
 const showingComponent = require('./showingComponent')
 const showRegisterForm = require('./showRegisterForm')
 const showLoginForm = require('./showLoginForm')
-const showJoinGroup = require('./showJoinGroup')
+// const showJoinGroup = require('./showJoinGroup')
 const locations = require('./locations')
 
 
@@ -22,7 +22,7 @@ module.exports = combineReducers({
   showingComponent,
   showLoginForm,
   showRegisterForm,
-  showJoinGroup,
+  // showJoinGroup,
   locations
 
 })

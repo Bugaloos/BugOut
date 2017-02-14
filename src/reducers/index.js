@@ -10,6 +10,9 @@ const showingComponent = require('./showingComponent')
 const showRegisterForm = require('./showRegisterForm')
 const showLoginForm = require('./showLoginForm')
 
+
+
+
 module.exports = combineReducers({
   authErr,
   error,
@@ -22,3 +25,11 @@ module.exports = combineReducers({
   showRegisterForm,
   userPlan
 })
+
+// const rootReducer = (state, action) => {
+//   if (action.type === 'LOG_OUT') {
+//     state = undefined
+//   }
+//
+//   return appReducer(state, action)
+// }

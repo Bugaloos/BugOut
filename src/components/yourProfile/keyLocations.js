@@ -10,43 +10,47 @@ class KeyLocations extends React.Component {
   }
 
   handleSubmit () {
+    const { dispatch, showingComponent } = this.props
     var Latlng = new google.maps.LatLng
     var swlatlng = {lat: -46.570384, lng: 166.438844}
     var nelatlng = {lat: -34.085704, lng: 179.127941}
     var latlngbounds = new google.maps.LatLngBounds(swlatlng, nelatlng)
     const meetingAddress = this.refs.meetingPoint.input.value
-    const opts = {
+    const safeAddress = this.refs.safePoint.input.value
+    const meetingOpts = {
       'address': meetingAddress,
       'location': Latlng,
       'bounds': latlngbounds
     }
-    this.geocoder.geocode(opts, (results, status) => {
-
+    const safeOpts = {
+      'address': safeAddress,
+      'location': Latlng,
+      'bounds': latlngbounds
+    }
+    this.geocoder.geocode(meetingOpts, (meetResults, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
-        console.log("this is geocode Latlng", Latlng)
-        console.log('results', results)
-        const viewport = result[0].geometry.viewport
-        const meetingPoint = {lat: viewport.f.b, lng: viewport.b.b}
-        console.log('meetingPoint', meetingPoint);
+        const meetViewport = meetResults[0].geometry.viewport
+        const meetingPoint = {lat: meetViewport.f.b, lng: meetViewport.b.b}
+        this.geocoder.geocode(safeOpts, (safeResults, status2) => {
+          const safeViewport = safeResults[0].geometry.viewport
+          const safePoint = {lat: safeViewport.f.b, lng: safeViewport.b.b}
+          if (showingComponent === 'CREATE_GROUP') {
+            dispatch({type: 'UPDATE_GROUP_LOCATIONS', payload: {meetingPoint, safePoint}})
+            dispatch({type: 'GROUP_FORWARD'})
+          } else if (showingComponent === 'CREATE_PLAN') {
+            dispatch({type: 'UPDATE_PLAN_LOCATIONS', payload: {meetingPoint, safePoint}})
+          } else {
+            console.log('what are you up to?')
+          }
+        })
       }
     })
 
-    const { dispatch, showingComponent } = this.props
-    const safePoint = this.refs.safePoint.input.value
-
-    if (showingComponent === 'CREATE_GROUP') {
-      dispatch({type: 'UPDATE_GROUP_LOCATIONS', payload: meetingPoint, safePoint})
-    } else if (showingComponent === 'CREATE_PLAN') {
-      dispatch({type: 'UPDATE_PLAN_LOCATIONS', payload: meetingPoint, safePoint})
-    } else {
-      console.log('what are you up to?')
-    }
   }
   render () {
-    const { dispatch, showingComponent, group, plan } = this.props
+    const { dispatch, showingComponent, group, userPlan } = this.props
     const groupStep = group.step
-    const planStep = plan.step
-
+    const planStep = userPlan.step
     return (
       <div>
         <form>

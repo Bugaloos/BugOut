@@ -1,10 +1,10 @@
 module.exports = {
   authErr: null,
   groupStepIndex: 0,
-  setLocations: {
-    meetingPoint: 'Wellington',
-    safePoint: 'Sydney',
-    cache: 'Auckland'
+  locations: {
+    meetingPoint: {lat:-41, lng:179},
+    safePoint: {lat:-40, lng:179},
+    cache: {lat:-41, lng:180}
   },
   loggedIn: null,
   messages: [],

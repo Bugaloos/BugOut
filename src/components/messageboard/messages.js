@@ -6,7 +6,7 @@ const { List, ListItem } = require('material-ui/List')
 const { grey400, darkBlack, lightBlack} = require('material-ui/styles/colors')
 
 function updateMessages( groupName, dispatch){
-  db.getMessages(groupName, (err, response) => {
+  db.getDocs(groupName, (err, response) => {
     if(err) throw err
     const messages = response.map(respond => {
       const {text, userName} = respond.doc
@@ -23,7 +23,7 @@ class Messages extends React.Component {
     const groupName = this.props.group.name
     updateMessages(groupName, dispatch)
 
-    db.getMessages(groupName, (err, response) => {
+    db.getDocs(groupName, (err, response) => {
       if (err) throw (err)
       const messages = response.map(respond => {
         const {text, userName, _id} = respond.doc

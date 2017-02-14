@@ -1,5 +1,5 @@
 const initialState = require('../../state')
-module.exports = function plan (state = initialState, action) {
+module.exports = function showingComponent (state = initialState.showingComponent, action) {
   switch (action.type) {
 
     case 'SHOWING_COMPONENT':

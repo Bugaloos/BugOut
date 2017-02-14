@@ -2,6 +2,7 @@ const React = require('react')
 const { connect } = require('react-redux')
 const _ = require('lodash')
 const handlePrev = require('./handlePrev')
+const db = require('../../../pouchDB')
 
 // This component will return a specific plan based upon the userID or groupID which it recives
 import Checkbox from 'material-ui/Checkbox';
@@ -33,11 +34,12 @@ class Inventory extends React.Component {
   }
 
   handleSubmit (){
-    const { dispatch, group } = this.props
-    const groupName = group.proposedGroupName
-    db.createGroup(groupName, (err, status) => {
+    const { dispatch, group, groupPlan, loggedIn } = this.props
+    const groupName = group.proposedGroupName.toLowerCase()
+    const userName = loggedIn
+    db.createGroup(groupName, userName, groupPlan, (err, status) => {
       if (err) throw err
-      if (status.available){
+      if (status.register){
         dispatch({type: 'GROUP_SUBMITTED', payload: groupName})
       } else {
         dispatch({type: 'ERROR', payload: 'GROUP_NOT_CREATED'})
@@ -53,9 +55,9 @@ class Inventory extends React.Component {
   }
 
   render(){
-    const { group } = this.props
+    const { group, groupPlan } = this.props
     console.log('this is group',  group);
-    const inventory = group.groupPlan.inventory
+    const inventory = groupPlan.inventory
 
     return (
       <div>

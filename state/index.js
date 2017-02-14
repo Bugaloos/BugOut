@@ -7,22 +7,22 @@ module.exports = {
   },
   loggedIn: null,
   messages: [],
+  groupPlan: {
+    meetingPoint: '',
+    safePoint: '',
+    inventory: [
+      {name: 'Torch', checked: false},
+      {name: 'Radio', checked: false},
+      {name: 'Warm Clothes', checked: false},
+      {name: 'First Aid Kit', checked: false},
+      {name: 'Snack Food', checked: false},
+      {name: 'Water', checked: false}
+    ]
+  },
   group: {
     proposedGroupName: '',
     step: 0,
     name: 'pokefriends',
-    groupPlan: {
-      meetingPoint: '',
-      safePoint: '',
-      inventory: [
-        {name: 'Torch', checked: false},
-        {name: 'Radio', checked: false},
-        {name: 'Warm Clothes', checked: false},
-        {name: 'First Aid Kit', checked: false},
-        {name: 'Snack Food', checked: false},
-        {name: 'Water', checked: false}
-      ]
-    }
   },
 
   plan: {

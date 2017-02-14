@@ -11,6 +11,7 @@ class KeyLocations extends React.Component {
     const safePoint = this.refs.safePoint.input.value
     if (showingComponent === 'CREATE_GROUP') {
       dispatch({type: 'UPDATE_GROUP_LOCATIONS', payload: {meetingPoint, safePoint}})
+      dispatch({type: 'GROUP_FORWARD'})
     } else if (showingComponent === 'CREATE_PLAN') {
       dispatch({type: 'UPDATE_PLAN_LOCATIONS', payload: {meetingPoint, safePoint}})
     } else {

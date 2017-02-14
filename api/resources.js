@@ -203,7 +203,6 @@ module.exports = function () {
           usersDB.insert(user, userName, (err, body, header) => {
             if (err) {
               res.json({add: false, register: false, error: err.message})
-              res.json({add: false, register: false, error: err.messag
             } else {
               next()
             }

@@ -15,6 +15,8 @@ var ATLANTIC_OCEAN = {
   longitude: -55.491477
 };
 
+
+
 var Map = React.createClass({
   getInitialState: function () {
     return {
@@ -23,11 +25,13 @@ var Map = React.createClass({
     };
   },
 
+
   geocodeAddress: function (address) {
-    this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
+    var Latlng = new google.maps.LatLng
+    this.geocoder.geocode({ 'address': address, 'location': Latlng}, function handleResults(results, status) {
 
       if (status === google.maps.GeocoderStatus.OK) {
-
+        console.log("this is geocode Latlng", Latlng);
         this.setState({
           foundAddress: results[0].formatted_address,
           isGeocodingError: false

@@ -29,7 +29,7 @@ class Messageboard extends React.Component {
 
     db.postMessage(userName, groupName, message, (err, status) => {
       if (status.ok) {
-        db.getMessages(groupName, (err, response) => {
+        db.getDocs(groupName, (err, response) => {
           if (err) throw (err)
           const messages = response.map(respond => {
             const {text, userName} = respond.doc

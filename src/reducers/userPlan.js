@@ -1,10 +1,10 @@
 const initialState = require('../../state')
-module.exports = function plan (state = initialState.plan, action) {
+module.exports = function userPlan (state = initialState.userPlan, action) {
   switch (action.type) {
 
     case 'TOGGLE_PLAN_ITEM':
       return {...state,
-        inventory: state.userplan.inventory.map((item) => {
+        inventory: state.inventory.map((item) => {
           if (item.name === action.payload) {
             return {...item, checked: !item.checked}
           }
@@ -25,15 +25,3 @@ module.exports = function plan (state = initialState.plan, action) {
       return state
   }
 }
-
-// case TOGGLE_TODO:
-//   return Object.assign({}, state, {
-//     todos: state.todos.map((todo, index) => {
-//       if (index === action.index) {
-//         return Object.assign({}, todo, {
-//           completed: !todo.completed
-//         })
-//       }
-//       return todo
-//     })
-//   })

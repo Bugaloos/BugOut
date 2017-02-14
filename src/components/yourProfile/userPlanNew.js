@@ -12,14 +12,15 @@ const {
   StepContent
 } = require('material-ui/Stepper')
 
-class PlanStepper extends React.Component {
+class UserPlanStepper extends React.Component {
 
   render () {
-    const { plan } = this.props
-    console.log('this is the plan', plan)
+    console.log('props', this.props);
+    const { userPlan } = this.props
+    console.log('this is the plan', userPlan)
     return (
       <div style={{maxWidth: 500, maxHeight: 400, margin: 'auto'}}>
-        <Stepper activeStep={plan.step} orientation='vertical'>
+        <Stepper activeStep={userPlan.step} orientation='vertical'>
           <Step>
             <StepLabel>Key Locations</StepLabel>
             <StepContent>
@@ -38,4 +39,4 @@ class PlanStepper extends React.Component {
   }
 }
 
-module.exports = connect((state) => state)(PlanStepper)
+module.exports = connect((state) => state)(UserPlanStepper)

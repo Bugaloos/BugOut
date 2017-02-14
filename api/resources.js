@@ -82,8 +82,9 @@ module.exports = function () {
         return console.log('Failed to initialize Cloudant: ' + error.message)
       }
       var db = cloudant.db.use('users')
-      db.get(userName)
-        .then(doc => {
+      db.get(userName, (err, doc) => {
+
+      })
           return db.put({
             _id: userName,
             _rev: doc._rev,

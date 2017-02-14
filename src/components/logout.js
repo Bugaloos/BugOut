@@ -7,7 +7,7 @@ class Logout extends React.Component {
   handleSubmit () {
     const { dispatch } = this.props
 
-    dispatch({type: 'LOG_IN', payload: null})
+    dispatch({type: 'LOG_OUT', payload: null})
     this.props.router.push('/')
   }
 
@@ -15,7 +15,7 @@ class Logout extends React.Component {
     return (
       <div>
         <form>
-        <button onClick={this.handleSubmit.bind(this)}> Log Out </button>
+          <button onClick={this.handleSubmit.bind(this)}> Log Out </button>
         </form>
       </div>
     )

@@ -1,13 +1,12 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const TextField = require('material-ui/TextField').default
-const handlePrev = require('./handlePrev')
+const backButton = require('./backButton')
 
 class KeyLocations extends React.Component {
 
   handleSubmit () {
     const { dispatch, showingComponent } = this.props
-    console.log(this.refs, 'refereees')
     const meetingPoint = this.refs.meetingPoint.input.value
     const safePoint = this.refs.safePoint.input.value
 
@@ -20,6 +19,10 @@ class KeyLocations extends React.Component {
     }
   }
   render () {
+    const { dispatch, showingComponent, group, plan } = this.props
+    const groupStep = group.step
+    const planStep = plan.step
+
     return (
       <div>
         <form>
@@ -33,7 +36,7 @@ class KeyLocations extends React.Component {
               ref='safePoint' />
             <br />
           </div>
-          <button onClick={() => { handlePrev(this.props.showingComponent, this.props.dispatch) }}>Back</button>
+          {backButton(showingComponent, planStep, groupStep, dispatch)}
           <button onClick={this.handleSubmit.bind(this)}>Next Step</button>
         </form>
       </div>

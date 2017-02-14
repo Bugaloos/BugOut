@@ -2,7 +2,6 @@ const React = require('react')
 const RaisedButton = require('material-ui/RaisedButton')
 const FlatButton = require('material-ui/FlatButton')
 const { connect } = require('react-redux')
-const GroupName = require('./groupName')
 const KeyLocations = require('../yourProfile/keyLocations')
 const Inventory = require('../yourProfile/inventory')
 
@@ -13,11 +12,11 @@ const {
   StepContent
 } = require('material-ui/Stepper')
 
-class HalfStepper extends React.Component {
+class PlanStepper extends React.Component {
 
   render () {
-    const {plan} = this.props
-
+    const { plan } = this.props
+    console.log('this is the plan', plan)
     return (
       <div style={{maxWidth: 500, maxHeight: 400, margin: 'auto'}}>
         <Stepper activeStep={plan.step} orientation='vertical'>
@@ -39,4 +38,4 @@ class HalfStepper extends React.Component {
   }
 }
 
-module.exports = connect((state) => state)(HalfStepper)
+module.exports = connect((state) => state)(PlanStepper)

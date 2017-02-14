@@ -37,7 +37,8 @@ persistStore(store, {
   blacklist: [
     'authErr',
     'group',
-    'showingComponent'
+    'showingComponent',
+    'plan'
   ]
 })
 injectTapEventPlugin()

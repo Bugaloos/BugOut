@@ -15,13 +15,11 @@ class Logout extends React.Component {
     return (
       <div>
         <form>
-        <button onClick={this.handleSubmit.bind(this)}> Log Out </button>
+          <button onClick={this.handleSubmit.bind(this)}> Log Out </button>
         </form>
       </div>
     )
   }
 }
 
-
-
-module.exports = connect((state) => state)(Logout)
+module.exports = Logout

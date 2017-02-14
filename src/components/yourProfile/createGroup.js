@@ -22,7 +22,6 @@ class CreateGroup extends React.Component {
 
     dispatch({type: 'GROUP_STEP_FORWARD', payload: 1})
 
-
     var newGroup = {
       groupName
     }
@@ -45,4 +44,4 @@ class CreateGroup extends React.Component {
   }
 }
 
-module.exports = connect((state) => state)(CreateGroup)
+module.exports = CreateGroup

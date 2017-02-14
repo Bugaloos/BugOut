@@ -8,14 +8,15 @@ const { Link } = require('react-router')
 
 // Along the side of this component will be a list of all the users who are part of this group based on searching the database for ???
 function Group (props) {
+  const { group, loggedIn, router } = props
   return (
     <div>
-      <h1>{props.group}</h1>
-      <Link to={`/users/${props.loggedIn}`}>
-        <button>{props.loggedIn}s profile</button>
+      <h1>{group}</h1>
+      <Link to={`/users/${loggedIn}`}>
+        <button>{loggedIn}s profile</button>
       </Link>
-      <p>This is the main description of the plan for {props.group}</p>
-      <Messageboard router={props.router} />
+      <p>This is the main description of the plan for {group}</p>
+      <Messageboard />
     </div>
   )
 }

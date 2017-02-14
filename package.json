@@ -8,7 +8,8 @@
     "knex": "knex",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "lint": "eslint . || true"
+    "lint": "eslint . || true",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",

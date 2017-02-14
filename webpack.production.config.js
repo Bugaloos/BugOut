@@ -9,7 +9,7 @@ const PATHS = {
 module.exports = {
   entry: PATHS.entry,
   node: {
-    fs: "empty"
+    fs: 'empty'
   },
 
   output: {

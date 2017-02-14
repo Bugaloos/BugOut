@@ -18,7 +18,7 @@ class Register extends React.Component {
     const email = this.refs.email.value
     const password = this.refs.password.value
     const confirmPassword = this.refs.confirmPassword.value
-    
+
     var newUser = {
       email,
       userName,
@@ -27,7 +27,7 @@ class Register extends React.Component {
     }
 
     checkValid(newUser, res => {
-      if(res.valid) {
+      if (res.valid) {
         db.register(newUser, (err, status) => {
           if (err) throw error
           if (status.register) {
@@ -38,12 +38,11 @@ class Register extends React.Component {
             dispatch({type: 'AUTH_ERR', payload: status.error})
           }
         })
-      }else{
+      } else {
         dispatch(res.dispatch)
       }
     })
   }
-
 
   render () {
     return (

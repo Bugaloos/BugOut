@@ -7,10 +7,10 @@ const _ = require('lodash')
 
 test('inventory updates on chcekbox action', (t) => {
   t.plan(1)
-  //actions
-  const state = plan(initialState.plan, { type:'TOGGLE_ITEM', payload:'Torch' })
+  // actions
+  const state = plan(initialState.plan, { type: 'TOGGLE_ITEM', payload: 'Torch' })
 
-  //assert
+  // assert
   const torch = _.find(state.inventory)
 
   t.true(torch.checked)

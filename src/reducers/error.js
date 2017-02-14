@@ -1,7 +1,7 @@
-module.exports = function planComplete (state = false, action) {
+module.exports = function error (state = null, action) {
   switch (action.type) {
 
-    case 'CURRENT_PLAN_STAGE':
+    case 'ERROR_ERR':
       state = action.payload
       return state
 

@@ -5,6 +5,7 @@ const _ = require('lodash')
 const TextField = require('material-ui/TextField').default
 const request = require('superagent')
 const PouchDB = require('pouchdb')
+
 const db = require('../../../pouchDB')
 
 class JoinGroup extends React.Component {
@@ -40,5 +41,5 @@ class JoinGroup extends React.Component {
   }
 }
 
-module.exports = connect((state) => state)(JoinGroup)
+module.exports = JoinGroup
 // <button onClick={this.handleSubmit.bind(this)}>Sign Up</button>

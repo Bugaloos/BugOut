@@ -19,7 +19,6 @@ module.exports = function () {
   route.post('/user/plan', updateUser)
   route.get('/getAuth', sendAuth)
 
-
   function authlocal (req, res, next) {
     const { enteredUser, user } = req.body
     bcrypt.compare(enteredUser.password, user.hash, (err, response) => {
@@ -86,7 +85,7 @@ module.exports = function () {
           return db.put({
             _id: userName,
             _rev: doc._rev,
-            plan: plan,
+            plan: plan
           })
         .then(response => {
           res.json({update: true})
@@ -156,13 +155,13 @@ module.exports = function () {
         return console.log('Failed to initialize Cloudant: ' + error.message)
       }
       cloudant.db.create(groupName, (err, res) => {
-          if (err) {
-            res.json({register: false, error: err.message})
-          } else {
-            next()
-          }
-        })
+        if (err) {
+          res.json({register: false, error: err.message})
+        } else {
+          next()
+        }
       })
+    })
   }
 
   function addToGroups (req, res, next) {
@@ -182,7 +181,7 @@ module.exports = function () {
     })
   }
 
-  function sendAuth(req, res, next){
+  function sendAuth (req, res, next) {
     const auth = {
       username: username,
       password: passwordC

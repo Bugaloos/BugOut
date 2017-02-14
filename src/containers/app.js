@@ -4,6 +4,7 @@ const { Link } = require('react-router')
 const Logout = require('../components/logout')
 // const antCircle = require('../images/AntNoCircle.png')
 const App = (props) => {
+  const { dispatch } = props
   return (
     <div>
       <div className='navBar'>
@@ -18,7 +19,7 @@ const App = (props) => {
       <br />
       <br />
       {props.children}
-      <Logout {...props} />
+      <Logout dispatch={dispatch} />
     </div>
   )
 }

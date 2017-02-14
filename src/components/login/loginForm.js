@@ -13,7 +13,6 @@ class Login extends React.Component {
 
     const userName = this.refs.userName.value
     const password = this.refs.password.value
-    
 
     db.login({ userName, password }, (err, status) => {
       if (err) throw err

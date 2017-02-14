@@ -37,7 +37,6 @@ class Messageboard extends React.Component {
           this.refs.message.value = ''
         })
       }
-      // dispatch({type: 'UPDATE_MESSAGES', payload: messages})
     })
   }
   render () {

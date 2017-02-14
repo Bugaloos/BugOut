@@ -2,47 +2,46 @@ const React = require('react')
 const { connect } = require('react-redux')
 const _ = require('lodash')
 // This component will return a specific plan based upon the userID or groupID which it recives
-import Checkbox from 'material-ui/Checkbox';
+import Checkbox from 'material-ui/Checkbox'
 
 const styles = {
   block: {
-    maxWidth: 250,
+    maxWidth: 250
   },
   checkbox: {
-    marginBottom: 16,
+    marginBottom: 16
   }
 }
 
 class Inventory extends React.Component {
 
-  displayItems(inventory){
+  displayItems (inventory) {
     return inventory.map(item => {
       return (
         <div style={styles.block}>
-        <Checkbox
-        onCheck={this.handleCheck(item.name)}
-        label={item.name}
-        style={styles.checkbox}
-        defaultChecked={item.checked}
+          <Checkbox
+            onCheck={this.handleCheck(item.name)}
+            label={item.name}
+            style={styles.checkbox}
+            defaultChecked={item.checked}
         />
         </div>
       )
     })
   }
 
-  handleSubmit (){
-    //TODO wire to database
+  handleSubmit () {
+    // TODO wire to database
     const { dispatch } = this.props
   }
 
-  handleCheck(name){
+  handleCheck (name) {
     return () => {
-      console.log(this.props, name);
       this.props.dispatch({type: 'TOGGLE_ITEM', payload: name})
     }
   }
 
-  render(){
+  render () {
     const { plan } = this.props
     const inventory = plan.inventory
 
@@ -52,9 +51,7 @@ class Inventory extends React.Component {
         <button onClick={this.handleSubmit.bind(this)}> Submit </button>
       </div>
     )
-
-    }
+  }
 }
 
-
-module.exports = connect((state) => state)(Inventory)
+module.exports = Inventory

@@ -13,4 +13,4 @@ const RegisterButton = (props) => {
     </button>
   )
 }
-module.exports = (RegisterButton)
+module.exports = RegisterButton

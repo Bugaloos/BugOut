@@ -44,16 +44,18 @@ module.exports = {
       })
   },
 
-  createUserPlan: function(userName, plan, cb){
+  createUserPlan: function (userName, plan, cb) {
     request.post('api/v1/user/plan')
       .send({userName, plan})
       .end((err, res) => cb(err, res.body))
   },
 
-  checkGroupUnique: function(groupName, cb) {
+  checkGroupUnique: function (groupName, cb) {
     request.post('api/v1/checkgroup')
       .send({groupName})
-      .end((err, res) => cb(err, res.body))
+      .end((err, res) => {
+        cb(err, res.body)
+      })
   },
 
   createGroup: function (groupName, userName, groupPlan, cb) {
@@ -76,7 +78,7 @@ module.exports = {
               }
               PouchDB.sync(groupName, newGroupRemoteCouch)
             })
-          }
+        }
       })
   },
 
@@ -113,7 +115,7 @@ module.exports = {
         PouchDB.sync(group, groupCouch)
         .on('change', info => {
           this.getMessages(group, (err, response) => {
-            if(err) throw err
+            if (err) throw err
             cb(null, group)
           })
         })

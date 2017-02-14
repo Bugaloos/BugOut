@@ -11,4 +11,4 @@ function Plan (props) {
   )
 }
 
-module.exports = connect((state) => state)(Plan)
+module.exports = Plan

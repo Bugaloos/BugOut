@@ -20,7 +20,6 @@ const App = require('./containers/app')
 const Home = require('./containers/home')
 const Group = require('./containers/group')
 const Profile = require('./components/yourProfile')
-const Users = require('./components/users')
 const Plan = require('./components/plan')
 const Login = require('./components/login')
 const Register = require('./components/register')
@@ -58,7 +57,6 @@ const Root = ({store}) => {
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
 
-            <Route path='/users' component={Users} />
             <Route path='/users/:id' component={Profile} />
             <Route path='/users/:id/edit' component={Profile} />
 

@@ -89,9 +89,9 @@ module.exports = {
     })
   },
 
-  getMessages: function (group, cb) {
-    var groupPV = new PouchDB(group)
-    groupPV.allDocs({include_docs: true, descending: true}, (err, docs) => {
+  getDocs: function (db, cb) {
+    var db = new PouchDB(db)
+    db.allDocs({include_docs: true, descending: true}, (err, docs) => {
       if (err) {
         cb(err, null)
       } else {
@@ -109,12 +109,9 @@ module.exports = {
           live: false,
           retry: false
         }
-        PouchDB.sync(group, groupCouch)
+        PouchDB.sync(group, groupCouch, opts)
         .on('change', info => {
-          this.getMessages(group, (err, response) => {
-            if(err) throw err
-            cb(null, group)
-          })
+          this.getDocs(group, (error, response) => cb(error, response))
         })
       })
   },
@@ -123,5 +120,22 @@ module.exports = {
     request.post('api/v1/user/update')
       .send({ userName, groupName })
       .end((err, res) => cb(err, res.body))
+  },
+
+  syncBugbot: function(cb){
+    var bugbot = new PouchDB('bugbot')
+    request.get('api/v1/getAuth')
+      .end((err, res) => {
+        if(err) throw err
+        const remoteBugbot = new PouchDB('https://bill-burgess.cloudant.com/bugbot', {auth: res.body})
+        const opts = {
+          live: false,
+          retry: false
+        }
+        PouchDB.sync(bugbot, remoteBugbot, opts)
+          .on('change', info => {
+            this.getDocs('bugbot', (error, response) => cb(error, response))
+          })
+      })
   }
 }

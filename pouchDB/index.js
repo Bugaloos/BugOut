@@ -66,7 +66,10 @@ module.exports = {
           var newGroupDB = new PouchDB(groupName)
           request.get('api/v1/getAuth')
             .then(response => {
-              const newGroupRemoteCouch = new PouchDB(`https://bill-burgess.cloudant.com/${groupName}`, {auth: response.body})
+              const newGroupRemoteCouch = new PouchDB(
+                `https://bill-burgess.cloudant.com/${groupName}`,
+                {auth: response.body}
+              )
               const opts = {
                 live: true,
                 retry: false

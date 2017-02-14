@@ -87,6 +87,7 @@ module.exports = function () {
           return db.put({
             _id: userName,
             _rev: doc._rev,
+            group: doc.group || null,
             plan: plan,
           })
         .then(response => {

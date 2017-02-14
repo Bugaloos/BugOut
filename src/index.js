@@ -9,6 +9,7 @@ const { persistStore, autoRehydrate } = require('redux-persist')
 const reducer = require('./reducers')
 const initialState = require('../state')
 const MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default
+
 require('dotenv').load()
 
 const injectTapEventPlugin = require('react-tap-event-plugin')

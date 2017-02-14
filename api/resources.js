@@ -14,7 +14,8 @@ module.exports = function () {
   route.post('/login/authlocal', authlocal)
   route.post('/login/authserver', authserver)
   route.post('/register', isUserUnique, encrypt)
-  route.post('/createGroup', isGroupUnique, createGroupDB, addToGroups)
+  route.post('/groups/create', isGroupUnique, createGroupDB, addToGroups)
+  route.post('/groups/update', doesUserExist, addUserToGroup)
   route.post('/checkgroup', isGroupUnique, returnGroupAvailable)
   route.post('/user/plan', updateUser)
   route.get('/getAuth', sendAuth)
@@ -177,6 +178,49 @@ module.exports = function () {
           res.json({register: false, error: err.message})
         } else {
           res.json({register: true, group: {_id: groupName, admin: userName, plan: groupPlan}})
+        }
+      })
+    })
+  }
+
+  function doesUserExist (req, res, next){
+    const { userName } = req.body
+    Cloudant({account: username, password: passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
+      var usersDB = cloudant.db.use('users')
+      usersDB.get(userName, (err, user) => {
+        if(err){
+          res.json({add: false, error: 'User not found'})
+        }else{
+          next()
+        }
+      })
+    })
+  }
+
+  function addUserToGroup (req, res, next){
+    const { groupName, userName } = req.body
+    Cloudant({account: username, password: passwordC}, (error, cloudant) => {
+      if (error) {
+        return console.log('Failed to initialize Cloudant: ' + error.message)
+      }
+      var groupsDB = cloudant.db.use('groups')
+      groupsDB.get(groupName, (err, group) => {
+        if(err){
+          res.json({add: false, error: 'Unable to find group'})
+        }else{
+          const { _id, _rev, admin, plan, members} = group
+          const updatedMembers = members.push(userName)
+          const updatedGroup = { _rev, admin, plan, members: updatedMembers }
+          groupsDB.insert(updatedGroup, groupName, (err, body, header) => {
+            if (err) {
+              res.json({add: false, error: err.message})
+            } else {
+              res.json({add: true, group: { _id: groupName, admin, plan, members: updatedMembers }})
+            }
+          })
         }
       })
     })

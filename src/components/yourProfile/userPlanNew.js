@@ -3,7 +3,7 @@ const RaisedButton = require('material-ui/RaisedButton')
 const FlatButton = require('material-ui/FlatButton')
 const { connect } = require('react-redux')
 const KeyLocations = require('../yourProfile/keyLocations')
-const Inventory = require('../yourProfile/inventory')
+const UserInventory = require('../yourProfile/userPlanInventory')
 
 const {
   Step,
@@ -29,7 +29,7 @@ class PlanStepper extends React.Component {
           <Step>
             <StepLabel>Create Your Cache</StepLabel>
             <StepContent>
-              < Inventory />
+              < UserInventory />
             </StepContent>
           </Step>
         </Stepper>

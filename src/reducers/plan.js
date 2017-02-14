@@ -2,13 +2,9 @@ const initialState = require('../../state')
 module.exports = function plan (state = initialState.plan, action) {
   switch (action.type) {
 
-    case 'UPDATE_INVENTORY':
-      state.inventory = action.payload
-      return state
-
-    case 'TOGGLE_ITEM':
+    case 'TOGGLE_PLAN_ITEM':
       return {...state,
-        inventory: state.inventory.map((item) => {
+        inventory: state.userplan.inventory.map((item) => {
           if (item.name === action.payload) {
             return {...item, checked: !item.checked}
           }
@@ -23,7 +19,6 @@ module.exports = function plan (state = initialState.plan, action) {
       })
 
     case 'PLAN_BACK':
-      console.log('Trying to go back')
       return Object.assign({}, state, {step: state.step - 1})
 
     default:

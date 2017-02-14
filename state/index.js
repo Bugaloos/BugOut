@@ -8,9 +8,10 @@ module.exports = {
   loggedIn: null,
   messages: [],
   group: {
+    proposedGroupName: '',
     step: 0,
-    name: 'bugaloos',
-    plan: {
+    name: 'pokefriends',
+    groupPlan: {
       meetingPoint: '',
       safePoint: '',
       inventory: [
@@ -26,17 +27,20 @@ module.exports = {
 
   plan: {
     step: 0,
-    meetingPoint: '',
-    safePoint: '',
-    inventory: [
-      {name: 'Torch', checked: false},
-      {name: 'Radio', checked: false},
-      {name: 'Warm Clothes', checked: false},
-      {name: 'First Aid Kit', checked: false},
-      {name: 'Snack Food', checked: false},
-      {name: 'Water', checked: false}
-    ]
+    userPlan: {
+      meetingPoint: '',
+      safePoint: '',
+      inventory: [
+        {name: 'Torch', checked: false},
+        {name: 'Radio', checked: false},
+        {name: 'Warm Clothes', checked: false},
+        {name: 'First Aid Kit', checked: false},
+        {name: 'Snack Food', checked: false},
+        {name: 'Water', checked: false}
+      ]
+    }
   },
+  showingUserAdded: true,
   showingComponent: null,
   showRegisterForm: false,
   showLoginForm: false

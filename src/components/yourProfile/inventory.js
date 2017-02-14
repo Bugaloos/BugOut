@@ -1,12 +1,11 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const _ = require('lodash')
-<<<<<<< HEAD
+
 const handlePrev = require('./handlePrev')
 
-=======
 const db = require('../../../pouchDB')
->>>>>>> c282f6b7679e53e4988a419278f574be16a46690
+
 // This component will return a specific plan based upon the userID or groupID which it recives
 import Checkbox from 'material-ui/Checkbox';
 

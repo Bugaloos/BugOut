@@ -14,8 +14,8 @@ module.exports = function () {
   route.post('/login/authlocal', authlocal)
   route.post('/login/authserver', authserver)
   route.post('/register', isUserUnique, encrypt)
-  route.post('/groups/create', isGroupUnique, createGroupDB, addToGroups)
-  route.post('/groups/update', doesUserExist, addUserToGroup)
+  route.post('/groups/create', isGroupUnique, addGroupToUser, createGroupDB, addToGroups)
+  route.post('/user/update', addGroupToUser, returnGroupAdded)
   route.post('/checkgroup', isGroupUnique, returnGroupAvailable)
   route.post('/user/plan', updateUser)
   route.get('/getAuth', sendAuth)
@@ -183,8 +183,13 @@ module.exports = function () {
     })
   }
 
-  function doesUserExist (req, res, next){
-    const { userName } = req.body
+  function returnGroupAdded (req, res, next){
+    const { userName, groupName } = req.body
+    res.json({add: true})
+  }
+
+  function addGroupToUser (req, res, next){
+    const { userName, groupName } = req.body
     Cloudant({account: username, password: passwordC}, (error, cloudant) => {
       if (error) {
         return console.log('Failed to initialize Cloudant: ' + error.message)
@@ -194,31 +199,13 @@ module.exports = function () {
         if(err){
           res.json({add: false, error: 'User not found'})
         }else{
-          next()
-        }
-      })
-    })
-  }
-
-  function addUserToGroup (req, res, next){
-    const { groupName, userName } = req.body
-    Cloudant({account: username, password: passwordC}, (error, cloudant) => {
-      if (error) {
-        return console.log('Failed to initialize Cloudant: ' + error.message)
-      }
-      var groupsDB = cloudant.db.use('groups')
-      groupsDB.get(groupName, (err, group) => {
-        if(err){
-          res.json({add: false, error: 'Unable to find group'})
-        }else{
-          const { _id, _rev, admin, plan, members} = group
-          const updatedMembers = members.push(userName)
-          const updatedGroup = { _rev, admin, plan, members: updatedMembers }
-          groupsDB.insert(updatedGroup, groupName, (err, body, header) => {
+          user.group = groupName
+          usersDB.insert(user, userName, (err, body, header) => {
             if (err) {
-              res.json({add: false, error: err.message})
+              res.json({add: false, register: false, error: err.message})
+              res.json({add: false, register: false, error: err.messag
             } else {
-              res.json({add: true, group: { _id: groupName, admin, plan, members: updatedMembers }})
+              next()
             }
           })
         }

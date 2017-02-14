@@ -22,6 +22,9 @@ module.exports = function plan (state = initialState.plan, action) {
         step: state.step + 1
       })
 
+    case 'GROUP_BACK':
+      return Object.assign({}, state, {state: state.step - 1})
+
     default:
       return state
   }

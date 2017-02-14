@@ -1,7 +1,7 @@
+const { connect } = require('react-redux')
 
-function handlePrev () {
-  const { dispatch, showingComponent } = this.props
-
+function handlePrev (props) {
+  const {showingComponent, dispatch} = props
   if (showingComponent === 'CREATE_GROUP') {
     dispatch({type: 'GROUP_BACK'})
   } else if (showingComponent === 'CREATE_PLAN') {
@@ -10,3 +10,5 @@ function handlePrev () {
     console.log('what are you up to?')
   }
 }
+
+module.exports = connect((state) => state)(handlePrev)

@@ -32,22 +32,34 @@ class Inventory extends React.Component {
   }
 
   handleSubmit (){
-    const { dispatch, group, loggedIn } = this.props
+    const { dispatch, group, loggedIn, showingComponent } = this.props
     if(showingComponent === 'CREATE_GROUP'){
-      db.submitgroup(group.name, loggedIn, group.plan)
+      db.createGroup(group.name, loggedIn, group.plan, (err, res) => {
+        if (err) throw err
+        if (res.register) {
+          dispatch({type:'ADD_GROUP', payload: res.group})
+        } else {
+          console.log(res)
+        }
+      })
     }
   }
 
   handleCheck(name){
+    const { showingComponent, dispatch } = this.props
     return () => {
-      console.log(this.props, name);
-      this.props.dispatch({type: 'TOGGLE_ITEM', payload: name})
+      const dispatchType = (showingComponent === 'CREATE_GROUP')
+      ? 'TOGGLE_GROUP_ITEM'
+      : 'TOGGLE_PLAN_ITEM'
+      dispatch({type: dispatchType, payload: name})//change with ternery
     }
   }
 
   render(){
-    const { plan } = this.props
-    const inventory = plan.inventory
+    const { plan, group, showingComponent } = this.props
+    const inventory = (showingComponent === 'CREATE_GROUP')
+    ? group.plan.inventory
+    : plan.inventory
 
     return (
       <div>

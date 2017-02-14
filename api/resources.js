@@ -172,11 +172,11 @@ module.exports = function () {
         return console.log('Failed to initialize Cloudant: ' + error.message)
       }
       var db = cloudant.db.use('groups')
-      db.insert({ admin: userName, plan: groupPlan }, groupName, (err, body, header) => {
+      db.insert({ admin: userName, plan: groupPlan, members: [userName] }, groupName, (err, body, header) => {
         if (err) {
           res.json({register: false, error: err.message})
         } else {
-          res.json({register: true, group: {_id: groupName, admin: userName, plan: groupPlan}})
+          res.json({register: true, group: {_id: groupName, admin: userName, members: [userName], plan: groupPlan}})
         }
       })
     })

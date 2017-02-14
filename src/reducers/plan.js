@@ -2,11 +2,7 @@ const initialState = require('../../state')
 module.exports = function plan (state = initialState.plan, action) {
   switch (action.type) {
 
-    case 'UPDATE_INVENTORY':
-      state.inventory = action.payload
-      return state
-
-    case 'TOGGLE_ITEM':
+    case 'TOGGLE_PLAN_ITEM':
       return {...state,
         inventory: state.inventory.map((item) => {
           if (item.name === action.payload) {
@@ -15,6 +11,7 @@ module.exports = function plan (state = initialState.plan, action) {
           return item
         })
       }
+
     case 'UPDATE_PLAN_LOCATIONS':
       return Object.assign({}, state, {
         safePoint: action.payload.safePoint,

@@ -1,5 +1,5 @@
 const initialState = require('../../state')
-module.exports = function plan (state = initialState.group, action) {
+module.exports = function group (state = initialState.group, action) {
 
   switch (action.type) {
     case 'UPDATE_GROUP_NAME':
@@ -9,6 +9,16 @@ module.exports = function plan (state = initialState.group, action) {
         step: state.step + 1,
         name: action.payload
       })
+
+    case 'TOGGLE_GROUP_ITEM':
+      return {...state,
+        inventory: state.plan.inventory.map((item) => {
+          if (item.name === action.payload) {
+            return {...item, checked: !item.checked}
+          }
+          return item
+        })
+      }
 
     case 'UPDATE_GROUP_LOCATIONS':
       return Object.assign({}, state, {

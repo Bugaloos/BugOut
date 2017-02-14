@@ -41,14 +41,15 @@ var Map = React.createClass({
     this.geocoder.geocode({ 'address': address, 'location': Latlng}, function handleResults(results, status) {
 
       if (status === google.maps.GeocoderStatus.OK) {
-        console.log("this is geocode Latlng", Latlng);
+        console.log("this is geocode results", results);
         this.setState({
           foundAddress: results[0].formatted_address,
+          geoCoords: results[0].geometry,
           isGeocodingError: false
         });
 
-        this.map.setCenter(results[0].geometry.location);
-        this.marker.setPosition(results[0].geometry.location);
+        console.log('this is lat from result', results[0].geometry.location.lat());
+        console.log('this is lng from result', results[0].geometry.location.lng());
 
         return;
       }
@@ -108,6 +109,17 @@ var Map = React.createClass({
     });
 
     this.geocoder = new google.maps.Geocoder();
+
+    const {dispatch} = this.props
+    this.map.setCenter(results[0].geometry.location);
+    this.marker.setPosition(results[0].geometry.location);
+
+    const coords = {
+      lat: results[0].geometry.location.lat(),
+      lng: results[0].geometry.location.lng()
+    }
+    dispatch({type: 'RETURN_COORDS', payload: coords})
+
   },
 
   setSearchInputElementReference: function (inputReference) {
@@ -117,6 +129,7 @@ var Map = React.createClass({
   setMapElementReference: function (mapElementReference) {
     this.mapElement = mapElementReference;
   },
+
 
   render: function () {
     return (

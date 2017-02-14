@@ -8,8 +8,8 @@ function Group (props) {
   return (
     <div>
       <h3>Here are the groups you are part of</h3>
-      <Link to={`/groups/${props.group}`}>
-        <p>{props.group}</p>
+      <Link to={`/groups/${props.group.name}`}>
+        <p>{props.group.name}</p>
       </Link>
     </div>
   )

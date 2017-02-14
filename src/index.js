@@ -25,7 +25,7 @@ const Plan = require('./components/plan')
 const Login = require('./components/login')
 const Register = require('./components/register')
 const CreatePlan = require('./containers/createPlan')
-const CreateGroup = require('./components/yourprofile/groupNew')
+const CreateGroup = require('./components/yourProfile/groupNew')
 
 const store = createStore(
   reducer,

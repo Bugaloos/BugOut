@@ -3,7 +3,9 @@ const RaisedButton = require('material-ui/RaisedButton')
 const FlatButton = require('material-ui/FlatButton')
 const { connect } = require('react-redux')
 const GroupName = require('./groupName')
-const KeyLocations = require('../yourProfile/groupKeyLocations')
+const KeyLocations = require('../yourProfile/keyLocations')
+const Inventory = require('../yourProfile/inventory')
+
 const {
   Step,
   Stepper,
@@ -34,9 +36,7 @@ class HalfStepper extends React.Component {
           <Step>
             <StepLabel>Create Your Cache</StepLabel>
             <StepContent>
-              <p>
-                Lucas will guide you through making your cache
-             </p>
+              < Inventory />
             </StepContent>
           </Step>
         </Stepper>

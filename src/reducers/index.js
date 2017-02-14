@@ -5,11 +5,9 @@ const group = require('./group')
 const loggedIn = require('./loggedIn')
 const messages = require('./messages')
 const plan = require('./plan')
-const setLocations = require('./setLocations')
 const showingComponent = require('./showingComponent')
 const showRegisterForm = require('./showRegisterForm')
 const showLoginForm = require('./showLoginForm')
-
 
 module.exports = combineReducers({
   authErr,
@@ -18,7 +16,6 @@ module.exports = combineReducers({
   loggedIn,
   messages,
   plan,
-  setLocations,
   showingComponent,
   showLoginForm,
   showRegisterForm

@@ -2,7 +2,7 @@ const React = require('react')
 const { connect } = require('react-redux')
 const Group = require('../groups')
 const Plan = require('../plan')
-
+const OfflineDetails = require('../offlineDetails')
 // This component will show plans and groups based upon a userID
 function CompleteProfile (props) {
   return (
@@ -13,7 +13,10 @@ function CompleteProfile (props) {
       </div>
       <div>
         <h2>Your Groups</h2>
-        < Group {...props} />
+        <Group {...props} />
+      </div>
+      <div>
+        <OfflineDetails />
       </div>
     </div>
   )

@@ -1,25 +1,27 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const TextField = require('material-ui/TextField').default
-const handlePrev = require('./handlePrev')
+const backButton = require('./backButton')
 
 class KeyLocations extends React.Component {
 
   handleSubmit () {
     const { dispatch, showingComponent } = this.props
-    console.log(this.refs, 'refereees')
     const meetingPoint = this.refs.meetingPoint.input.value
     const safePoint = this.refs.safePoint.input.value
-
     if (showingComponent === 'CREATE_GROUP') {
-      dispatch({type: 'UPDATE_GROUP_LOCATIONS', payload: meetingPoint, safePoint})
+      dispatch({type: 'UPDATE_GROUP_LOCATIONS', payload: {meetingPoint, safePoint}})
+      dispatch({type: 'GROUP_FORWARD'})
     } else if (showingComponent === 'CREATE_PLAN') {
-      dispatch({type: 'UPDATE_PLAN_LOCATIONS', payload: meetingPoint, safePoint})
+      dispatch({type: 'UPDATE_PLAN_LOCATIONS', payload: {meetingPoint, safePoint}})
     } else {
       console.log('what are you up to?')
     }
   }
   render () {
+    const { dispatch, showingComponent, group, userPlan } = this.props
+    const groupStep = group.step
+    const planStep = userPlan.step
     return (
       <div>
         <form>
@@ -33,6 +35,7 @@ class KeyLocations extends React.Component {
               ref='safePoint' />
             <br />
           </div>
+          {backButton(showingComponent, planStep, groupStep, dispatch)}
           <button onClick={this.handleSubmit.bind(this)}>Next Step</button>
         </form>
       </div>

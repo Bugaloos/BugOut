@@ -8,11 +8,11 @@ module.exports = {
   loggedIn: null,
   messages: [],
   group: {
+    meetingPoint: '',
+    safePoint: '',
     step: 0,
     name: 'bugaloos',
     plan: {
-      meetingPoint: '',
-      safePoint: '',
       inventory: [
         {name: 'Torch', checked: false},
         {name: 'Radio', checked: false},

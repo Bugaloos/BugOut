@@ -11,7 +11,8 @@ module.exports = function plan (state = initialState.group, action) {
       })
 
     case 'UPDATE_GROUP_LOCATIONS':
-      return Object.assign({}, state.plan, {
+      console.log(state, action.payload);
+      return Object.assign({}, state, {
         safePoint: action.payload.safePoint,
         meetingPoint: action.payload.meetingPoint,
         step: state.step + 1

@@ -11,11 +11,11 @@ function Group (props) {
   const { group, loggedIn, router } = props
   return (
     <div>
-      <h1>{group}</h1>
+      <h1>{group.name}</h1>
       <Link to={`/users/${loggedIn}`}>
         <button>{loggedIn}s profile</button>
       </Link>
-      <p>This is the main description of the plan for {group}</p>
+      <p>This is the main description of the plan for {group.name}</p>
       <Messageboard />
     </div>
   )

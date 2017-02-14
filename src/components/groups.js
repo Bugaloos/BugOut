@@ -5,6 +5,7 @@ const { Link } = require('react-router')
 // This component will return a specific plan based upon the userID or groupID which it recives
 
 function Group (props) {
+  console.log('props', props);
   const { group } = props
   return (
     <div>
@@ -16,4 +17,4 @@ function Group (props) {
   )
 }
 
-module.exports = Group
+module.exports = connect(state => state)(Group)

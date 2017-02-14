@@ -20,9 +20,9 @@ class Messages extends React.Component {
 
   componentDidMount () {
     const { dispatch, group } = this.props
-    updateMessages(group, dispatch)
+    updateMessages(group.name, dispatch)
 
-    db.getMessages(group, (err, response) => {
+    db.getMessages(group.name, (err, response) => {
       if (err) throw (err)
       const messages = response.map(respond => {
         const {text, userName, _id} = respond.doc
@@ -37,9 +37,9 @@ class Messages extends React.Component {
     const { messages } = this.props
 
     setInterval(function () {
-      db.syncGroup(group, (err, status) => {
+      db.syncGroup(group.name, (err, status) => {
         if (err) throw err
-        updateMessages(group, dispatch)
+        updateMessages(group.name, dispatch)
       })
     }, 5000)
 

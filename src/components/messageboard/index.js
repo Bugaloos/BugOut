@@ -21,11 +21,12 @@ const Messages = require('./messages')
 
 class Messageboard extends React.Component {
   handleClick () {
+    console.log('service working is a twat');
     const { group, dispatch } = this.props
     const message = this.refs.message.value
     const userName = this.props.loggedIn
 
-    db.postMessage(userName, group, message, (err, status) => {
+    db.postMessage(userName, 'bugaloos', message, (err, status) => {
       if (status.ok) {
         db.getMessages(group, (err, response) => {
           if (err) throw (err)

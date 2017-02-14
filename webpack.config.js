@@ -13,6 +13,10 @@ module.exports = {
     fs: "empty"
   },
 
+  externals: {
+        'google':     'google'
+      },
+
   output: {
     path: PATHS.output,
     filename: 'bundle.js'

@@ -11,7 +11,11 @@ module.exports = {
   node: {
     fs: "empty"
   },
-  
+
+  externals: {
+      'google':     'google'
+    },
+
   output: {
     path: PATHS.output,
     filename: 'bundle.js'
@@ -29,7 +33,14 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader'
       },
-      { test: /\.css$/, loader: 'style-loader!css-loader' }
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 50000
+        }
+      }
     ]
   },
 

@@ -1,14 +1,15 @@
 const React = require('react')
-const { connect } = require('react-redux')
 const CreateGroupStepper = require('./createGroupStepper')
 
 function showCreateGroup (props) {
-  const createGroupButton =
-    <button onClick={() => props.dispatch({type: 'TOGGLE_CREATE_GROUP'})}>Create A Group</button>
 
   return props.showCreateGroup
     ? <CreateGroupStepper {...props} />
-    : createGroupButton
+    : <button onClick={() => {
+      console.log("button", props);
+        props.dispatch({type: 'TOGGLE_CREATE_GROUP'})
+      }
+      }>Create A Group</button>
 }
 
-module.exports = connect((state) => state)(showCreateGroup)
+module.exports = showCreateGroup

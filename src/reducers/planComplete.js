@@ -1,4 +1,4 @@
-module.exports = function planComplete (state = null, action) {
+module.exports = function planComplete (state = false, action) {
   switch (action.type) {
 
     case 'CURRENT_PLAN_STAGE':

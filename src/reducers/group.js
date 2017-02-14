@@ -1,4 +1,4 @@
-module.exports = function group (state = null, action) {
+module.exports = function group (state = 'bugaloos', action) {
   switch (action.type) {
 
     default:

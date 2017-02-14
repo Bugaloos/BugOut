@@ -25,8 +25,8 @@ class Messages extends React.Component {
     db.getMessages(group, (err, response) => {
       if (err) throw (err)
       const messages = response.map(respond => {
-        const {text, userName} = respond.doc
-        return {text, userName}
+        const {text, userName, _id} = respond.doc
+        return {text, userName, _id}
       })
       dispatch({type: 'UPDATE_MESSAGES', payload: messages})
     })
@@ -44,12 +44,12 @@ class Messages extends React.Component {
       })
     }, 5000)
 
-    function renderMessage({userName, text}) {
+    function renderMessage({userName, text, _id}) {
       return (
         <ListItem
           primaryText={
             <p>
-              <span style={{color: darkBlack}} key={userName} >{userName}</span> -- {text}
+              <span style={{color: darkBlack}} key={_id} >{userName}</span> -- {text}
             </p>
         }
         />

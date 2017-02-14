@@ -4,6 +4,9 @@ module.exports = function authErr (state = null, action) {
     case 'AUTH_ERR':
       return action.payload
 
+    case 'LOG_OUT':
+        return state
+
     default:
       return state
   }

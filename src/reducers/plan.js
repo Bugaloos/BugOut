@@ -22,6 +22,9 @@ module.exports = function plan (state = initialState.plan, action) {
         step: state.step + 1
       })
 
+    case 'LOG_OUT':
+      return state
+
     default:
       return state
   }

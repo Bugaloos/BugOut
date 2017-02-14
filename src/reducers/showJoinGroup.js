@@ -4,6 +4,9 @@ module.exports = function showJoinGroup (state = false, action) {
     case 'TOGGLE_JOIN_GROUP':
       return !state
 
+    case 'LOG_OUT':
+      return state
+      
     default:
       return state
   }

@@ -5,6 +5,9 @@ module.exports = function messages (state = [], action) {
       state = action.payload
       return state
 
+    case 'LOG_OUT':
+      return state
+
     default:
       return state
   }

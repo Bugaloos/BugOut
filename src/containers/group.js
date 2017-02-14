@@ -10,12 +10,12 @@ const { Link } = require('react-router')
 function Group (props) {
   return (
     <div>
-      <h1>{props.group}</h1>
+      <h1>{props.group.name}</h1>
       <Link to={`/users/${props.loggedIn}`}>
         <button>{props.loggedIn}s profile</button>
       </Link>
       <Map />
-      <p>This is the main description of the plan for {props.group}</p>
+      <p>This is the main description of the plan for {props.group.name}</p>
       <Messageboard router={props.router} />
     </div>
   )

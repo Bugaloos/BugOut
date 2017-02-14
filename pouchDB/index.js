@@ -53,7 +53,9 @@ module.exports = {
   checkGroupUnique: function(groupName, cb) {
     request.post('api/v1/checkgroup')
       .send({groupName})
-      .end((err, res) => cb(err, res.body))
+      .end((err, res) => {
+        cb(err, res.body)
+      })
   },
 
   createGroup: function (groupName, userName, groupPlan, cb) {

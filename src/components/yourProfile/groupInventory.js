@@ -47,16 +47,14 @@ class Inventory extends React.Component {
     })
   }
 
-  handleCheck(name){
+  handleCheck (name) {
     return () => {
-      console.log(this.props, name);
       this.props.dispatch({type: 'GROUP_TOGGLE_ITEM', payload: name})
     }
   }
 
   render(){
     const { group, groupPlan } = this.props
-    console.log('this is group',  group);
     const inventory = groupPlan.inventory
 
     return (

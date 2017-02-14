@@ -22,7 +22,6 @@ class KeyLocations extends React.Component {
     const { dispatch, showingComponent, group, userPlan } = this.props
     const groupStep = group.step
     const planStep = userPlan.step
-    
     return (
       <div>
         <form>

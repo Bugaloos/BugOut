@@ -4,7 +4,7 @@ module.exports = function error (state = null, action) {
     case 'ERROR_ERR':
       state = action.payload
       return state
-
+    
     case 'LOG_OUT':
       return state
 

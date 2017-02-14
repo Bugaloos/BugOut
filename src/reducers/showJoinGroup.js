@@ -6,7 +6,7 @@ module.exports = function showJoinGroup (state = false, action) {
 
     case 'LOG_OUT':
       return state
-      
+
     default:
       return state
   }

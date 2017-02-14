@@ -5,8 +5,8 @@ module.exports = function loggedIn (state = null, action) {
       return action.payload
 
     case 'LOG_OUT':
-      return state
-      
+      return action.payload
+
     default:
       return state
   }

@@ -8,7 +8,7 @@ const plan = require('./plan')
 const showingComponent = require('./showingComponent')
 const showRegisterForm = require('./showRegisterForm')
 const showLoginForm = require('./showLoginForm')
-const loggedOut = require('./loggedOut')
+
 
 
 
@@ -17,7 +17,6 @@ module.exports = combineReducers({
   error,
   group,
   loggedIn,
-  loggedOut,
   messages,
   plan,
   showingComponent,

@@ -7,7 +7,7 @@ module.exports = function authErr (state = null, action) {
 
     case 'LOG_OUT':
       return state
-      
+
     default:
       return state
   }

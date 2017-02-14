@@ -23,7 +23,7 @@ module.exports = function plan (state = initialState.group, action) {
 
     case 'LOG_OUT':
       return state
-      
+
     default:
       return state
   }

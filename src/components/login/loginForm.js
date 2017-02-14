@@ -23,13 +23,6 @@ class Login extends React.Component {
         dispatch({type: 'AUTH_ERR', payload: status.error})
       }
     })
-
-    // var opts = {live: true};
-    // db.sync(remoteCouch, opts, syncError)
-    //
-    // function syncError() {
-    //   syncDom.setAttribute('data-sync-state', 'error');
-    // }
   }
 
   render () {

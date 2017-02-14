@@ -3,8 +3,9 @@ const LoginForm = require('./loginForm')
 const ShowLoginButton = require('./showLoginButton')
 
 const LoginFormShowing = (props) => {
+  const { dispatch } = props
   return props.showLoginForm
-    ? <LoginForm {...props} />
+    ? <LoginForm dispatch={dispatch} /> ///   new LoginForm({...props})
     : <ShowLoginButton {...props} />
 }
 

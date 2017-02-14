@@ -1,7 +1,7 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const MeetingPoint = require('../components/meetingPoint')
-const BugOutInventory = require('../components/yourProfile/inventory')
+const BugOutInventory = require('../components/yourProfile/userPlanInventory')
 
 function CreatePlan (props) {
   return (

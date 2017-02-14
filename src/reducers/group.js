@@ -2,14 +2,22 @@ const initialState = require('../../state')
 module.exports = function plan (state = initialState.group, action) {
 
   switch (action.type) {
-    case 'UPDATE_GROUP_NAME':
+    case 'PROPOSED_GROUP_NAME':
       // warning - test this is not mutating state -
       // - watch for view not updating when it should
       return Object.assign({}, state, {
         step: state.step + 1,
-        name: action.payload
+        proposedGroupName: action.payload
       })
-
+    case 'TOGGLE_GROUP_ITEM':
+      return {...state,
+        inventory: state.userplan.inventory.map((item) => {
+          if (item.name === action.payload) {
+            return {...item, checked: !item.checked}
+          }
+          return item
+        })
+      }
     case 'UPDATE_GROUP_LOCATIONS':
       console.log(state, action.payload);
       return Object.assign({}, state, {
@@ -19,7 +27,6 @@ module.exports = function plan (state = initialState.group, action) {
       })
 
     case 'GROUP_BACK':
-      console.log('Trying to go back')
       return Object.assign({}, state, {step: state.step - 1})
 
     default:

@@ -17,8 +17,8 @@ module.exports = combineReducers({
   groupPlan,
   loggedIn,
   messages,
-  userPlan,
   showingComponent,
   showLoginForm,
-  showRegisterForm
+  showRegisterForm,
+  userPlan
 })

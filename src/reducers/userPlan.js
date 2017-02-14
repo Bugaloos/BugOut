@@ -5,6 +5,7 @@ module.exports = function userPlan (state = initialState.userPlan, action) {
     case 'TOGGLE_PLAN_ITEM':
       return {...state,
         inventory: state.inventory.map((item) => {
+          console.log(item, action)
           if (item.name === action.payload) {
             return {...item, checked: !item.checked}
           }

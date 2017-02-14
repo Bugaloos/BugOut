@@ -1,7 +1,7 @@
 module.exports = function error (state = null, action) {
   switch (action.type) {
 
-    case 'ERROR_ERR':
+    case 'ERROR':
       state = action.payload
       return state
 

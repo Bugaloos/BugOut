@@ -5,13 +5,15 @@ const db = require('../../../pouchDB')
 
 class GroupName extends React.Component {
   moveForward () {
-    const groupName = this.refs.groupName.input.value
+    const groupName = this.refs.groupName.input.value.toLowerCase()
     const { dispatch } = this.props
     db.checkGroupUnique(groupName, (err, status) => {
-      if (err) {
-        dispatch({type: 'ERROR', payload: 'GROUP_NAME_TAKEN'})
-      } else {
+      console.log('status', status);
+      if(err) throw err
+      if (status.available) {
         dispatch({type: 'UPDATE_GROUP_NAME', payload: groupName})
+      } else {
+        dispatch({type: 'ERROR', payload: 'GROUP_NAME_TAKEN'})
       }
     })
   }

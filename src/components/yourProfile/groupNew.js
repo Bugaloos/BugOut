@@ -16,7 +16,7 @@ const {
 class HalfStepper extends React.Component {
 
   render () {
-    const {group} = this.props
+    const { group } = this.props
 
     return (
       <div style={{maxWidth: 500, maxHeight: 400, margin: 'auto'}}>

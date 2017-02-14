@@ -34,7 +34,7 @@ module.exports = {
       {name: 'Water', checked: false}
     ]
   },
-  showingComponent: 'CREATE_GROUP',
+  showingComponent: null,
   showRegisterForm: false,
   showLoginForm: false
 }

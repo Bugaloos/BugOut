@@ -23,6 +23,7 @@ const Login = require('./components/login')
 const Register = require('./components/register')
 const CreatePlan = require('./containers/createPlan')
 const CreateGroup = require('./components/yourProfile/groupNew')
+const Info = require('./components/info')
 
 const store = createStore(
   reducer,
@@ -68,6 +69,7 @@ const Root = ({store}) => {
             <Route path='/plans/:id/edit' component={Plan} />
             <Route path='/creategroup' component={CreateGroup} />
             <Route path='/createplan' component={CreatePlan} />
+            <Route path='/info' component={Info} />
           </Route>
         </Router>
       </Provider>

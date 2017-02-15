@@ -23,7 +23,7 @@ function Profile (props) {
       case 'CREATE_GROUP':
         return <GroupNew />
       case 'CREATE_PLAN':
-        return <UserPlanNew />
+        return <UserPlanNew {...props} />
       case 'MY_PROFILE':
         return <CompleteProfile />
       default:

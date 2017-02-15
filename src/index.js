@@ -44,7 +44,6 @@ persistStore(store, {
     'group',
     'showingComponent',
     'plan',
-    'loggedIn'
   ]
 })
 injectTapEventPlugin()

@@ -32,7 +32,7 @@ class UserPlanStepper extends React.Component {
           <Step>
             <StepLabel>Create Your Cache</StepLabel>
             <StepContent>
-              < UserInventory />
+              < UserInventory {...this.props} />
             </StepContent>
           </Step>
         </Stepper>

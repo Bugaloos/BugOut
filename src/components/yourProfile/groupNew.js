@@ -4,7 +4,7 @@ const FlatButton = require('material-ui/FlatButton')
 const { connect } = require('react-redux')
 const GroupName = require('./groupName')
 const KeyLocations = require('../yourProfile/keyLocations')
-const Inventory = require('../yourProfile/inventory')
+const GroupInventory = require('../yourProfile/groupInventory')
 
 const {
   Step,
@@ -19,7 +19,7 @@ class HalfStepper extends React.Component {
     const { group } = this.props
 
     return (
-      <div style={{maxWidth: 500, maxHeight: 400, margin: 'auto'}}>
+      <div className='stepper'>
         <Stepper activeStep={group.step} orientation='vertical'>
           <Step>
             <StepLabel>Setup Your Group</StepLabel>
@@ -36,7 +36,7 @@ class HalfStepper extends React.Component {
           <Step>
             <StepLabel>Create Your Cache</StepLabel>
             <StepContent>
-              < Inventory />
+              < GroupInventory />
             </StepContent>
           </Step>
         </Stepper>

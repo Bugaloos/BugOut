@@ -4,7 +4,7 @@ const RegisterButton = (props) => {
   const { dispatch } = props
 
   function register () {
-    dispatch({type: 'TOGGLE_REGISTER_FORM'})
+    dispatch({ type: 'SHOWING_COMPONENT', payload: 'REGISTER' })
   }
 
   return (

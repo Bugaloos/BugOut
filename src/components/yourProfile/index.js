@@ -1,9 +1,7 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const Group = require('../groups')
-const Inventory = require('./inventory')
 const GroupNew = require('./groupNew')
-const PlanNew = require('./planNew')
+const UserPlanNew = require('./userPlanNew')
 const GroupJoin = require('./groupJoin')
 const CompleteProfile = require('./completeProfile')
 
@@ -28,7 +26,7 @@ function Profile (props) {
       case 'CREATE_GROUP':
         return <GroupNew />
       case 'CREATE_PLAN':
-        return <PlanNew />
+        return <UserPlanNew />
       case 'JOIN_GROUP':
         return <GroupJoin />
       case 'MY_PROFILE':

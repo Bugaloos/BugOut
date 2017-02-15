@@ -36,7 +36,7 @@ function Profile (props) {
       <div>{myProfile}
         {createPlanButton}
         {createGroupButton}
-        <LogOut />
+        <LogOut {...props} />
       </div>
       <div className='mainComponent'>
         <div>{getComponent(showingComponent)}</div>

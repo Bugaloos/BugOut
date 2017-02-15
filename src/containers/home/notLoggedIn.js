@@ -12,7 +12,7 @@ function NotLoggedIn (props) {
       </div>
       <div className='mainComponent'>
         <h2 >Make a plan for you and your loved ones that is ready when you need it</h2>
-        <FormShowing />
+        <FormShowing {...props} />
       </div>
     </div>
   )

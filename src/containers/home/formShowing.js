@@ -7,8 +7,8 @@ const RegisterForm = require('./register/registerForm')
 function FormShowing (props) {
   console.log('formShowing', props);
     return (props.formShowing === 'LOGIN')
-      ? <LoginForm />
-      : <RegisterForm />
+      ? <LoginForm {...props} />
+      : <RegisterForm {...props} />
   }
 
 module.exports = connect((state) => state)(FormShowing)

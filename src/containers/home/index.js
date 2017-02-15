@@ -5,8 +5,8 @@ const Profile = require('../../components/yourProfile')
 
 function Home (props) {
   return props.loggedIn
-  ? <Profile />
-  : <NotLoggedIn />
+  ? <Profile {...props} />
+  : <NotLoggedIn {...props} />
 }
 
 module.exports = connect((state) => state)(Home)

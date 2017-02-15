@@ -4,18 +4,47 @@ const backButton = require('./backButton')
 
 class KeyLocations extends React.Component {
 
+  componentDidMount () {
+    this.geocoder = new google.maps.Geocoder()
+  }
+
   handleSubmit () {
     const { dispatch, showingComponent } = this.props
-    const meetingPoint = this.refs.meetingPoint.value
-    const safePoint = this.refs.safePoint.value
-    if (showingComponent === 'CREATE_GROUP') {
-      dispatch({type: 'UPDATE_GROUP_LOCATIONS', payload: {meetingPoint, safePoint}})
-      dispatch({type: 'GROUP_FORWARD'})
-    } else if (showingComponent === 'CREATE_PLAN') {
-      dispatch({type: 'UPDATE_PLAN_LOCATIONS', payload: {meetingPoint, safePoint}})
-    } else {
-      console.log('what are you up to?')
+    var Latlng = new google.maps.LatLng
+    var swlatlng = {lat: -46.570384, lng: 166.438844}
+    var nelatlng = {lat: -34.085704, lng: 179.127941}
+    var latlngbounds = new google.maps.LatLngBounds(swlatlng, nelatlng)
+    const meetingAddress = this.refs.meetingPoint.value
+    const safeAddress = this.refs.safePoint.value
+    const meetingOpts = {
+      'address': meetingAddress,
+      'location': Latlng,
+      'bounds': latlngbounds
     }
+    const safeOpts = {
+      'address': safeAddress,
+      'location': Latlng,
+      'bounds': latlngbounds
+    }
+    this.geocoder.geocode(meetingOpts, (meetResults, status) => {
+      if (status === google.maps.GeocoderStatus.OK) {
+        const meetViewport = meetResults[0].geometry.viewport
+        const meetingPoint = {lat: meetViewport.f.b, lng: meetViewport.b.b}
+        this.geocoder.geocode(safeOpts, (safeResults, status2) => {
+          const safeViewport = safeResults[0].geometry.viewport
+          const safePoint = {lat: safeViewport.f.b, lng: safeViewport.b.b}
+          if (showingComponent === 'CREATE_GROUP') {
+            dispatch({type: 'UPDATE_GROUP_LOCATIONS', payload: {meetingPoint, safePoint}})
+            dispatch({type: 'GROUP_FORWARD'})
+          } else if (showingComponent === 'CREATE_PLAN') {
+            dispatch({type: 'UPDATE_PLAN_LOCATIONS', payload: {meetingPoint, safePoint}})
+          } else {
+            console.log('what are you up to?')
+          }
+        })
+      }
+    })
+
   }
   render () {
     const { dispatch, showingComponent, group, userPlan } = this.props

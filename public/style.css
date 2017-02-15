@@ -76,14 +76,15 @@ a #maintitle {
   color: #FEFEFE
   width: 65%;
   float: left;
-  padding-left: 3%;
+  padding-left: 15%;
   font-size: 4em;
 }
 
 #maintitle img {
   margin-top: 3%;
   width: 14%;
-  padding-right: 5%
+  padding-right: 5%;
+  padding-bottom: 2%
 }
 button{
   color: #FEFEFE;

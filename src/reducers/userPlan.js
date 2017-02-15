@@ -20,6 +20,8 @@ module.exports = function userPlan (state = initialState.userPlan, action) {
     case 'PLAN_BACK':
       return Object.assign({}, state, {step: state.step - 1})
 
+      case 'LOG_OUT':
+          return initialState.userPlan  
 
     default:
       return state

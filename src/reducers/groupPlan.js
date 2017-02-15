@@ -19,6 +19,9 @@ module.exports = function group (state = initialState.groupPlan, action) {
         step: state.step + 1
       })
 
+      case 'LOG_OUT':
+          return initialState.groupPlan
+
     default:
       return state
   }

@@ -29,7 +29,7 @@ var Map = React.createClass({
   componentDidUpdate: function (prevProps) {
     console.log("this is props", this.props);
     console.log("this is map", this.map);
-    this.locations = _.map(this.props.locations, (location, locationKey) => {  // locationKey: 'meetingPoint'
+    this.locations = _.map(this.props.locations, (location) => {  
       return new google.maps.Marker({
         map: this.map,
         position: location

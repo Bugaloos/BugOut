@@ -7,6 +7,9 @@ module.exports = function showingUserAdded (state = initialState.showingUserAdde
       state = action.payload
       return state
 
+    case 'LOG_OUT':
+        return initialState.showingUserAdded
+
     default:
       return state
   }

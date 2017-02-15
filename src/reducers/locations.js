@@ -7,6 +7,9 @@ module.exports = function loggedIn (state = initialState.locations, action) {
         meetingPoint: action.payload.meetingPoint,
       })
 
+      case 'LOG_OUT':
+          return initialState.locations
+
     default:
       return state
   }

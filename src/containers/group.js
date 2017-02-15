@@ -4,6 +4,7 @@ const Messageboard = require('../components/messageboard')
 const Map = require('../components/map')
 const { Link } = require('react-router')
 const AppBar = require('../components/appBar')
+const GroupAddUser = require('../components/messageboard/groupAddUser.js')
 
 function Group (props) {
   console.log('group', props);
@@ -14,14 +15,13 @@ function Group (props) {
       </div>
       <AppBar {...props} />
       <div className='groupPlan'>
-        <p>This is the main description of the plan for {props.group.name}</p>
         <Messageboard router={props.router} />
-      </div>
-      <div className='theMap'>
-        <Map locations={props.locations} />
+        <GroupAddUser />
       </div>
     </div>
   )
 }
 
 module.exports = connect((state) => state)(Group)
+
+// <Map locations={props.locations} />

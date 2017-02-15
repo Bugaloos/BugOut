@@ -93,17 +93,18 @@ button{
   clear: both;
 }
 .groupPlan {
-  padding: 1.5em;
-  margin: auto;
-  background-color: #E9E6FF;
-  float: left;
-  margin-right: 5em;
-  width: 40%;
+  margin-top: 5em;
+ clear: both;
 }
 .addUser{
-  margin-bottom: 2em;
+  float: right;
+  margin-right: 10em;
 }
-
+.messageWorld{
+  float: left;
+  margin-left: 7em;
+  width: 50em
+}
 .messageContainer{
   margin-top: 1em;
   height: 500px;

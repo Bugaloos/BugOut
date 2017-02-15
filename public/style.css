@@ -54,15 +54,13 @@ body {
   width: 50%;
   background-color: #fff59d
 }
-.navBar{
-  margin: auto;
-  margin: 3 em;
+.mainNav{
   padding: 2em;
-  width: 40%;
-  background-color: #fff59d;
+  width: 20%;
+  float: left
 }
 
-a #maintitle {
+a #titleButton {
   color: #576C31;
   padding-top: 5%;
   border-radius: 25%;
@@ -72,15 +70,15 @@ a #maintitle {
   overflow: hidden;
 }
 
-#mainTitleText {
-  color: #FEFEFE
-  width: 65%;
+#titleButtonText {
+  color: black;
+  font-size: 1.5em;
+  width: 10%;
   float: left;
   padding-left: 15%;
-  font-size: 4em;
 }
 
-#maintitle img {
+#titleButton img {
   margin-top: 3%;
   width: 14%;
   padding-right: 5%;

@@ -4,7 +4,7 @@ const LoginButton = (props) => {
   const { dispatch } = props
 
   function login () {
-    dispatch({type: 'SHOWING_COMPONENT', payload:'LOGIN'})
+    dispatch({type: 'ENTRY_SHOWING', payload: 'LOGIN'})
   }
 
   return (

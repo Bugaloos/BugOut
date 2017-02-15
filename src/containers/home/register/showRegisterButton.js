@@ -4,7 +4,7 @@ const RegisterButton = (props) => {
   const { dispatch } = props
 
   function register () {
-    dispatch({ type: 'SHOWING_COMPONENT', payload: 'REGISTER' })
+    dispatch({ type: 'ENTRY_SHOWING', payload: 'REGISTER' })
   }
 
   return (

@@ -1,11 +1,9 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const { Link } = require('react-router')
-const _ = require('lodash')
-const request = require('superagent')
 const PouchDB = require('pouchdb')
 const db = require('../../../pouchDB')
-
+const RegisterButton = require('./register/showRegisterButton')
 
 class Login extends React.Component {
 
@@ -14,7 +12,6 @@ class Login extends React.Component {
 
     const userName = this.refs.userName.value
     const password = this.refs.password.value
-
 
     db.login({ userName, password }, (err, status) => {
       if (err) throw err
@@ -37,10 +34,11 @@ class Login extends React.Component {
       <br />
       <div className='button'>
         <button onClick={this.handleSubmit.bind(this)}>Login</button>
+        <RegisterButton />
       </div>
       <br />
       <br />
-      <div style={{color: 'red', backgroundColor:'#fff59d'}} >
+      <div style={{color: 'red'}} >
         {this.props.authErr}
       </div>
     </form>

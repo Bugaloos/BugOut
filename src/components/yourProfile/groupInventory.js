@@ -41,6 +41,7 @@ class Inventory extends React.Component {
       if (err) throw err
       if (status.register){
         dispatch({type: 'GROUP_SUBMITTED', payload: groupName})
+        router.push(`/groups/${groupName}`)
       } else {
         dispatch({type: 'ERROR', payload: 'GROUP_NOT_CREATED'})
       }
@@ -49,7 +50,6 @@ class Inventory extends React.Component {
 
   handleCheck (name) {
     return () => {
-      console.log(name)
       this.props.dispatch({type: 'TOGGLE_GROUP_ITEM', payload: name})
     }
   }

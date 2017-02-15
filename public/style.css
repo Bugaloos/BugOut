@@ -110,8 +110,4 @@ button{
   overflow-y: scroll;
 }
 .theMap{
-  float: left;
-  width: 10%;
-  height: 10%;
-  margin: 10%;
 }

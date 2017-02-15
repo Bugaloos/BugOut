@@ -14,7 +14,7 @@ function Group (props) {
       <Link to={`/users/${props.loggedIn}`}>
         <button>{props.loggedIn}s profile</button>
       </Link>
-      <Map />
+      <Map locations={props.locations}/>
       <p>This is the main description of the plan for {props.group.name}</p>
       <Messageboard router={props.router} />
     </div>

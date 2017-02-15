@@ -1,16 +1,21 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const YourProfile = require('../../components/yourProfile')
-const NotLoggedIn = require('./notLoggedIn')
-const LoggedIn = require('./loggedIn')
+const Login = require('../../components/login')
+const Register = require('../../components/register')
+const Info = require('../../components/info')
 // If no active session is detected. This component will have text at the top explaining how the app works as well as visual example of the process of registering. Further down it will call the login and register components.
 
 // If an active session is detected, this page will ???(redirect to profile? render profile)???
-const loggedIn =
+
 function Home (props) {
-  return props.loggedIn
-  ? LoggedIn
-  : NotLoggedIn
+  return (
+    <div className='homepage'>
+      <h3>Make a plan for you and your loved ones that is ready when you need it</h3>
+      < Register {...props} />
+      < Login {...props} />
+      < Info />
+    </div>
+  )
 }
 
 module.exports = connect((state) => state)(Home)

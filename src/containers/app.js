@@ -9,7 +9,7 @@ const App = (props) => {
       <div className='navBar'>
         <nav >
           <Link to='/'>
-            <div id='maintitle'>
+            <div id='titleButton'>
               <h1 id='mainTitleText'>Bug Out </h1>
             </div>
           </Link>
@@ -18,7 +18,6 @@ const App = (props) => {
       <br />
       <br />
       {props.children}
-      <Logout {...props} />
     </div>
   )
 }

@@ -3,7 +3,7 @@ const LoginForm = require('./loginForm')
 const ShowLoginButton = require('./showLoginButton')
 
 const LoginFormShowing = (props) => {
-  return props.showLoginForm
+  return props.showingComponent === 'LOGIN'
     ? <LoginForm {...props} />
     : <ShowLoginButton {...props} />
 }

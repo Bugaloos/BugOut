@@ -4,7 +4,7 @@ const LoginButton = (props) => {
   const { dispatch } = props
 
   function login () {
-    dispatch({type: 'TOGGLE_LOGIN_FORM'})
+    dispatch({type: 'SHOWING_COMPONENT', payload:'LOGIN'})
   }
 
   return (

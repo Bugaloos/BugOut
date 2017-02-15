@@ -6,6 +6,7 @@ const request = require('superagent')
 const PouchDB = require('pouchdb')
 const db = require('../../../pouchDB')
 
+
 class Login extends React.Component {
 
   handleSubmit () {
@@ -13,7 +14,7 @@ class Login extends React.Component {
 
     const userName = this.refs.userName.value
     const password = this.refs.password.value
-    
+
 
     db.login({ userName, password }, (err, status) => {
       if (err) throw err
@@ -28,19 +29,21 @@ class Login extends React.Component {
   }
 
   render () {
-    return (
-      <form>
-        <div>
-          User Name:
-          <input className='homePageButton' type='text' ref='userName' placeholder='User Name' />
-          Password:
-          <input className='homePageButton' type='password' ref='password' placeholder='Password' />
-        </div><br /><br />
-        <div style={{color: 'red'}} >
-          {this.props.authErr}
-        </div>
-        <button onClick={this.handleSubmit.bind(this)}> Login </button>
-      </form>
+    return (<form>
+        <input placeholder='User Name' className='input' ref='userName' />
+        <br />
+        <input placeholder='Password' className='input' type='password' ref='password' />
+        <br />
+      <br />
+      <div className='button'>
+        <button onClick={this.handleSubmit.bind(this)}>Login</button>
+      </div>
+      <br />
+      <br />
+      <div style={{color: 'red', backgroundColor:'#fff59d'}} >
+        {this.props.authErr}
+      </div>
+    </form>
     )
   }
 }

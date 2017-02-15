@@ -9,10 +9,50 @@ colours { #010101
 }
 
 body {
-  background-color: #FEFEFE     ;
+  background-color: #C1A986     ;
   font-family: 'Raleway', sans-serif;
   text-align: center;
   color: 212121;
+}
+::-webkit-input-placeholder { /* Chrome */
+  color: #708090;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #708090;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #708090;
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: #708090;
+  opacity: 1;
+}
+.input textarea{
+    color: #010101;
+}
+.input {
+  display: block;
+  margin: auto;
+  width: 70%;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  padding: 1em;
+  background-color: #C1A986
+}
+
+.input:focus {
+  outline: solid 1px black;
+}
+.stepper{
+  padding: 1.5em;
+  margin: auto;
+  width: 50%;
+  background-color: #fff59d
 }
 .navBar{
   margin: auto;
@@ -23,7 +63,7 @@ body {
 }
 
 a #maintitle {
-  color: #576C31; 
+  color: #576C31;
   padding-top: 5%;
   border-radius: 25%;
   border-width: medium;
@@ -46,9 +86,9 @@ a #maintitle {
   padding-right: 5%
 }
 button{
-  color: white;
+  color: #010101;
   font-size: 1em;
-  background-color: #C1A986;
+  background-color: #fff59d;
   margin: auto;
   padding-left: 2em;
   padding-right: 2em;
@@ -63,4 +103,5 @@ button{
   padding-top: 2em;
   margin: auto;
   text-align: center;
+  background-color: #576C31
 }

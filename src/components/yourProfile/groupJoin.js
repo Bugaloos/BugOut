@@ -11,8 +11,8 @@ class JoinGroup extends React.Component {
 
   handleSubmit () {
     const { dispatch } = this.props
-    const groupName = this.refs.groupName.input.value
-    const groupPlan = this.refs.groupPlan.input.value
+    const groupName = this.refs.groupName.value
+    const groupPlan = this.refs.groupPlan.value
 
     var newGroup = {
       groupName,
@@ -26,14 +26,16 @@ class JoinGroup extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='stepper'>
         <form>
-          <div>
-            <TextField
-              hintText='Group Name'
-              ref='groupName' />
+          <div >
+            <input
+              placeholder='Group Name'
+              ref='groupName'
+              className='input'/>
             <br />
           </div>
+          <button onClick={this.handleSubmit.bind(this)}>Join Group</button>
         </form>
       </div>
     )
@@ -41,4 +43,3 @@ class JoinGroup extends React.Component {
 }
 
 module.exports = connect((state) => state)(JoinGroup)
-// <button onClick={this.handleSubmit.bind(this)}>Sign Up</button>

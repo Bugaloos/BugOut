@@ -19,7 +19,7 @@ class HalfStepper extends React.Component {
     const { group } = this.props
 
     return (
-      <div style={{maxWidth: 500, maxHeight: 400, margin: 'auto'}}>
+      <div className='stepper'>
         <Stepper activeStep={group.step} orientation='vertical'>
           <Step>
             <StepLabel>Setup Your Group</StepLabel>

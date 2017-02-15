@@ -12,13 +12,9 @@ class Logout extends React.Component {
   }
 
   render () {
-    return (
-      <div>
-        <form>
-        <button onClick={this.handleSubmit.bind(this)}> Log Out </button>
-        </form>
-      </div>
-    )
+    return (this.props.loggedIn)
+        ?<button onClick={this.handleSubmit.bind(this)}> Log Out </button>
+        :<div></div>
   }
 }
 

@@ -7,8 +7,8 @@ class KeyLocations extends React.Component {
 
   handleSubmit () {
     const { dispatch, showingComponent } = this.props
-    const meetingPoint = this.refs.meetingPoint.input.value
-    const safePoint = this.refs.safePoint.input.value
+    const meetingPoint = this.refs.meetingPoint.value
+    const safePoint = this.refs.safePoint.value
     if (showingComponent === 'CREATE_GROUP') {
       dispatch({type: 'UPDATE_GROUP_LOCATIONS', payload: {meetingPoint, safePoint}})
       dispatch({type: 'GROUP_FORWARD'})
@@ -26,12 +26,14 @@ class KeyLocations extends React.Component {
       <div>
         <form>
           <div>
-            <TextField
-              hintText='Meeting Point'
+            <input
+              placeholder='Meeting Point'
+              className='input'
               ref='meetingPoint' />
             <br />
-            <TextField
-              hintText='Safe Point'
+            <input
+              placeholder='Safe Point'
+              className='input'
               ref='safePoint' />
             <br />
           </div>

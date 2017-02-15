@@ -1,19 +1,30 @@
-#The simplest boilerplate
+# Bug Out
 
-This is my attempt for a barebone React/Redux/React-router setup. When I mean barebone, I mean "barely functional". Add whatever you want to it!
+An offline first app to help you through an emergency event. Make a plan that is available to you even when the network goes down.
 
-#What's in it
+## Getting Started
 
-- A minimal React setup
-- A minimal Redux setup, with a minimal combinedReducers() setup
-- A minimal react-router setup
-- A minimal Express server
-- A minimal database setup using knex
-- A minimal API endpoints setup
-- A test folder with example tests for client, database and reducers. Switches between tape and ava, choose the one you like best
+Clone down the repo then
+///npm install///
+///npm run dev///
 
-And that's pretty much all.
+## Built With
 
-#Ideas to make it better? Glaring mistakes? Let's make it better!
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
-But let's keep it small.
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone who's code was used
+* Inspiration
+* etc

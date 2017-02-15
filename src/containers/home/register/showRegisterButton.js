@@ -1,4 +1,5 @@
 const React = require('react')
+const { connect } = require('react-redux')
 
 const RegisterButton = (props) => {
   const { dispatch } = props
@@ -13,4 +14,4 @@ const RegisterButton = (props) => {
     </button>
   )
 }
-module.exports = (RegisterButton)
+module.exports = connect((state) => state)(RegisterButton)

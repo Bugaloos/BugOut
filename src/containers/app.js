@@ -1,7 +1,7 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const { Link } = require('react-router')
-const antCircle = require('../images/AntNoCircle.png')
+const antCircle = require('../images/antCircle.png')
 const App = (props) => {
   return (
     <div>

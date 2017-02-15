@@ -5,6 +5,7 @@ const RegisterForm = require('./register/registerForm')
 
 
 function FormShowing (props) {
+  console.log('formShowing', props);
     return (props.formShowing === 'LOGIN')
       ? <LoginForm />
       : <RegisterForm />

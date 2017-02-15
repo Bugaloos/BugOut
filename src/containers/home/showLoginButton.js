@@ -1,5 +1,5 @@
 const React = require('react')
-
+const { connect } = require('react-redux')
 const LoginButton = (props) => {
   const { dispatch } = props
 
@@ -8,9 +8,9 @@ const LoginButton = (props) => {
   }
 
   return (
-    <button onClick={login}>
+    <button id='loginButton' onClick={login}>
       Login
     </button>
   )
 }
-module.exports = (LoginButton)
+module.exports = connect((state) => state)(LoginButton)

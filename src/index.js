@@ -43,7 +43,8 @@ persistStore(store, {
     'authErr',
     'group',
     'showingComponent',
-    'plan'
+    'plan',
+    'loggedIn'
   ]
 })
 injectTapEventPlugin()

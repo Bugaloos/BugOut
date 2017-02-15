@@ -9,7 +9,7 @@ class Login extends React.Component {
 
   handleSubmit () {
     const { dispatch } = this.props
-
+    console.log(this.props);
     const userName = this.refs.userName.value
     const password = this.refs.password.value
 
@@ -18,6 +18,7 @@ class Login extends React.Component {
       if (status.login) {
         dispatch({type: 'AUTH_ERR', payload: null})
         dispatch({type: 'LOG_IN', payload: status.user._id})
+        console.log(this.props);
         this.props.router.push(`/users/${status.user._id}`)
       } else {
         dispatch({type: 'AUTH_ERR', payload: status.error})

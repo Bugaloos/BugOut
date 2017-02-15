@@ -5,7 +5,8 @@ const { Link } = require('react-router')
 class Info extends React.Component {
 
   handleSubmit () {
-    this.props.router.push('/')
+    const { router, loggedIn } = this.props
+    router.push(`/users/${loggedIn}`)
   }
 
   render () {

@@ -41,7 +41,6 @@ var Map = React.createClass({
     this.geocoder.geocode({ 'address': address, 'location': Latlng}, function handleResults(results, status) {
 
       if (status === google.maps.GeocoderStatus.OK) {
-        console.log("this is geocode results", results);
         this.setState({
           foundAddress: results[0].formatted_address,
           geoCoords: results[0].geometry,
@@ -59,8 +58,6 @@ var Map = React.createClass({
           lng: results[0].geometry.location.lng()
         }
 
-        console.log('this is lat from result', results[0].geometry.location.lat());
-        console.log('this is lng from result', results[0].geometry.location.lng());
 
         return;
       }

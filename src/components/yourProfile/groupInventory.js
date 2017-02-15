@@ -57,7 +57,6 @@ class Inventory extends React.Component {
   }
 
   render () {
-    console.log('this.props', this.props);
     const { groupPlan } = this.props
     const inventory = groupPlan.inventory
 

@@ -1,10 +1,11 @@
 const React = require('react')
+const { connect } = require('react-redux')
 
 const RegisterButton = (props) => {
   const { dispatch } = props
 
   function register () {
-    dispatch({ type: 'SHOWING_COMPONENT', payload: 'REGISTER' })
+    dispatch({ type: 'ENTRY_SHOWING', payload: 'REGISTER' })
   }
 
   return (
@@ -13,4 +14,4 @@ const RegisterButton = (props) => {
     </button>
   )
 }
-module.exports = (RegisterButton)
+module.exports = connect((state) => state)(RegisterButton)

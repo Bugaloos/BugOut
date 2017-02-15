@@ -1,16 +1,15 @@
 const React = require('react')
 const { connect } = require('react-redux')
 const { Link } = require('react-router')
-const Logout = require('../components/logout')
-const antCircle = require('../images/AntNoCircle.png')
+const antCircle = require('../images/antCircle.png')
 const App = (props) => {
   return (
     <div>
-      <div className='navBar'>
+      <div className='mainNav'>
         <nav >
           <Link to='/'>
-            <div id='maintitle'>
-              <h1 id='mainTitleText'>Bug Out </h1>
+            <div id='titleButton'>
+              <h1 id='titleButtonText'>Bug Out </h1>
               <img src={antCircle} />
             </div>
           </Link>
@@ -19,7 +18,6 @@ const App = (props) => {
       <br />
       <br />
       {props.children}
-      <Logout {...props} />
     </div>
   )
 }

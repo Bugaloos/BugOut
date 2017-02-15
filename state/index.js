@@ -11,6 +11,7 @@ module.exports = {
 
   },
   loggedIn: null,
+  formShowing: 'REGISTER',
   messages: [],
   groupPlan: {
     meetingPoint: '',

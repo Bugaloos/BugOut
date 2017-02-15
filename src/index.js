@@ -20,8 +20,8 @@ const Home = require('./containers/home')
 const Group = require('./containers/group')
 const Profile = require('./components/yourProfile')
 const Plan = require('./components/plan')
-const Login = require('./components/login')
-const Register = require('./components/register')
+const Login = require('./containers/home/loginForm')
+const Register = require('./containers/home/register')
 const CreatePlan = require('./containers/createPlan')
 const CreateGroup = require('./components/yourProfile/groupNew')
 
@@ -43,7 +43,8 @@ persistStore(store, {
     'authErr',
     'group',
     'showingComponent',
-    'plan'
+    'plan',
+    'loggedIn'
   ]
 })
 injectTapEventPlugin()

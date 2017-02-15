@@ -19,6 +19,7 @@ const styles = {
 class Inventory extends React.Component {
 
   displayItems (inventory) {
+    console.log('groupInventory', this.props);
     return inventory.map(item => {
       return (
         <div style={styles.block}>

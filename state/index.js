@@ -1,6 +1,7 @@
 module.exports = {
   authErr: null,
   error: null,
+  isLoading: false,
   planShowing: false,
 
   groupStepIndex: 0,
@@ -29,7 +30,7 @@ module.exports = {
   group: {
     proposedGroupName: '',
     step: 0,
-    name: 'pokefriends'
+    name: null
   },
 
   userPlan: {

@@ -5,16 +5,19 @@ const db = require('../../../pouchDB')
 class AddUser extends React.Component {
   addUser () {
     const { dispatch, group } = this.props
-    const userName = this.refs.userName.input.value
+    // dispatch({type: 'LOAD_START'})
+    const userName = this.refs.userName.value
     const groupName = group.name
     db.addUserToGroup(userName, groupName, (err, status) => {  // when user plan
       if (err) console.log('error line 12', err);
       if (status) {
         console.log('hit line 14', status);
         dispatch({type: 'SHOW_USER_ADDED', payload: false})
+        // dispatch({type: 'LOAD_END'})
       } else {
         console.log('hit line 17');
         dispatch({type: 'SHOW_USER_ADDED', payload: true})
+        // dispatch({type: 'LOAD_END'})
       }
       // TODO: HOOK UP TO TIME OUT
     })
@@ -27,7 +30,7 @@ class AddUser extends React.Component {
   render () {
     return (
       <div>
-        {this.userAdded}
+        {this.userAdded()}
         <form>
           <div>
             <input

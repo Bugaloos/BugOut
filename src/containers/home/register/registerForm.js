@@ -26,14 +26,18 @@ class Register extends React.Component {
 
     checkValid(newUser, res => {
       if(res.valid) {
+        dispatch({type: 'LOAD_START'})
         db.register(newUser, (err, status) => {
           if (err) throw error
           if (status.register) {
             dispatch({type: 'AUTH_ERR', payload: null})
             dispatch({type: 'LOG_IN', payload: status.user})
             router.push('/info')
+            dispatch({type: 'LOAD_END'})
+
           } else {
             dispatch({type: 'AUTH_ERR', payload: status.error})
+            dispatch({type: 'LOAD_END'})
           }
         })
       }else{

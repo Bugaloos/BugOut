@@ -93,3 +93,8 @@ button{
 .goBelow {
   clear: both;
 }
+.spinner{
+  position: absolute;
+  right: 45%;
+  top: 50%;
+}

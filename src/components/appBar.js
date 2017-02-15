@@ -4,18 +4,23 @@ const { Link } = require('react-router')
 const LogOut= require('./logout')
 
 
+
 function AppBar (props) {
-  console.log('props');
-  const { dispatch, showingComponent, loggedIn } = props
+  const { dispatch, showingComponent, loggedIn, router} = props
+  function handleClick(payload){
+    dispatch({type: 'SHOWING_COMPONENT', payload: payload})
+    router.push(`/users/${loggedIn}`)
+  }
+  console.log('props', props);
 
   const createGroupButton =
-    <button onClick={() => dispatch({type: 'SHOWING_COMPONENT', payload: 'CREATE_GROUP'})}>Create A Group</button>
+    <button onClick={() => handleClick('CREATE_GROUP')}>Create A Group</button>
 
   const createPlanButton =
-    <button onClick={() => dispatch({type: 'SHOWING_COMPONENT', payload: 'CREATE_PLAN'})}>Create A Plan</button>
+    <button onClick={() => handleClick('CREATE_PLAN')}>Create A Plan</button>
 
   const myProfile =
-    <button onClick={() => dispatch({type: 'SHOWING_COMPONENT', payload: 'MY_PROFILE'})}>My Profile</button>
+    <button onClick={() => handleClick('MY_PROFILE')}>My Profile</button>
 
   return (
       <div>

@@ -46,6 +46,7 @@ class Messageboard extends React.Component {
     return (
       <div className='stepper'>
         <GroupAddUser />
+        <h2>Your Groups Messages</h2>
         <div id='date'>{(moment().format('dddd DD MMMM YYYY '))}</div>
         <div className='messageContainer'>
           <form>

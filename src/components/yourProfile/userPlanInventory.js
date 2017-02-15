@@ -56,7 +56,7 @@ class Inventory extends React.Component {
     const { userPlan, showingComponent, dispatch } = this.props
     const inventory = userPlan.inventory
     const view = (
-      <div>
+      <div className='plan'>
         {this.displayItems(inventory)}
       </div>
     )

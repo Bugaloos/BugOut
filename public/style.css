@@ -96,18 +96,29 @@ button{
   padding: 1.5em;
   margin: auto;
   background-color: #E9E6FF;
-  float: right;
+  float: left;
   margin-right: 5em;
-  width: 50%;
+  width: 40%;
 }
 .addUser{
   margin-bottom: 2em;
-
 }
+
 .messageContainer{
   margin-top: 1em;
   height: 500px;
   overflow-y: scroll;
 }
+.groupTitle{
+  float: left;
+  margin-left: 3em;
+}
+.plan {
+  margin: 3em;
+}
 .theMap{
+  float: left;
+  margin-top: 10%;
+  width: 10%;
+  height: 10%;
 }

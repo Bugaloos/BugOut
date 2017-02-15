@@ -6,16 +6,19 @@ const { Link } = require('react-router')
 const AppBar = require('../components/appBar')
 
 function Group (props) {
+  console.log('group', props);
   return (
     <div>
-      <AppBar />
-      <h1>{props.group.name}</h1>
-      <div className='theMap'>
-        <Map locations={props.locations} />
+      <div className='groupTitle'>
+        <h1>{props.group.name}</h1>
       </div>
+      <AppBar {...props} />
       <div className='groupPlan'>
         <p>This is the main description of the plan for {props.group.name}</p>
         <Messageboard router={props.router} />
+      </div>
+      <div className='theMap'>
+        <Map locations={props.locations} />
       </div>
     </div>
   )

@@ -86,9 +86,9 @@ a #maintitle {
   padding-right: 5%
 }
 button{
-  color: #010101;
+  color: #FEFEFE;
   font-size: 1em;
-  background-color: #fff59d;
+  background-color: #533D25;
   margin: auto;
   padding-left: 2em;
   padding-right: 2em;
@@ -103,5 +103,5 @@ button{
   padding-top: 2em;
   margin: auto;
   text-align: center;
-  background-color: #576C31
+  background-color: #fff59d
 }

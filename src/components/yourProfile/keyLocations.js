@@ -1,6 +1,5 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const TextField = require('material-ui/TextField').default
 const backButton = require('./backButton')
 
 class KeyLocations extends React.Component {

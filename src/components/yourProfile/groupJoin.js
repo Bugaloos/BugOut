@@ -2,7 +2,6 @@ const React = require('react')
 const { connect } = require('react-redux')
 const { Link } = require('react-router')
 const _ = require('lodash')
-const TextField = require('material-ui/TextField').default
 const request = require('superagent')
 const PouchDB = require('pouchdb')
 const db = require('../../../pouchDB')

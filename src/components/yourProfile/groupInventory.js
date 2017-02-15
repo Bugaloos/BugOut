@@ -42,6 +42,7 @@ class Inventory extends React.Component {
       if (err) throw err
       if (status.register){
         dispatch({type: 'GROUP_SUBMITTED', payload: groupName})
+        dispatch({type: 'SHOWING_COMPONENT', payload: 'MY_PROFILE'})
         router.push(`/groups/${groupName}`)
       } else {
         dispatch({type: 'ERROR', payload: 'GROUP_NOT_CREATED'})

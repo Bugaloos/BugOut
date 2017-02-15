@@ -34,7 +34,7 @@ class Inventory extends React.Component {
   }
 
   handleSubmit (){
-    const { dispatch, group, groupPlan, loggedIn } = this.props
+    const { dispatch, group, groupPlan, loggedIn, router } = this.props
     const groupName = group.proposedGroupName.toLowerCase()
     const userName = loggedIn
     db.createGroup(groupName, userName, groupPlan, (err, status) => {
@@ -55,6 +55,7 @@ class Inventory extends React.Component {
   }
 
   render () {
+    console.log('this.props', this.props);
     const { groupPlan } = this.props
     const inventory = groupPlan.inventory
 

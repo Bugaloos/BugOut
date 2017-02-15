@@ -106,3 +106,8 @@ button{
   text-align: center;
   background-color: #fff59d
 }
+.spinner{
+  position: absolute;
+  right: 45%;
+  top: 50%;
+}

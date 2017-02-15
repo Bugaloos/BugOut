@@ -1,7 +1,7 @@
 module.exports = {
   authErr: null,
   error: null,
-
+  isLoading: false,
   groupStepIndex: 0,
   locations: {
     meetingPoint: {lat:-41, lng:179},

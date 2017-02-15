@@ -19,8 +19,9 @@ class Plan extends React.Component {
     const { planShowing } = this.props
     const showing = (
       <div>
-      <Inventory />
-      <Map />
+        <button onClick={this.handleClick.bind(this)}>Hide Plan</button>
+        <Inventory />
+        <Map />
       </div>
     )
     const hidden = (

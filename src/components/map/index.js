@@ -4,12 +4,12 @@ const _ = require('lodash')
 var INITIAL_LOCATION = {
   address: 'Wellington, New Zealand',
   position: {
-    latitude: -41.310552,
-    longitude: 174.763051
+    latitude: -41.28664,
+    longitude: 174.77557
   }
 };
 
-var INITIAL_MAP_ZOOM_LEVEL = 15;
+var INITIAL_MAP_ZOOM_LEVEL = 13;
 
 var ATLANTIC_OCEAN = {
   latitude: 29.532804,
@@ -18,16 +18,18 @@ var ATLANTIC_OCEAN = {
 
 
 var Map = React.createClass({
-  getInitialState: function () {
-    return {
-      isGeocodingError: false,
-      foundAddress: INITIAL_LOCATION.address
-    };
-  },
+  // getInitialState: function () {
+  //   return {
+  //     isGeocodingError: false,
+  //     foundAddress: INITIAL_LOCATION.address
+  //   };
+  // },
 
 
-  componentWillReceiveProps: function (locations) {
-    this.locations = _.map(this.props.locations, (location) => {
+  componentDidUpdate: function (prevProps) {
+    console.log("this is props", this.props);
+    console.log("this is map", this.map);
+    this.locations = _.map(this.props.locations, (location, locationKey) => {  // locationKey: 'meetingPoint'
       return new google.maps.Marker({
         map: this.map,
         position: location
@@ -48,11 +50,11 @@ var Map = React.createClass({
           isGeocodingError: false
         });
 
-        this.geocoder = new google.maps.Geocoder();
+        // this.geocoder = new google.maps.Geocoder();
 
         const {dispatch} = this.props
         this.map.setCenter(results[0].geometry.location);
-        this.marker.setPosition(results[0].geometry.location);
+        // this.marker.setPosition(results[0].geometry.location);
 
         const coords = {
           lat: results[0].geometry.location.lat(),
@@ -65,20 +67,20 @@ var Map = React.createClass({
         return;
       }
 
-      this.setState({
-        foundAddress: null,
-        isGeocodingError: true
-      });
+      // this.setState({
+      //   foundAddress: null,
+      //   isGeocodingError: true
+      // });
 
       this.map.setCenter({
         lat: ATLANTIC_OCEAN.latitude,
         lng: ATLANTIC_OCEAN.longitude
       });
 
-      this.marker.setPosition({
-        lat: ATLANTIC_OCEAN.latitude,
-        lng: ATLANTIC_OCEAN.longitude
-      });
+      // this.marker.setPosition({
+      //   lat: results[0].geometry.location.latitude,
+      //   lng: results[0].geometry.location.longitude
+      // });
 
     }.bind(this));
   },
@@ -111,13 +113,13 @@ var Map = React.createClass({
     })
     console.log('this.locations: ', this.locations);
 
-    this.marker = new google.maps.Marker({
-      map: this.map,
-      position: {
-        lat: INITIAL_LOCATION.position.latitude,
-        lng: INITIAL_LOCATION.position.longitude
-      }
-    });
+    // this.marker = new google.maps.Marker({
+    //   map: this.map,
+    //   position: {
+    //     lat: INITIAL_LOCATION.position.latitude,
+    //     lng: INITIAL_LOCATION.position.longitude
+    //   }
+    // });
 
 
   },

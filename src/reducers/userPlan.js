@@ -14,8 +14,6 @@ module.exports = function userPlan (state = initialState.userPlan, action) {
       }
     case 'UPDATE_PLAN_LOCATIONS':
       return Object.assign({}, state, {
-        safePoint: action.payload.safePoint,
-        meetingPoint: action.payload.meetingPoint,
         step: state.step + 1
       })
 

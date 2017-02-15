@@ -7,6 +7,7 @@ const loggedIn = require('./loggedIn')
 const messages = require('./messages')
 const userPlan = require('./userPlan')
 const showingComponent = require('./showingComponent')
+const locations = require('./locations')
 
 
 module.exports = combineReducers({
@@ -17,5 +18,6 @@ module.exports = combineReducers({
   loggedIn,
   messages,
   showingComponent,
-  userPlan
+  userPlan,
+  locations
 })

@@ -7,9 +7,8 @@ module.exports = {
     meetingPoint: {lat:-41, lng:179},
     safePoint: {lat:-41, lng:180},
     cache: {lat:-41, lng:181}
-
-
   },
+
   loggedIn: null,
   messages: [],
   groupPlan: {
@@ -31,8 +30,6 @@ module.exports = {
   },
 
   userPlan: {
-    meetingPoint: '',
-    safePoint: '',
     step: 0,
     inventory: [
       {name: 'Torch', checked: false},

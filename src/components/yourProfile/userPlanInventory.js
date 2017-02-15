@@ -32,11 +32,13 @@ class Inventory extends React.Component {
   }
 
   handleSubmit () {
+    console.log('this.props', this.props);
     const { dispatch, userPlan, loggedIn } = this.props
     const userName = loggedIn
     db.createUserPlan(userName, userPlan, (err, status) => {
+      console.log(status);
       if (err) throw err
-      if (status.update) {
+      if (status.add) {
         dispatch({type: 'SHOWING_COMPONENT', payload: 'MY_PROFILE'})
       } else {
         dispatch({type: 'ERROR', payload: 'PLAN_NOT_SUBMITTED'})
@@ -51,17 +53,24 @@ class Inventory extends React.Component {
   }
 
   render () {
-    const { userPlan } = this.props
+    const { userPlan, showingComponent, dispatch } = this.props
     const inventory = userPlan.inventory
-
-    return (
+    const view = (
+      <div className='plan'>
+        {this.displayItems(inventory)}
+      </div>
+    )
+    const create = (
       <div>
         {this.displayItems(inventory)}
         <button onClick={this.handleSubmit.bind(this)}> Submit </button>
-        <button onClick={() => { handlePrev(this.props.showingComponent, this.props.dispatch) }}>Back</button>
-
+        <button onClick={() => { handlePrev(showingComponent, dispatch) }}>Back</button>
       </div>
     )
+    const display = showingComponent === 'CREATE_PLAN'
+      ? create
+      : view
+    return display
   }
 }
 

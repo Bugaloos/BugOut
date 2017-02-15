@@ -4,22 +4,22 @@
     "description": "Make a plan for you and your loved ones that is ready when you need it",
     "icons": [
         {
-            "src": "../src/images/favicons/favicon-32x32.png",
+            "src": "./favicons/favicon-32x32.png",
             "sizes": "32x32",
             "type": "image/png"
         },
         {
-            "src": "../src/images/favicons/android-chrome-192x192.png.png",
+            "src": "./favicons/android-chrome-192x192.png.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "../src/images/favicons/mstile-150x150.png",
+            "src": "./favicons/mstile-150x150.png",
             "sizes": "150x150",
             "type": "image/png"
         },
         {
-            "src": "../src/images/favicons/android-chrome-512x512.png",
+            "src": "./favicons/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         },

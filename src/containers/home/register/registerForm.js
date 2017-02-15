@@ -5,7 +5,7 @@ const _ = require('lodash')
 const request = require('superagent')
 const PouchDB = require('pouchdb')
 
-const db = require('../../../pouchDB')
+const db = require('../../../../pouchDB')
 const checkValid = require('./checkvalid')
 
 class Register extends React.Component {

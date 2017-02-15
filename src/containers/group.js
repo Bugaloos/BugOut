@@ -3,20 +3,23 @@ const { connect } = require('react-redux')
 const Messageboard = require('../components/messageboard')
 const Map = require('../components/map')
 const { Link } = require('react-router')
+const AppBar = require('../components/appBar')
 
-// This container will have a text about the groups plan based upon the groupsID and will also call the messageboard component using the groupsID.
-
-// Along the side of this component will be a list of all the users who are part of this group based on searching the database for ???
 function Group (props) {
+  console.log('group', props);
   return (
     <div>
-      <h1>{props.group.name}</h1>
-      <Link to={`/users/${props.loggedIn}`}>
-        <button>{props.loggedIn}s profile</button>
-      </Link>
-      <Map locations={props.locations}/>
-      <p>This is the main description of the plan for {props.group.name}</p>
-      <Messageboard router={props.router} />
+      <div className='groupTitle'>
+        <h1>{props.group.name}</h1>
+      </div>
+      <AppBar {...props} />
+      <div className='groupPlan'>
+        <p>This is the main description of the plan for {props.group.name}</p>
+        <Messageboard router={props.router} />
+      </div>
+      <div className='theMap'>
+        <Map locations={props.locations} />
+      </div>
     </div>
   )
 }

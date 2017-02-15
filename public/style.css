@@ -1,37 +1,36 @@
-colours { #010101
-         #533D25
-         #C1A986
-         #576C31
-         #564E0F
-         #CC8745
-         #FFFFFF
-         #fff59d
+colours {#010101
+         #2364AA
+         #E9E6FF
+         #593F62
+         #C9F0FF
+         #FCBA04
 }
 
 body {
-  background-color: #C1A986     ;
+  background-color: #E9E6FF     ;
   font-family: 'Raleway', sans-serif;
   text-align: center;
   color: 212121;
 }
 ::-webkit-input-placeholder { /* Chrome */
-  color: #708090;
+  color: #E9E6FF;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: #708090;
+  color: #E9E6FF;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #708090;
+  color: #E9E6FF;
   opacity: 1;
 }
 :-moz-placeholder { /* Firefox 4 - 18 */
-  color: #708090;
+  color: #E9E6FF;
   opacity: 1;
 }
-.input textarea{
-    color: #010101;
+.input select textarea{
+    color: #2364AA;
 }
 .input {
+  color: #E9E6FF;
   display: block;
   margin: auto;
   width: 70%;
@@ -42,7 +41,7 @@ body {
   border-radius: none;
   border: none;
   padding: 1em;
-  background-color: #C1A986
+  background-color: #593F62
 }
 
 .input:focus {
@@ -51,45 +50,18 @@ body {
 .stepper{
   padding: 1.5em;
   margin: auto;
-  width: 50%;
-  background-color: #fff59d
+  background-color: #E9E6FF
 }
-.navBar{
-  margin: auto;
-  margin: 3 em;
-  padding: 2em;
-  width: 40%;
-  background-color: #fff59d;
-}
-
-a #maintitle {
-  color: #576C31;
-  padding-top: 5%;
-  border-radius: 25%;
-  border-width: medium;
-  border-color: #576C31;
-  border-style: solid;
-  overflow: hidden;
-}
-
-#mainTitleText {
-  color: #FEFEFE
-  width: 65%;
+#titleButton img {
   float: left;
-  padding-left: 15%;
-  font-size: 4em;
-}
-
-#maintitle img {
-  margin-top: 3%;
-  width: 14%;
-  padding-right: 5%;
-  padding-bottom: 2%
+  margin-top: 2%;
+  width: 25%;
+  padding-left: 4%;
 }
 button{
   color: #FEFEFE;
   font-size: 1em;
-  background-color: #533D25;
+  background-color: #2364AA;
   margin: auto;
   padding-left: 2em;
   padding-right: 2em;
@@ -98,11 +70,55 @@ button{
   margin: 1em;
   border: none
 }
-.homepage{
+#loginButton {
+  background-color: #593F62;
+  float: right;
+}
+.mainComponent{
+  clear: both;
   width: 50%;
   padding: 5em;
   padding-top: 2em;
   margin: auto;
   text-align: center;
-  background-color: #fff59d
+}
+.onTheLeft {
+  float: left;
+}
+
+.onTheRight {
+  float: right;
+}
+.goBelow {
+  clear: both;
+}
+.groupPlan {
+  padding: 1.5em;
+  margin: auto;
+  background-color: #E9E6FF;
+  float: left;
+  margin-right: 5em;
+  width: 40%;
+}
+.addUser{
+  margin-bottom: 2em;
+}
+
+.messageContainer{
+  margin-top: 1em;
+  height: 500px;
+  overflow-y: scroll;
+}
+.groupTitle{
+  float: left;
+  margin-left: 3em;
+}
+.plan {
+  margin: 3em;
+}
+.theMap{
+  float: left;
+  margin-top: 10%;
+  width: 10%;
+  height: 10%;
 }

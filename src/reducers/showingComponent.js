@@ -6,9 +6,6 @@ module.exports = function showingComponent (state = initialState.showingComponen
       state = action.payload
       return state
 
-    case 'LOG_OUT':
-      return initialState.showingComponent
-
     default:
       return state
   }

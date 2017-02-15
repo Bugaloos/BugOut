@@ -135,13 +135,11 @@ var Map = React.createClass({
     return (
       <div className="container">
         <div className="row">
-          <div style={{width:'100%', height:'100%'}} className="col-sm-12">
-            <div style={{width:800, height:600}} className="map" ref={this.setMapElementReference}></div>
+            <div style={{width:400, height:400}} className="map" ref={this.setMapElementReference}></div>
           </div>
-        </div>
       </div>
-    );
+    )
   }
-});
+})
 
 module.exports = Map;

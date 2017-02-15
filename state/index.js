@@ -1,6 +1,7 @@
 module.exports = {
   authErr: null,
   error: null,
+  planShowing: false,
 
   groupStepIndex: 0,
   locations: {
@@ -11,6 +12,7 @@ module.exports = {
 
   },
   loggedIn: null,
+  formShowing: 'REGISTER',
   messages: [],
   groupPlan: {
     meetingPoint: '',

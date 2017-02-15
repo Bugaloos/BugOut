@@ -4,7 +4,6 @@ const LoginButton = require('./showLoginButton')
 const FormShowing = require('./formShowing')
 
 function NotLoggedIn (props) {
-  console.log('this time for sure', props);
   return (
     <div>
       <div >

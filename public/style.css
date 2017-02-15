@@ -50,37 +50,14 @@ body {
 .stepper{
   padding: 1.5em;
   margin: auto;
-  width: 50%;
-  background-color: #fff59d
-}
-.mainNav{
-  padding: 2em;
-  width: 20%;
-  float: left
-}
-
-a #titleButton {
-  color: #FCBA04;
-  padding-top: 5%;
-  border-radius: 25%;
-  border-width: medium;
-  border-color: #FCBA04;
-  border-style: solid;
-  overflow: hidden;
-}
-
-#titleButtonText {
-  color: black;
-  font-size: 1.5em;
-  width: 10%;
-  float: left;
-  padding-left: 15%;
+  background-color: #E9E6FF
 }
 
 #titleButton img {
-  margin-top: 9%;
+  float: left;
+  margin-top: 2%;
   width: 25%;
-  padding-right: 2%;
+  padding-left: 4%;
 }
 button{
   color: #FEFEFE;
@@ -105,4 +82,14 @@ button{
   padding-top: 2em;
   margin: auto;
   text-align: center;
+}
+.onTheLeft {
+  float: left;
+}
+
+.onTheRight {
+  float: right;
+}
+.goBelow {
+  clear: both;
 }

@@ -16,7 +16,6 @@ const {
 class HalfStepper extends React.Component {
 
   render () {
-    console.log('groupNew', this.props);
     const { group } = this.props
 
     return (
@@ -37,7 +36,7 @@ class HalfStepper extends React.Component {
           <Step>
             <StepLabel>Create Your Cache</StepLabel>
             <StepContent>
-              < GroupInventory {...this.props} />
+              < GroupInventory />
             </StepContent>
           </Step>
         </Stepper>

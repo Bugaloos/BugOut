@@ -61,7 +61,22 @@ module.exports = {
   createGroup: function (groupName, userName, groupPlan, cb) {
     request.post('api/v1/groups/create')
       .send({ groupName, userName, groupPlan })
-      .end((err, res) => cb(err, res.body))
+      .then(res => {
+        if (!res.body.register) {
+          cb(null, res.body)
+        } else {
+          var newGroupDB = new PouchDB(groupName)
+          request.get('api/v1/getAuth')
+            .then(response => {
+              const newGroupRemoteCouch = new PouchDB(`https://bill-burgess.cloudant.com/${groupName}`, {auth: response.body})
+              const opts = {
+                live: true,
+                retry: false
+              }
+              PouchDB.sync(groupName, newGroupRemoteCouch)
+            })
+          }
+      })
   },
 
   postMessage: function (userName, group, message, cb) {

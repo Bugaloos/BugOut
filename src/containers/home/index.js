@@ -8,7 +8,7 @@ const NotLoggedIn = require('./notLoggedIn')
 
 function Home (props) {
   return props.loggedIn
-    ? <YourProfile {...props} />
+    ? <YourProfile />
     : <NotLoggedIn {...props} />
 }
 

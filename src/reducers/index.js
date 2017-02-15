@@ -8,6 +8,7 @@ const loggedIn = require('./loggedIn')
 const messages = require('./messages')
 const userPlan = require('./userPlan')
 const showingComponent = require('./showingComponent')
+const planShowing = require('./planShowing')
 
 module.exports = combineReducers({
   authErr,
@@ -18,5 +19,6 @@ module.exports = combineReducers({
   loggedIn,
   messages,
   showingComponent,
-  userPlan
+  userPlan,
+  planShowing
 })

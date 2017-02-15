@@ -1,6 +1,7 @@
 module.exports = {
   authErr: null,
   error: null,
+  planShowing: false,
 
   groupStepIndex: 0,
   locations: {

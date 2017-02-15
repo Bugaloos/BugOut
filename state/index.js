@@ -26,7 +26,7 @@ module.exports = {
     ]
   },
   group: {
-    proposedGroupName: '',
+    proposedGroupName: null,
     step: 0,
     name: 'pokefriends'
   },

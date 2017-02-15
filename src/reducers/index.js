@@ -8,6 +8,9 @@ const messages = require('./messages')
 const userPlan = require('./userPlan')
 const showingComponent = require('./showingComponent')
 
+
+
+
 module.exports = combineReducers({
   authErr,
   error,
@@ -18,3 +21,11 @@ module.exports = combineReducers({
   showingComponent,
   userPlan
 })
+
+// const rootReducer = (state, action) => {
+//   if (action.type === 'LOG_OUT') {
+//     state = undefined
+//   }
+//
+//   return appReducer(state, action)
+// }

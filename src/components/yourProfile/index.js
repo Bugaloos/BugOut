@@ -34,7 +34,6 @@ function Profile (props) {
     <div >
       <div>{myProfile}{createPlanButton}{createGroupButton}</div>
       <div className='mainComponent'>
-        <h1> Welcome {loggedIn}</h1>
         <div>{getComponent(showingComponent)}</div>
     </div>
     </div>

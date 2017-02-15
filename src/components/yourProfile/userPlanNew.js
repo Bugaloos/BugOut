@@ -19,7 +19,9 @@ class UserPlanStepper extends React.Component {
     const { userPlan } = this.props
     console.log('this is the plan', userPlan)
     return (
+
       <div className='stepper'>
+        <h2>Make Your Plan</h2>
         <Stepper activeStep={userPlan.step} orientation='vertical'>
           <Step>
             <StepLabel>Key Locations</StepLabel>

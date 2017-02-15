@@ -7,6 +7,7 @@ const OfflineDetails = require('../offlineDetails')
 function CompleteProfile (props) {
   return (
     <div>
+      <h1> Welcome {props.loggedIn}</h1>
       <div className='onTheLeft'>
         <h2>Your Plans</h2>
         <Plan {...props} />

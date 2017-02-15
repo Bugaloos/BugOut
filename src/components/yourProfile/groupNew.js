@@ -20,6 +20,7 @@ class HalfStepper extends React.Component {
 
     return (
       <div className='stepper'>
+        <h2>Make Your Group</h2>
         <Stepper activeStep={group.step} orientation='vertical'>
           <Step>
             <StepLabel>Setup Your Group</StepLabel>

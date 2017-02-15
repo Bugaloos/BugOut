@@ -31,10 +31,12 @@ function Profile (props) {
   }
 
   return (
-    <div>
-      <h1> Welcome {loggedIn}</h1>
+    <div >
       <div>{myProfile}{createPlanButton}{createGroupButton}</div>
-      <div>{getComponent(showingComponent)}</div>
+      <div className='mainComponent'>
+        <h1> Welcome {loggedIn}</h1>
+        <div>{getComponent(showingComponent)}</div>
+    </div>
     </div>
   )
 }

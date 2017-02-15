@@ -7,15 +7,15 @@ const OfflineDetails = require('../offlineDetails')
 function CompleteProfile (props) {
   return (
     <div>
-      <div>
+      <div className='onTheLeft'>
         <h2>Your Plans</h2>
         <Plan {...props} />
       </div>
-      <div>
+      <div className='onTheRight'>
         <h2>Your Groups</h2>
         <Group {...props} />
       </div>
-      <div>
+      <div className='goBelow'>
         <OfflineDetails />
       </div>
     </div>

@@ -84,3 +84,13 @@ button{
   margin: auto;
   text-align: center;
 }
+.onTheLeft {
+  float: left;
+}
+
+.onTheRight {
+  float: right;
+}
+.goBelow {
+  clear: both;
+}

@@ -5,14 +5,13 @@ const _ = require('lodash')
 const request = require('superagent')
 const PouchDB = require('pouchdb')
 
-const db = require('../../../pouchDB')
+const db = require('../../../../pouchDB')
 const checkValid = require('./checkvalid')
 
 class Register extends React.Component {
 
   handleSubmit () {
-    const { dispatch } = this.props
-
+    const { dispatch, router } = this.props
     const userName = this.refs.userName.value
     const email = this.refs.email.value
     const password = this.refs.password.value
@@ -33,8 +32,9 @@ class Register extends React.Component {
           if (status.register) {
             dispatch({type: 'AUTH_ERR', payload: null})
             dispatch({type: 'LOG_IN', payload: status.user})
-            this.props.router.push(`/users/${status.user._id}`)
+            router.push('/info')
             dispatch({type: 'LOAD_END'})
+
           } else {
             dispatch({type: 'AUTH_ERR', payload: status.error})
             dispatch({type: 'LOAD_END'})
@@ -48,6 +48,7 @@ class Register extends React.Component {
 
 
   render () {
+    console.log('HERE!', this.props);
 
     return (
       <form>

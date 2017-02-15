@@ -2,6 +2,8 @@ module.exports = {
   authErr: null,
   error: null,
   isLoading: false,
+  planShowing: false,
+
   groupStepIndex: 0,
   locations: {
     meetingPoint: {lat:-41, lng:179},
@@ -11,6 +13,7 @@ module.exports = {
 
   },
   loggedIn: null,
+  formShowing: 'REGISTER',
   messages: [],
   groupPlan: {
     meetingPoint: '',
@@ -27,7 +30,7 @@ module.exports = {
   group: {
     proposedGroupName: '',
     step: 0,
-    name: 'pokefriends'
+    name: null
   },
 
   userPlan: {

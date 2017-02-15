@@ -23,10 +23,6 @@ class OfflineDetails extends React.Component {
         <p>You will also be able post to your message board, where your messages will wait until connection is reastablished,
         allowing you to keep communicating with patchy internet connection.
         </p>
-
-        <form>
-          <button onClick={this.handleSubmit.bind(this)}> I get it already </button>
-        </form>
       </div>
       //completeProfile is where OfflineDetails is being rendered for no particular reason.
     )

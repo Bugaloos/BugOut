@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 const PATHS = {
   entry: path.join(__dirname, '/src/index.js'),
@@ -45,6 +46,11 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
   ],
 
   devtool: 'eval-source-map'

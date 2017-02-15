@@ -1,21 +1,32 @@
 const React = require('react')
-const { connect } = require('react-redux')
-const Login = require('../../components/login')
-const Register = require('../../components/register')
-const Info = require('../../components/info')
-// If no active session is detected. This component will have text at the top explaining how the app works as well as visual example of the process of registering. Further down it will call the login and register components.
+const { connect, Link } = require('react-redux')
+const LoginButton = require('./showLoginButton')
+const FormShowing = require('./formShowing')
 
-// If an active session is detected, this page will ???(redirect to profile? render profile)???
-
-function Home (props) {
+function NotLoggedIn (props) {
   return (
-    <div className='homepage'>
-      <h3>Make a plan for you and your loved ones that is ready when you need it</h3>
-      < Register {...props} />
-      < Login {...props} />
-      < Info />
+    <div>
+      <div >
+        <LoginButton />
+      </div>
+      <div className='mainComponent'>
+        <h2>In the case of an emergency, you and your loved ones will want to be prepared,
+        and Bug Out is here to help!</h2>
+
+        <p>Here are a few key concepts:</p>
+        <p>You can make a personal and/or group plan to aid you in an emergency.</p>
+        <p>In both plans you will input the addresses of your 'Meeting Point' and 'Safe point',
+        which will appear on a map for you to refer to, regardless of whether or not you have
+        internet connection.</p>
+        <p>Through Bug Out you can also message people if they are in your group,
+        even if you have limited or no internet connection!</p>
+        <p>Messages posted to your group message board will wait until connection is restored,
+        and send as soon as possible, allowing you to communicate more easily in an emergency scenario.</p>
+
+        <FormShowing {...props} />
+      </div>
     </div>
   )
 }
 
-module.exports = connect((state) => state)(Home)
+module.exports = connect((state) => state)(NotLoggedIn)

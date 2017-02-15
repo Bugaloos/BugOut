@@ -5,7 +5,7 @@ const ShowRegisterButton = require('./showRegisterButton')
 const RegisterFormShowing = (props) => {
   return props.showingComponent === 'REGISTER'
     ? <RegisterForm {...props} />
-    : <ShowRegisterButton {...props} />
+    : <ShowRegisterButton />
 }
 
 module.exports = (RegisterFormShowing)

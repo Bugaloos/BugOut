@@ -22,15 +22,15 @@ class AddUser extends React.Component {
       // TODO: HOOK UP TO TIME OUT
     })
   }
-  userAdded () {
-    return this.props.userAdded
-    ? <p>User Successfully Added to Group</p>
-    : <p>Failed to Add User</p>
-  }
+  // userAdded () {
+  //   return this.props.userAdded
+  //   ? <p>User Successfully Added to Group</p>
+  //   : <p>Failed to Add User</p>
+  // }
+  // {this.userAdded()}
   render () {
     return (
       <div>
-        {this.userAdded()}
         <form>
           <div>
             <input

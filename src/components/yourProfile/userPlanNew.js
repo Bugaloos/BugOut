@@ -19,7 +19,7 @@ class UserPlanStepper extends React.Component {
     const { userPlan } = this.props
     console.log('this is the plan', userPlan)
     return (
-      <div style={{maxWidth: 500, maxHeight: 400, margin: 'auto'}}>
+      <div className='stepper'>
         <Stepper activeStep={userPlan.step} orientation='vertical'>
           <Step>
             <StepLabel>Key Locations</StepLabel>

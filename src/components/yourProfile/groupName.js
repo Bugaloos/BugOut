@@ -1,11 +1,10 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const TextField = require('material-ui/TextField').default
 const db = require('../../../pouchDB')
 
 class GroupName extends React.Component {
   moveForward () {
-    const groupName = this.refs.groupName.input.value
+    const groupName = this.refs.groupName.value
     const { dispatch } = this.props
     db.checkGroupUnique(groupName, (err, status) => {
       if (err) throw err
@@ -22,9 +21,11 @@ class GroupName extends React.Component {
       <div>
         <form>
           <div>
-            <TextField
-              hintText='Group Name'
-              ref='groupName' />
+            <input
+              placeholder='Group Name'
+              ref='groupName'
+              className='input'
+              />
             <br />
           </div>
           <button onClick={() => this.moveForward()}>Next Step</button>

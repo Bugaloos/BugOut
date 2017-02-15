@@ -1,6 +1,5 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const TextField = require('material-ui/TextField').default
 const db = require('../../../pouchDB')
 
 class AddUser extends React.Component {
@@ -31,9 +30,10 @@ class AddUser extends React.Component {
         {this.userAdded}
         <form>
           <div>
-            <TextField
-              hintText='User Name'
-              ref='userName' />
+            <input
+              placeholder='User Name'
+              ref='userName'
+              className='input' />
             <br />
           </div>
           <button onClick={() => this.addUser()}>Add User</button>

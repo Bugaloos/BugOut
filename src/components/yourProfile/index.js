@@ -20,7 +20,7 @@ function Profile (props) {
     switch (component) {
 
       case 'CREATE_GROUP':
-        return <GroupNew {...props} />
+        return <GroupNew />
       case 'CREATE_PLAN':
         return <UserPlanNew />
       case 'MY_PROFILE':

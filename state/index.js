@@ -1,6 +1,7 @@
 module.exports = {
   authErr: null,
   error: null,
+  isLoading: false,
   planShowing: false,
 
   groupStepIndex: 0,

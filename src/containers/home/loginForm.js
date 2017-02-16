@@ -13,6 +13,8 @@ class Login extends React.Component {
     const userName = this.refs.userName.value
     const password = this.refs.password.value
 
+    dispatch({type:'LOAD_START'})
+
     db.login({ userName, password }, (err, status) => {
       if (err) throw err
       if (status.login) {
@@ -20,8 +22,10 @@ class Login extends React.Component {
         dispatch({type: 'LOG_IN', payload: status.user._id})
         console.log(this.props);
         this.props.router.push(`/users/${status.user._id}`)
+        dispatch({type:'LOAD_END'})
       } else {
         dispatch({type: 'AUTH_ERR', payload: status.error})
+        dispatch({type:'LOAD_END'})
       }
     })
   }

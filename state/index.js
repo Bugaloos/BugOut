@@ -29,7 +29,7 @@ module.exports = {
   group: {
     proposedGroupName: '',
     step: 0,
-    name: 'pokefriends'
+    name: null
   },
 
   userPlan: {

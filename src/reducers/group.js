@@ -16,6 +16,13 @@ module.exports = function group (state = initialState.group, action) {
     case 'GROUP_FORWARD':
       return Object.assign({}, state, {step: state.step + 1})
 
+    case 'GROUP_SUBMITTED':
+      return Object.assign({}, state, {
+          proposedGroupName: null,
+          step: 0,
+          name: action.payload
+      })
+
 
     case 'LOG_OUT':
       return initialState.group

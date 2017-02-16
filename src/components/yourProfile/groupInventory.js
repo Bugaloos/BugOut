@@ -34,13 +34,15 @@ class Inventory extends React.Component {
   }
 
   handleSubmit (){
-    const { dispatch, group, groupPlan, loggedIn } = this.props
+    const { dispatch, group, groupPlan, loggedIn, router } = this.props
     const groupName = group.proposedGroupName.toLowerCase()
     const userName = loggedIn
     db.createGroup(groupName, userName, groupPlan, (err, status) => {
       if (err) throw err
       if (status.register){
         dispatch({type: 'GROUP_SUBMITTED', payload: groupName})
+        dispatch({type: 'SHOWING_COMPONENT', payload: 'MY_PROFILE'})
+        router.push(`/groups/${groupName}`)
       } else {
         dispatch({type: 'ERROR', payload: 'GROUP_NOT_CREATED'})
       }

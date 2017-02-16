@@ -46,6 +46,7 @@
     "express-session": "^1.15.0",
     "file-loader": "^0.10.0",
     "fs": "0.0.1-security",
+    "halogen": "^0.2.0",
     "history": "^4.5.1",
     "inject-lr-script": "^2.1.0",
     "knex": "^0.12.6",

@@ -8,9 +8,11 @@ const loggedIn = require('./loggedIn')
 const messages = require('./messages')
 const userPlan = require('./userPlan')
 const showingComponent = require('./showingComponent')
+const isLoading = require('./isLoading')
 const planShowing = require('./planShowing')
 
 module.exports = combineReducers({
+  isLoading,
   authErr,
   error,
   formShowing,

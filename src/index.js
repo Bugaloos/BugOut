@@ -44,6 +44,8 @@ persistStore(store, {
     'group',
     'showingComponent',
     'plan',
+    'isLoading'
+
   ]
 })
 injectTapEventPlugin()

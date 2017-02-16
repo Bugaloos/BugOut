@@ -117,9 +117,8 @@ button{
 .plan {
   margin: 3em;
 }
-.theMap{
-  float: left;
-  margin-top: 10%;
-  width: 10%;
-  height: 10%;
+.spinner{
+  position: absolute;
+  right: 45%;
+  top: 50%;
 }

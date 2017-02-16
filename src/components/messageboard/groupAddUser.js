@@ -29,8 +29,8 @@ class AddUser extends React.Component {
   }
   render () {
     return (
-      <div>
-        {this.userAdded()}
+      <div className='addUser'>
+        <h2>Add Somebody To Your Group</h2>
         <form>
           <div>
             <input

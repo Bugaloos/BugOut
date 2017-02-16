@@ -10,7 +10,7 @@ class OfflineDetails extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='onTheRight'>
         <h3>Offline Experience</h3>
 
         <p>In the case of an Emergency such as a natural disaster, it is possible your device

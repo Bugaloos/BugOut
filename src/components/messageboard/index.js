@@ -43,16 +43,20 @@ class Messageboard extends React.Component {
   }
   render () {
     return (
-      <div className='stepper'>
-        <GroupAddUser />
-        <span>{(moment().format('dddd DD MMMM YYYY '))}</span>
-        <form>
-          <input ref='message' placeholder='Your Message' className='input' type='text' />
-          <button  onClick={this.handleClick.bind(this)} type='submit'>
-          Post
-          </button>
-        </form>
-        <Messages />
+      <div className='messageWorld'>
+        <h2>Your Groups Messages</h2>
+        <div id='date'>{(moment().format('dddd DD MMMM YYYY '))}</div>
+        <div className='messageContainer'>
+          <form>
+            <input ref='message' placeholder='Your Message' className='input' type='text' />
+            <button  onClick={this.handleClick.bind(this)} type='submit'>
+              Post
+            </button>
+          </form>
+          <br/>
+          <br/>
+          <Messages />
+        </div>
       </div>
     )
   }

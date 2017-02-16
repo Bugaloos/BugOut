@@ -52,7 +52,6 @@ body {
   margin: auto;
   background-color: #E9E6FF
 }
-
 #titleButton img {
   float: left;
   margin-top: 2%;
@@ -92,6 +91,31 @@ button{
 }
 .goBelow {
   clear: both;
+}
+.groupPlan {
+  margin-top: 5em;
+ clear: both;
+}
+.addUser{
+  float: right;
+  margin-right: 10em;
+}
+.messageWorld{
+  float: left;
+  margin-left: 7em;
+  width: 50em
+}
+.messageContainer{
+  margin-top: 1em;
+  height: 500px;
+  overflow-y: scroll;
+}
+.groupTitle{
+  float: left;
+  margin-left: 3em;
+}
+.plan {
+  margin: 3em;
 }
 .spinner{
   position: absolute;

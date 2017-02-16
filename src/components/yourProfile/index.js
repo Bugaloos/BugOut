@@ -3,20 +3,10 @@ const { connect } = require('react-redux')
 const GroupNew = require('./groupNew')
 const UserPlanNew = require('./userPlanNew')
 const CompleteProfile = require('./completeProfile')
-const LogOut= require('../logout')
+const AppBar = require('../appBar')
 
 function Profile (props) {
   const { dispatch, showingComponent, loggedIn } = props
-
-  const createGroupButton =
-    <button onClick={() => dispatch({type: 'SHOWING_COMPONENT', payload: 'CREATE_GROUP'})}>Create A Group</button>
-
-  const createPlanButton =
-    <button onClick={() => dispatch({type: 'SHOWING_COMPONENT', payload: 'CREATE_PLAN'})}>Create A Plan</button>
-
-  const myProfile =
-    <button onClick={() => dispatch({type: 'SHOWING_COMPONENT', payload: 'MY_PROFILE'})}>My Profile</button>
-
   function getComponent (component) {
     switch (component) {
 
@@ -33,11 +23,7 @@ function Profile (props) {
 
   return (
     <div >
-      <div>{myProfile}
-        {createPlanButton}
-        {createGroupButton}
-        <LogOut {...props} />
-      </div>
+      <AppBar {...props} />
       <div className='mainComponent'>
         <div>{getComponent(showingComponent)}</div>
     </div>

@@ -1,5 +1,5 @@
 const initialState = require('../../state')
-module.exports = function loggedIn (state = null, action) {
+module.exports = function loggedIn (state = initialState.loggedIn, action) {
   switch (action.type) {
 
     case 'LOG_IN':

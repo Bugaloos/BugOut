@@ -37,7 +37,7 @@ class HalfStepper extends React.Component {
           <Step>
             <StepLabel>Create Your Cache</StepLabel>
             <StepContent>
-              < GroupInventory />
+              < GroupInventory {...this.props} />
             </StepContent>
           </Step>
         </Stepper>

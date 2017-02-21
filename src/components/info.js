@@ -11,7 +11,7 @@ class Info extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='info'>
         <h3>Kia Ora</h3>
         <h4>Thanks for signing up!</h4>
         <p>We are about to take you through the process of creating your 'Bug-Out' plan.</p>

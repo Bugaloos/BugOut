@@ -11,7 +11,7 @@ function Profile (props) {
     switch (component) {
 
       case 'CREATE_GROUP':
-        return <GroupNew />
+        return <GroupNew {...props} />
       case 'CREATE_PLAN':
         return <UserPlanNew {...props} />
       case 'MY_PROFILE':

@@ -98,7 +98,7 @@ button{
 }
 .addUser{
   float: right;
-  margin-right: 10em;
+  margin-right: 20em;
 }
 .messageWorld{
   float: left;
@@ -121,4 +121,8 @@ button{
   position: absolute;
   right: 45%;
   top: 50%;
+}
+.info{
+  clear: both;
+  padding: 2em;
 }

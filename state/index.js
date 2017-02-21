@@ -12,7 +12,7 @@ module.exports = {
 
 
   },
-  loggedIn: null,
+  loggedIn: 'Mischa',
   formShowing: 'REGISTER',
   messages: [],
   groupPlan: {
@@ -30,7 +30,7 @@ module.exports = {
   group: {
     proposedGroupName: '',
     step: 0,
-    name: null
+    name: 'bugaloos'
   },
 
   userPlan: {

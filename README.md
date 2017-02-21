@@ -1,19 +1,14 @@
-#The simplest boilerplate
+#Bug Out
 
-This is my attempt for a barebone React/Redux/React-router setup. When I mean barebone, I mean "barely functional". Add whatever you want to it!
+This app will help people through emergency situations even in times of limited network service.
 
-#What's in it
+  Utilises service workers so user's can access important information even when offline.
+  Combines PouchDB and Cloudant to support a user's group message board. Messages sync as soon as network service is detected - allowing groups to communticate confidently even in times of patchy connection. 
 
-- A minimal React setup
-- A minimal Redux setup, with a minimal combinedReducers() setup
-- A minimal react-router setup
-- A minimal Express server
-- A minimal database setup using knex
-- A minimal API endpoints setup
-- A test folder with example tests for client, database and reducers. Switches between tape and ava, choose the one you like best
+clone the repo
+/// npm i ///
+/// npm run dev ///
 
-And that's pretty much all.
 
-#Ideas to make it better? Glaring mistakes? Let's make it better!
+#In development.
 
-But let's keep it small.
